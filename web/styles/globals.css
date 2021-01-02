@@ -1,0 +1,84 @@
+html, body {
+  font-family: 'Rubik', sans-serif;
+}
+
+.container-fluid {
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+}
+
+.breadcrumb {
+  font-size: 14px !important;
+  font-weight: bold !important;
+  background-color: inherit !important;
+  margin-top: 8px !important;
+  padding-left: 0px !important;
+}
+
+.table-bar {
+  background-color: #f7f7f7;
+  padding: 15px 25px !important;
+  margin-bottom: 25px;  
+}
+
+.input-group-text {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  background-color: #6c757d;
+  color: white;
+}
+
+thead th {
+  background-color: #6c757d;
+  color: white;
+  font-size: 12px !important;
+}
+
+tbody td {
+  color: #6c757d;
+  font-size: 14px !important;
+}
+
+.fa {
+  font-size: .80rem;
+}
+
+form {
+  padding: 10px 50px;  
+  background-color: #f7f7f7;
+}
+
+.form-group {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  margin-bottom: 25px !important;
+}
+
+.asset-group {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding: 10px 20px !important;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  background-color: white;
+}
+
+label {
+  padding-left: 5px !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: #6c757d;
+  text-align: center !important;
+}
+
+input {
+  font-size: 14px !important;
+}
+
+select {
+  font-size: 14px !important;
+}
+
+
+
+
