@@ -15,18 +15,18 @@ html, body {
   padding-left: 0px !important;
 }
 
-.table-bar {
+/* .table-bar {
   background-color: #f7f7f7;
   padding: 15px 25px !important;
   margin-bottom: 25px;  
-}
+} */
 
-.input-group-text {
+/* .input-group-text {
   font-size: 12px !important;
   font-weight: bold !important;
   background-color: #6c757d;
   color: white;
-}
+} */
 
 thead th {
   background-color: #6c757d;
@@ -36,7 +36,13 @@ thead th {
 
 tbody td {
   color: #6c757d;
-  font-size: 14px !important;
+  font-size: 12px !important;
+}
+
+tfoot th {
+  color: #6c757d;
+  font-size: 12px !important;
+  font-weight: bold !important;
 }
 
 .fa {
@@ -68,7 +74,6 @@ label {
   font-size: 12px !important;
   font-weight: bold !important;
   color: #6c757d;
-  text-align: center !important;
 }
 
 input {

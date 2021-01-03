@@ -21,6 +21,7 @@ export function AssetForm(props) {
 
     const handleSubmit = () => {
         console.log(formData)
+        save(formData)
     }
 
     return (
@@ -38,12 +39,12 @@ export function AssetForm(props) {
             <Form.Row>
                 <SelectField label='HOLDER' name='holder' options={HOLDER} />
                 <SelectField label='INSTITUTION' name='institution' options={INSTITUTION} />
-                <SelectField label='FUND HOUSE' name='funds' options={FUND_HOUSE} />
+                <SelectField label='FUND HOUSE' name='fundHouse' options={FUND_HOUSE} />
             </Form.Row>
 
             <Form.Row>
-                <DateField label='START DATE' name='sdate' />
-                <DateField label='END DATE' name='edate' />
+                <DateField label='START DATE' name='startDate' />
+                <DateField label='END DATE' name='endDate' />
                 <SelectField label='STATUS' name='status' options={STATUS} xs={3} />
             </Form.Row>
 
@@ -51,23 +52,23 @@ export function AssetForm(props) {
                 <MultiSelect label='ASSET GROUP' name='group' options={ASSET_GROUP} />
             </Form.Row>
 
-            {/* <Form.Row>
-                <Form.Group as={Col} xs={12} controlId="asset_group">
-                    <Form.Label>ASSET GROUP</Form.Label>
-                    <div className='row asset-group'>
-                        <Form.Check className='col-2' type="checkbox" label="EXIGENCY" checked/>
-                        <Form.Check className='col-2' type="checkbox" label="EDUCATION" />
-                        <Form.Check className='col-2' type="checkbox" label="CHILDREN" />
-                        <Form.Check className='col-2' type="checkbox" label="WELFARE" />
-                        <Form.Check className='col-2' type="checkbox" label="RETIRMENT" checked />
-                        <Form.Check className='col-2' type="checkbox" label="RELIANT" />
-                    </div>
-                </Form.Group>
-            </Form.Row> */}
-
             <Form.Group as={Col}>
                 <Button variant="primary" size='sm' onClick={handleSubmit}>SAVE</Button>
             </Form.Group>
         </Form>
     )
 }
+
+function save(asset) {
+    const payload = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(asset)
+    }
+
+    const result = fetch('/api/asset', payload)
+        .then(response => response.json)
+        .catch(error => console.log(error))
+
+    console.log(result)
+} 

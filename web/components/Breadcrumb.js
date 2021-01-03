@@ -4,8 +4,9 @@ export default function IBreadcrumb(props) {
     const { breadcrumbs } = props
     return (
         <Breadcrumb> {
-            breadcrumbs.map(breadcrumb => <BreadcrumbItem {...breadcrumb} />)
-        }
+            breadcrumbs.map(breadcrumb =>
+                <BreadcrumbItem key={breadcrumb.title} {...breadcrumb} />
+            )}
         </Breadcrumb >
     )
 }

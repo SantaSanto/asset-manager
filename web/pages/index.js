@@ -18,7 +18,7 @@ export default function Home() {
           <Card.Title><b>ASSET</b></Card.Title>
           <Card.Text>Financial instruments like stocks, bonds, mutual funds and fixed income.</Card.Text>
           <Card.Link href="/asset/add">ADD</Card.Link>
-          <Card.Link href="/portfolio">VIEW</Card.Link>
+          <Card.Link href="/asset/list-view">VIEW</Card.Link>
         </Card.Body>
       </Card>
       

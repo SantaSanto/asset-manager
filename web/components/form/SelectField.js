@@ -20,10 +20,10 @@ export default function SelectField(props) {
     return (
         <Form.Group controlId={`FC_${fieldName}`} as={Col} {...props} >
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control as='select' required custom
-                value={fieldValue}
-                onChange={handleChange} >
-                { props.options.map(option => <SelectOption {...option} />) }
+            <Form.Control as='select' required custom value={fieldValue} onChange={handleChange}> {
+                props.options.map(option =>
+                    <SelectOption key={option.value} {...option} />
+                )}
             </Form.Control>
         </Form.Group>
     )

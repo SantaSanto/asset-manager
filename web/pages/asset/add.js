@@ -4,10 +4,9 @@ import { AssetForm } from '../../components/asset/AssetForm'
 
 export default function AddAsset(props) {
     return (
-        <FormProvider>
+        <FormProvider model={props.asset}>
             <AssetForm />
         </FormProvider>
-
     )
 }
 
@@ -18,9 +17,16 @@ export async function getServerSideProps(context) {
         { title: 'ADD ASSET', href: "#", active: true },
     ]
 
+    const _asset = {
+        code: '', name: '', category: '', instrument: '', holder: '',
+        institution: '', fundHouse: '', startDate: '', endDate: '',
+        group: [], status: 'A'
+    }
+
     return {
         props: {
-            breadcrumbs: _breadcrumbs
+            breadcrumbs: _breadcrumbs,
+            asset: _asset
         },
     }
 }
