@@ -25,7 +25,7 @@ export function AssetForm(props) {
     }
 
     return (
-        <Form noValidate>
+        <Form noValidate style={{ padding: '10px 25px' }}>
             <Form.Row>
                 <TextField label='ASSET CODE' name='code' xs={4} />
                 <TextField label='ASSET NAME' name='name' />
@@ -52,9 +52,11 @@ export function AssetForm(props) {
                 <MultiSelect label='ASSET GROUP' name='group' options={ASSET_GROUP} />
             </Form.Row>
 
-            <Form.Group as={Col}>
-                <Button variant="primary" size='sm' onClick={handleSubmit}>SAVE</Button>
-            </Form.Group>
+            <Form.Row>
+                <Form.Group as={Col}>
+                    <Button variant="primary" size='sm' onClick={handleSubmit}>SAVE</Button>
+                </Form.Group>
+            </Form.Row>
         </Form>
     )
 }

@@ -1,4 +1,4 @@
-import createConnection from '../../utils/db'
+import createConnection from '../../dao/db'
 
 export default (req, res) => {
     switch (req.method) {

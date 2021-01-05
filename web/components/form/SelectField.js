@@ -29,6 +29,21 @@ export default function SelectField(props) {
     )
 }
 
+// function FormControl(props) {
+//     reutrn (
+//         <Form.Control custom as='select'          
+//             value={fieldValue} 
+//             onChange={handleChange} > 
+            
+//             { options.map( option =>
+//                 <SelectOption 
+//                     key={option.value} 
+//                     {...option} />
+//             )}
+//         </Form.Control> 
+//     )
+// }
+
 function SelectOption({ value, label }) {
     return (
         <option value={value}>{label}</option>

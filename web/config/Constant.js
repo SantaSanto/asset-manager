@@ -9,12 +9,12 @@ export const ASSET_CATEGORY = [
 export const INSTRUMENT = [
     { value:'', label:'' },
     { value:'BOND', label:'BOND' },
-    { value:'MF', label:'MUTUAL FUND' },
-    { value:'NPS', label:'NATIONAL PENSION SCHEME' },
-    { value:'FD', label:'FIXED DEPOSIT' },
-    { value:'EPF', label:'EMPLOYEE PROVIDENT FUND' },
-    { value:'PPF', label:'PUBLIC PROVIDENT FUND' },
-    { value:'SSA', label:'SUKANYA SAMRIDDHI ACCOUNT' }
+    { value:'FUND', label:'FUND' },
+    { value:'NPS', label:'NPS' },
+    { value:'DEPOSIT', label:'DEPOSIT' },
+    { value:'EPF', label:'EPF' },
+    { value:'PPF', label:'PPF' },
+    { value:'SSA', label:'SSA' }
 ]
 
 export const HOLDER = [
@@ -26,18 +26,18 @@ export const HOLDER = [
 
 export const INSTITUTION = [
     { value:'', label:'' },
-    { value:'CITI', label:'CITIBANK' },
-    { value:'DBS', label:'DIGIBANK' },
-    { value:'SBI', label:'STATE BANK OF INDIA' },
+    { value:'CITIBANK', label:'CITIBANK' },
+    { value:'DIGIBANK', label:'DIGIBANK' },
+    { value:'SBI', label:'SBI' },
     { value:'HDFC', label:'HDFC' }    
 ]
 
 export const FUND_HOUSE = [
     { value:'', label:'' },
-    { value:'CITI', label:'CITIBANK' },
-    { value:'DBS', label:'DIGIBANK' },
-    { value:'SBI', label:'STATE BANK OF INDIA' },
-    { value:'HDFC', label:'HDFC' }    
+    { value:'CITIBANK', label:'CITIBANK' },
+    { value:'DIGIBANK', label:'DIGIBANK' },
+    { value:'SBI', label:'SBI' },
+    { value:'HDFC', label:'HDFC' }  
 ]
 
 export const STATUS = [
