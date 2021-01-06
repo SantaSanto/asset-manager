@@ -13,7 +13,9 @@ export default function TableHeader(props) {
 function Header({label, align}) {
     const alignClass = getAlignClass(align)
     return (
-        <th className={alignClass}>{label}</th>
+        <th className={alignClass}>
+            <a href='#'>{label}</a>
+        </th>
     )
 }
 

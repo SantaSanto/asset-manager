@@ -18,6 +18,7 @@ export default function ListView(props) {
                     <SelectField label='STATUS' name='status' options={[]} />
                 </Form.Row>
             </Form>
+            <br/>
             <AssetList assets={props.assets} />
         </FormProvider>
     )

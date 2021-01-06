@@ -13,7 +13,7 @@ export default function Home() {
       </Card> */}
 
 
-      <Card bg="dark" text='white'>
+      <Card bg="dark" text='black'>
         <Card.Body>
           <Card.Title><b>ASSET</b></Card.Title>
           <Card.Text>Collection of financial instruments like stocks, bonds, mutual funds and fixed income.</Card.Text>

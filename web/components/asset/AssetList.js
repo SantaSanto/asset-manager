@@ -13,7 +13,7 @@ export default function AssetList({assets}) {
             <tbody> {
                 assets.map(asset => (
                     <tr key={asset.CODE} >
-                        <td>{asset.CODE}</td>
+                        <td><a href='#'>{asset.CODE}</a></td>
                         <td>{asset.NAME}</td>
                         <td>{asset.CATEGORY}</td>
                         <td>{asset.INSTRUMENT}</td>
