@@ -1,10 +1,6 @@
-
-
 import { FormProvider } from '../../components/form/FormProvider'
 import AssetFilter from '../../components/asset/AssetFilter'
 import AssetList from '../../components/asset/AssetList'
-
-import { getAssets } from '../../dao/asset-dao'
 
 export default function ListView(props) {
     return (
@@ -23,18 +19,17 @@ export async function getServerSideProps(context) {
     ]
 
     const _filter = {
-        group: 'ALL', category: 'ALL', instrument: 'ALL', holder: 'ALL',
+        portfolio: 'ALL', category: 'ALL', instrument: 'ALL', holder: 'ALL',
         institution: 'ALL', status: 'A'
     }
 
-    const _assets = await getAssets()
-    console.log(_assets)
+    // const _assets = await getAssets()
+    // console.log(_assets)
 
     return {
         props: {
             breadcrumbs: _breadcrumbs,
-            filter: _filter,
-            assets: JSON.parse(JSON.stringify(_assets))
+            filter: _filter
         }
     }
 }

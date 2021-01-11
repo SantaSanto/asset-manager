@@ -5,7 +5,7 @@ export default function AssetFilter(props) {
     return (
         <Form style={{ padding: '0px 10px' }}>
             <Form.Row>
-                <SelectField label='GROUP' name='group' options={GROUP} />
+                <SelectField label='PORTFOLIO' name='portfolio' options={PORTFOLIO} />
                 <SelectField label='CATEGORY' name='category' options={CATEGORY} />
                 <SelectField label='INSTRUMENT' name='instrument' options={INSTRUMENT} />
                 <SelectField label='HOLDER' name='holder' options={HOLDER} />
@@ -16,7 +16,7 @@ export default function AssetFilter(props) {
     )
 }
 
-export const GROUP = [
+export const PORTFOLIO = [
     { value:'ALL', label:'ALL' },
     { value:'EXIGENCY', label:'EXIGENCY' },
     { value:'EDUCATION', label:'EDUCATION' },

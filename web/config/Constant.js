@@ -46,7 +46,7 @@ export const STATUS = [
     { value:'D', label:'DELETED' },
 ]
 
-export const ASSET_GROUP = [
+export const PORTFOLIO = [
     { value:'EXIGENCY', label:'EXIGENCY' },
     { value:'EDUCATION', label:'EDUCATION' },
     { value:'CHILDREN', label:'CHILDREN' },

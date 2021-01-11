@@ -9,16 +9,16 @@ export default (req, res) => {
 }
 
 async function onGET(req, res) {
-    const filter = {}
-    filter['group'] = req.query['group']
-    filter['category'] = req.query['category']
-    filter['instrument'] = req.query['instrument']
-    filter['holder'] = req.query['holder']
-    filter['institution'] = req.query['institution']
-    filter['status'] = req.query['status']
+    const assetFilter = {}
+    assetFilter['portfolio'] = req.query['portfolio']
+    assetFilter['category'] = req.query['category']
+    assetFilter['instrument'] = req.query['instrument']
+    assetFilter['holder'] = req.query['holder']
+    assetFilter['institution'] = req.query['institution']
+    assetFilter['status'] = req.query['status']
 
     try {
-        const assets = await getAssets(filter)
+        const assets = await getAssets(assetFilter)
         res.status(200).json(assets)
     } catch(error) {
         console.log(error)

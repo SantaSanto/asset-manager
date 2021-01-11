@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
     const _asset = {
         code: '', name: '', category: '', instrument: '', holder: '',
         institution: '', fundHouse: '', startDate: '', endDate: '',
-        group: [], status: 'A'
+        portfolio: [], status: 'A'
     }
 
     return {

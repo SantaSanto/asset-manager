@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 
 import { ASSET_CATEGORY, INSTRUMENT } from '../../config/Constant'
 import { HOLDER, INSTITUTION, FUND_HOUSE } from '../../config/Constant'
-import { STATUS, ASSET_GROUP } from '../../config/Constant'
+import { STATUS, PORTFOLIO } from '../../config/Constant'
 
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
@@ -59,7 +59,7 @@ export function AssetForm(props) {
                 </Form.Row>
 
                 <Form.Row>
-                    <MultiSelect label='ASSET GROUP' name='group' options={ASSET_GROUP} />
+                    <MultiSelect label='PORTFOLIO' name='portfolio' options={PORTFOLIO} />
                 </Form.Row>
 
                 <Form.Row>
