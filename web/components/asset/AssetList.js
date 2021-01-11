@@ -1,15 +1,33 @@
+import { useContext, useState, useEffect } from 'react'
+import withQuery from 'with-query'
 import Table from 'react-bootstrap/Table'
 import TableHeader from '../table/TableHeader'
 
-const header = {
+import { FormContext } from '../form/FormProvider'
+
+const tableHeader = {
     label: ['CODE', 'NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'INVESTED', 'CURRENT', 'PROFIT', 'ROI'],
     align: ['left', 'left', 'left', 'left', 'left', 'left', 'right', 'right', 'right', 'right']
 }
 
-export default function AssetList({assets}) {
+export default function AssetList() {
+    const [ assets, setAssets] = useState([])
+    const { formState } = useContext(FormContext)
+    const { formData } = formState
+
+    useEffect(() => {
+        fetch(withQuery('/api/assets', formData), header(formData))
+            .then(handleErrors)
+            .then(res => res.json())
+            .then(res => setAssets(res) )
+            .catch(error => console.log(error))          
+        console.log(assets)
+        }, [formState]
+    )
+
     return (
         <Table>
-            <TableHeader header={header} />
+            <TableHeader header={tableHeader} />
             <tbody> {
                 assets.map(asset => (
                     <tr key={asset.CODE} >
@@ -38,4 +56,18 @@ export default function AssetList({assets}) {
             </tfoot>
         </Table>
     )
+}
+
+function header() {
+    return {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
 }
