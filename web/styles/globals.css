@@ -27,27 +27,29 @@ nav {
   color: #003366 !important;
 }
 
-thead th {
+th {
   background-color: #ecf3f9;
-  color: #add8e6;
+  color: #003366;
   font-size: 10px !important;
   font-weight: bold !important;
 }
 
 tbody td {
+  background-color: #F8F8FF !important;
   color: #003366;
-  font-size: 12px !important;
+  font-size: 11px !important;
 }
 
-tfoot th {
-  color: #003366;
-  font-size: 12px !important;
-  font-weight: bold !important;
+.ad-td {
+  background-color: #F8F8FF !important;
+  color: #003366 !important;
+  font-size: 10px !important;
+  padding-left: 10px !important;
 }
 
-.fa {
+/* .fa {
   font-size: .80rem;
-}
+} */
 
 form {
   padding: 10px 50px;  
