@@ -82,5 +82,23 @@ select option {
   font-size: 14px !important;
 }
 
+button {
+  font-size: 12px !important;
+}
+
+.ad-nav {
+  padding: 16px 8px !important;
+}
+
+.asset-details-toolbar {
+  font-size: 12px !important;
+  background-color:  #add8e6;
+  color: #add8e6;
+}
+
+/* .nav-link {
+  font-size: 12px !important;
+} */
+
 
 

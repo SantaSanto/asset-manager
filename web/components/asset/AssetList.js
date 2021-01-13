@@ -31,7 +31,11 @@ export default function AssetList() {
             <tbody> {
                 assets.map(asset => (
                     <tr key={asset.CODE} >
-                        <td><a href='#'>{asset.CODE}</a></td>
+                        <td>
+                            <a href={`/asset/details-view?code=${asset.CODE}`}>
+                                {asset.CODE}
+                            </a>
+                        </td>
                         <td>{asset.NAME}</td>
                         <td>{asset.CATEGORY}</td>
                         <td>{asset.INSTRUMENT}</td>

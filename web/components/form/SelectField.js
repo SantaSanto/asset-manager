@@ -19,7 +19,7 @@ export default function SelectField(props) {
 
     return (
         <Form.Group controlId={`FC_${fieldName}`} as={Col} {...props} >
-            <Form.Label>{props.label}</Form.Label>
+            <FormLabel label={props.label} />
             <Form.Control as='select' required custom value={fieldValue} onChange={handleChange}> {
                 props.options.map(option =>
                     <SelectOption key={option.value} {...option} />
@@ -29,20 +29,13 @@ export default function SelectField(props) {
     )
 }
 
-// function FormControl(props) {
-//     reutrn (
-//         <Form.Control custom as='select'          
-//             value={fieldValue} 
-//             onChange={handleChange} > 
-            
-//             { options.map( option =>
-//                 <SelectOption 
-//                     key={option.value} 
-//                     {...option} />
-//             )}
-//         </Form.Control> 
-//     )
-// }
+function FormLabel(props) {
+    const { label } = props
+    if (label === undefined) return null
+    return (
+        <Form.Label>{label}</Form.Label>
+    )
+}
 
 function SelectOption({ value, label }) {
     return (

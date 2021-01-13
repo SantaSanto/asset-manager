@@ -25,11 +25,15 @@ export function getAssets(assetFilter) {
     sql += 'FROM ASSET WHERE '    
     sql += `STATUS = '${assetFilter['status']}' `  
 
+    if(assetFilter['portfolio'] !== 'ALL') {
+        sql += `AND PORTFOLIO LIKE '%${assetFilter['portfolio']}%' `   
+    }
+    
     if(assetFilter['holder'] !== 'ALL') {
         sql += `AND HOLDER = '${assetFilter['holder']}' `   
     }
     console.log(sql)
-    
+
     return new Promise((resolve, reject) => {
         const con = getConnection()
         con.query(sql, (error, results) => {
