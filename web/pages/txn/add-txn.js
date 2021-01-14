@@ -1,11 +1,11 @@
 import { FormProvider } from '../../components/form/FormProvider'
-import { AssetForm } from '../../components/asset/AssetForm'
+import { TxnForm } from '../../components/txn/TxnForm'
 
 
-export default function AddAsset(props) {
+export default function AddTransaction(props) {
     return (
         <FormProvider model={props.asset}>
-            <AssetForm mode='ADD' />
+            <TxnForm mode='ADD' />
         </FormProvider>
     )
 }

@@ -57,7 +57,10 @@ export const INSTITUTION = [
     { value:'CITIBANK', label:'CITIBANK' },
     { value:'DIGIBANK', label:'DIGIBANK' },
     { value:'SBI', label:'SBI' },
-    { value:'HDFC', label:'HDFC' }    
+    { value:'HDFC', label:'HDFC' },   
+    { value:'EPFO', label:'EPFO' },
+    { value:'PO', label:'PO' },
+    { value:'BAJAJ', label:'BAJAJ' },   
 ]
 
 export const STATUS = [

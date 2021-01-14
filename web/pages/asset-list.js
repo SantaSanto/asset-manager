@@ -1,8 +1,8 @@
-import { FormProvider } from '../../components/form/FormProvider'
-import AssetFilter from '../../components/asset/AssetFilter'
-import AssetList from '../../components/asset/AssetList'
+import { FormProvider } from '../components/form/FormProvider'
+import AssetFilter from '../components/asset/AssetFilter'
+import AssetList from '../components/asset/AssetList'
 
-export default function ListView(props) {
+export default function AssetListView(props) {
     return (
         <FormProvider model={props.filter}>
             <AssetFilter />
@@ -22,9 +22,6 @@ export async function getServerSideProps(context) {
         portfolio: 'ALL', category: 'ALL', instrument: 'ALL', holder: 'ALL',
         institution: 'ALL', status: 'A'
     }
-
-    // const _assets = await getAssets()
-    // console.log(_assets)
 
     return {
         props: {

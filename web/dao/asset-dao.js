@@ -19,7 +19,7 @@ export function updateAsset(asset) {
     sql += `FUND_HOUSE='${asset.FUND_HOUSE}', PORTFOLIO='${asset.PORTFOLIO}', `
     sql += `START_DATE='${asset.START_DATE}', END_DATE='${asset.END_DATE}', `
     sql += `STATUS='${asset.STATUS}' WHERE CODE = '${asset.CODE}'`
-    console.log(sql)
+
     return execute(sql)
 }
 
@@ -31,7 +31,6 @@ export function getAsset(assetCode) {
     sql += 'FROM ASSET WHERE '
     sql += `CODE = '${assetCode}'`
 
-    console.log(sql)
     return execute(sql)
 }
 
@@ -43,14 +42,12 @@ export function getAssets(assetFilter) {
     sql += 'FROM ASSET WHERE '    
     sql += `STATUS = '${assetFilter['status']}' `  
 
-    if(assetFilter['portfolio'] !== 'ALL') {
-        sql += `AND PORTFOLIO LIKE '%${assetFilter['portfolio']}%' `   
-    }
-    
-    if(assetFilter['holder'] !== 'ALL') {
-        sql += `AND HOLDER = '${assetFilter['holder']}' `   
-    }
-    console.log(sql)
+    if(assetFilter['portfolio'] !== 'ALL')     sql += `AND PORTFOLIO LIKE '%${assetFilter['portfolio']}%' `      
+    if(assetFilter['category'] !== 'ALL')      sql += `AND CATEGORY = '${assetFilter['category']}' ` 
+    if(assetFilter['instrument'] !== 'ALL')    sql += `AND INSTRUMENT = '${assetFilter['instrument']}' `
+    if(assetFilter['holder'] !== 'ALL')        sql += `AND HOLDER = '${assetFilter['holder']}' ` 
+    if(assetFilter['institution'] !== 'ALL')  sql += `AND INSTITUTION = '${assetFilter['institution']}' ` 
+
     return execute(sql)
 }
 

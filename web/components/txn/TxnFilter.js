@@ -11,7 +11,8 @@ export default function TxnFilter(props) {
                 <SelectField label='HOLDER' name='holder' options={HOLDER} />
                 <SelectField label='INSTITUTION' name='institution' options={INSTITUTION} />
                 <SelectField label='STATUS' name='status' options={STATUS} />
-                <Button className='btn-add-txn' variant="primary">ADD TRANSACTION</Button>
+                <Button className='btn-add-txn' variant="primary"
+                    href='/txn/add-txn'>ADD TRANSACTION</Button>
             </Form.Row>
         </Form>
     )

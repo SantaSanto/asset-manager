@@ -16,19 +16,19 @@ import MultiSelect from '../form/MultiSelect'
 
 import { FormContext } from "../form/FormProvider"
 
-export function AssetForm(props) {
+export function TxnForm(props) {
     const [alert, setAlert] = useState({ show: false })
     const { formState } = useContext(FormContext)
     const { formData } = formState
 
     let buttonLabel = 'SAVE'
-    if(props.mode === 'EDIT') {
+    if (props.mode === 'EDIT') {
         buttonLabel = 'UPDATE'
     }
 
     const handleSubmit = () => {
         let method = 'POST'
-        if(props.mode === 'EDIT') {
+        if (props.mode === 'EDIT') {
             method = 'PUT'
         }
 
@@ -44,32 +44,22 @@ export function AssetForm(props) {
 
     return (
         <React.Fragment>
-            <FormAlert alert={alert}/>
+            <FormAlert alert={alert} />
             <Form noValidate style={{ padding: '10px 25px' }}>
                 <Form.Row>
-                    <TextField label='ASSET CODE' name='CODE' xs={4} />
-                    <TextField label='ASSET NAME' name='NAME' />
-                </Form.Row>
-
-                <Form.Row>
-                    <SelectField label='CATEGORY' name='CATEGORY' options={ASSET_CATEGORY} />
-                    <SelectField label='INSTRUMENT' name='INSTRUMENT' options={INSTRUMENT} />
-                </Form.Row>
-
-                <Form.Row>
-                    <SelectField label='HOLDER' name='HOLDER' options={HOLDER} />
-                    <SelectField label='INSTITUTION' name='INSTITUTION' options={INSTITUTION} />
-                    <SelectField label='FUND HOUSE' name='FUND_HOUSE' options={FUND_HOUSE} />
-                </Form.Row>
-
-                <Form.Row>
-                    <DateField label='START DATE' name='START_DATE' />
-                    <DateField label='END DATE' name='END_DATE' />
+                    <DateField label='TRANSACTION DATE' name='DATE' xs={3} />
+                    <SelectField label='CATEGORY' name='CATEGORY' options={CATEGORY} />
                     <SelectField label='STATUS' name='STATUS' options={STATUS} xs={3} />
                 </Form.Row>
 
                 <Form.Row>
-                    <MultiSelect label='PORTFOLIO' name='PORTFOLIO' options={PORTFOLIO} />
+                    <TextField label='UNIT' name='UNIT' />
+                    <TextField label='VALUE' name='VALUE' />
+                    <TextField label='AMOUNT' name='AMOUNT' readonly='true' />
+                </Form.Row>
+
+                <Form.Row>
+                    <TextField label='DESCRIPTION' name='DESC' />
                 </Form.Row>
 
                 <Form.Row>
@@ -91,8 +81,8 @@ function FormAlert(props) {
                 Error while saving Asset.
             </Alert>
         )
-    } 
-    if(!error) {
+    }
+    if (!error) {
         return (
             <Alert variant="success">
                 Asset has been saved successfully.
@@ -116,26 +106,10 @@ function handleErrors(response) {
     return response;
 }
 
-export const INSTITUTION = [
-    { value:'', label:'' },
-    { value:'CITIBANK', label:'CITIBANK' },
-    { value:'DIGIBANK', label:'DIGIBANK' },
-    { value:'SBI', label:'SBI' },
-    { value:'HDFC', label:'HDFC' },   
-    { value:'EPFO', label:'EPFO' },
-    { value:'PO', label:'PO' },
-    { value:'BAJAJ', label:'BAJAJ' },
-]
-
-export const FUND_HOUSE = [
-    { value:'', label:'' },
-    { value:'NA', label:'NA' }, 
-    { value:'CITIBANK', label:'CITIBANK' },
-    { value:'DIGIBANK', label:'DIGIBANK' },
-    { value:'SBI', label:'SBI' },
-    { value:'HDFC', label:'HDFC' }, 
-    { value:'PPF', label:'PPF' }, 
-    { value:'SSA', label:'SSA' }, 
-    { value:'EMPLOYEE', label:'EMPLOYEE' },
-    { value:'COMPANY', label:'COMPANY' }    
+const CATEGORY = [
+    { value: '', label: '' },
+    { value: 'DEPOSIT', label: 'DEPOSIT' },
+    { value: 'CREDIT', label: 'CREDIT' },
+    { value: 'WITHDRAW', label: 'WITHDRAW' },
+    { value: 'NAV', label: 'NAV' }
 ]

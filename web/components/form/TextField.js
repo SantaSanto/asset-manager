@@ -18,9 +18,9 @@ export default function TextField(props) {
     }
 
     return (
-        <Form.Group controlId={`FC_${fieldName}`} as={Col} {...props}>
+        <Form.Group controlId={`FC_${fieldName}`} as={Col} xs={props.xs} >
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control type="text" required 
+            <Form.Control type="text" required readonly={props.readonly}
                 value={fieldValue}
                 onChange={ handleChange } />
         </Form.Group>
