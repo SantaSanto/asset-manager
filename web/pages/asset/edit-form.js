@@ -1,3 +1,5 @@
+import { getAsset } from '../../dao/asset-dao'
+
 import { FormProvider } from '../../components/form/FormProvider'
 import { AssetForm } from '../../components/asset/AssetForm'
 
@@ -5,7 +7,7 @@ import { AssetForm } from '../../components/asset/AssetForm'
 export default function AddAsset(props) {
     return (
         <FormProvider model={props.asset}>
-            <AssetForm mode='ADD' />
+            <AssetForm mode='EDIT' />
         </FormProvider>
     )
 }
@@ -17,10 +19,11 @@ export async function getServerSideProps(context) {
         { title: 'ADD ASSET', href: "#", active: true },
     ]
 
-    const _asset = {
-        CODE: '', NAME: '', CATEGORY: '', INSTRUMENT: '', HOLDER: '', INSTITUTION: '', 
-        FUND_HOUSE: '', START_DATE: '', END_DATE: '', PORTFOLIO: [], STATUS: 'A'
-    }
+    const query = context.query
+    let _asset = await getAsset(query.code)
+    _asset = JSON.parse(JSON.stringify(_asset[0]))
+    _asset['PORTFOLIO'] = _asset['PORTFOLIO'].split(',')
+    console.log(_asset)
 
     return {
         props: {

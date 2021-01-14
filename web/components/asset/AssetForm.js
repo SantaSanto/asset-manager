@@ -21,8 +21,18 @@ export function AssetForm(props) {
     const { formState } = useContext(FormContext)
     const { formData } = formState
 
+    let buttonLabel = 'SAVE'
+    if(props.mode === 'EDIT') {
+        buttonLabel = 'UPDATE'
+    }
+
     const handleSubmit = () => {
-        const result = fetch('/api/asset', payload(formData))
+        let method = 'POST'
+        if(props.mode === 'EDIT') {
+            method = 'PUT'
+        }
+
+        const result = fetch('/api/asset', header(method, formData))
             .then(handleErrors)
             .then(res => {
                 setAlert({ ...alert, show: true, error: false })
@@ -37,34 +47,34 @@ export function AssetForm(props) {
             <FormAlert alert={alert}/>
             <Form noValidate style={{ padding: '10px 25px' }}>
                 <Form.Row>
-                    <TextField label='ASSET CODE' name='code' xs={4} />
-                    <TextField label='ASSET NAME' name='name' />
+                    <TextField label='ASSET CODE' name='CODE' xs={4} />
+                    <TextField label='ASSET NAME' name='NAME' />
                 </Form.Row>
 
                 <Form.Row>
-                    <SelectField label='CATEGORY' name='category' options={ASSET_CATEGORY} />
-                    <SelectField label='INSTRUMENT' name='instrument' options={INSTRUMENT} />
+                    <SelectField label='CATEGORY' name='CATEGORY' options={ASSET_CATEGORY} />
+                    <SelectField label='INSTRUMENT' name='INSTRUMENT' options={INSTRUMENT} />
                 </Form.Row>
 
                 <Form.Row>
-                    <SelectField label='HOLDER' name='holder' options={HOLDER} />
-                    <SelectField label='INSTITUTION' name='institution' options={INSTITUTION} />
-                    <SelectField label='FUND HOUSE' name='fundHouse' options={FUND_HOUSE} />
+                    <SelectField label='HOLDER' name='HOLDER' options={HOLDER} />
+                    <SelectField label='INSTITUTION' name='INSTITUTION' options={INSTITUTION} />
+                    <SelectField label='FUND HOUSE' name='FUND_HOUSE' options={FUND_HOUSE} />
                 </Form.Row>
 
                 <Form.Row>
-                    <DateField label='START DATE' name='startDate' />
-                    <DateField label='END DATE' name='endDate' />
-                    <SelectField label='STATUS' name='status' options={STATUS} xs={3} />
+                    <DateField label='START DATE' name='START_DATE' />
+                    <DateField label='END DATE' name='END_DATE' />
+                    <SelectField label='STATUS' name='STATUS' options={STATUS} xs={3} />
                 </Form.Row>
 
                 <Form.Row>
-                    <MultiSelect label='PORTFOLIO' name='portfolio' options={PORTFOLIO} />
+                    <MultiSelect label='PORTFOLIO' name='PORTFOLIO' options={PORTFOLIO} />
                 </Form.Row>
 
                 <Form.Row>
                     <Form.Group as={Col}>
-                        <Button variant="primary" size='sm' onClick={handleSubmit}>SAVE</Button>
+                        <Button variant="primary" size='sm' onClick={handleSubmit}>{buttonLabel}</Button>
                     </Form.Group>
                 </Form.Row>
             </Form>
@@ -91,9 +101,9 @@ function FormAlert(props) {
     }
 }
 
-function payload(asset) {
+function header(method, asset) {
     return {
-        method: 'POST',
+        method: method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(asset)
     }

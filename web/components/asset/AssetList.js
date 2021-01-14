@@ -32,7 +32,7 @@ export default function AssetList() {
                 assets.map(asset => (
                     <tr key={asset.CODE} >
                         <td>
-                            <a href={`/asset/detail-view?code=${asset.CODE}`}>
+                            <a href={`/txn/list-view?code=${asset.CODE}`}>
                                 {asset.CODE}
                             </a>
                         </td>

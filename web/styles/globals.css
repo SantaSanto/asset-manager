@@ -88,19 +88,11 @@ button {
   font-size: 12px !important;
 }
 
-.ad-nav {
-  padding: 16px 8px !important;
-}
-
-.asset-details-toolbar {
+.btn-add-txn {
   font-size: 12px !important;
-  background-color:  #add8e6;
-  color: #add8e6;
+  margin-top: 30px !important;
+  margin-bottom: 16px !important;
 }
-
-/* .nav-link {
-  font-size: 12px !important;
-} */
 
 
 

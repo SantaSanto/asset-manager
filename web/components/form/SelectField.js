@@ -18,7 +18,7 @@ export default function SelectField(props) {
     }
 
     return (
-        <Form.Group controlId={`FC_${fieldName}`} as={Col} {...props} >
+        <Form.Group controlId={`__${fieldName}`} as={Col} {...props} >
             <FormLabel label={props.label} />
             <Form.Control as='select' required custom value={fieldValue} onChange={handleChange}> {
                 props.options.map(option =>
