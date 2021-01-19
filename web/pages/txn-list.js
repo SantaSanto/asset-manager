@@ -1,7 +1,7 @@
-import { getAsset } from '../../dao/asset-dao'
-import { FormProvider } from '../../components/form/FormProvider'
-import TxnFilter from '../../components/txn/TxnFilter'
-import AssetDetails from '../../components/asset/AssetDetails'
+import { getAsset } from '../dao/asset-dao'
+import { FormProvider } from '../components/form/FormProvider'
+import TxnFilter from '../components/txn/TxnFilter'
+import AssetDetails from '../components/asset/AssetDetails'
 
 
 export default function ListView(props) {

@@ -2,13 +2,13 @@ import { createAsset, getAssets } from '../../dao/asset-dao'
 
 export default (req, res) => {
     switch (req.method) {
-        case 'GET': return onGET(req, res)
+        case 'GET': return onGet(req, res)
     }
 
     res.status(405).end()
 }
 
-async function onGET(req, res) {
+async function onGet(req, res) {
     const assetFilter = {}
     assetFilter['portfolio'] = req.query['portfolio']
     assetFilter['category'] = req.query['category']

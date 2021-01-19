@@ -1,18 +1,14 @@
 import React, { useState, useContext } from 'react'
 
-import { ASSET_CATEGORY, INSTRUMENT } from '../../config/Constant'
-import { HOLDER } from '../../config/Constant'
-import { STATUS, PORTFOLIO } from '../../config/Constant'
-
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
+import NumField from '../form/NumField'
 import TextField from '../form/TextField'
 import DateField from '../form/DateField'
 import SelectField from '../form/SelectField'
-import MultiSelect from '../form/MultiSelect'
 
 import { FormContext } from "../form/FormProvider"
 
@@ -26,21 +22,33 @@ export function TxnForm(props) {
         buttonLabel = 'UPDATE'
     }
 
+    
+    const updateAmount = (formData) => {
+        const unit = formData['UNIT']
+        const value = formData['VALUE']
+        let result = parseInt(unit) * parseInt(value)
+
+        result = (isNaN(result))? '0' : result 
+        formData['AMOUNT'] = String(result)
+    }
+
     const handleSubmit = () => {
         let method = 'POST'
         if (props.mode === 'EDIT') {
             method = 'PUT'
-        }
-
-        const result = fetch('/api/asset', header(method, formData))
-            .then(handleErrors)
-            .then(res => {
-                setAlert({ ...alert, show: true, error: false })
-            })
-            .catch(error => {
-                setAlert({ ...alert, show: true, error: true })
-            })
+        }        
+        console.log(formData)
+        // fetch('/api/asset', header(method, formData))
+        //     .then(handleErrors)
+        //     .then(res => {
+        //         setAlert({ ...alert, show: true, error: false })
+        //     })
+        //     .catch(err => {
+        //         setAlert({ ...alert, show: true, error: true })
+        //     }
+        // )
     }
+
 
     return (
         <React.Fragment>
@@ -53,9 +61,9 @@ export function TxnForm(props) {
                 </Form.Row>
 
                 <Form.Row>
-                    <TextField label='UNIT' name='UNIT' />
-                    <TextField label='VALUE' name='VALUE' />
-                    <TextField label='AMOUNT' name='AMOUNT' readonly='true' />
+                    <NumField label='UNIT' name='UNIT' onChange={updateAmount} />
+                    <NumField label='VALUE' name='VALUE' onChange={updateAmount} />
+                    <NumField label='AMOUNT' name='AMOUNT' readOnly={true} />
                 </Form.Row>
 
                 <Form.Row>
@@ -112,4 +120,10 @@ const CATEGORY = [
     { value: 'CREDIT', label: 'CREDIT' },
     { value: 'WITHDRAW', label: 'WITHDRAW' },
     { value: 'NAV', label: 'NAV' }
+]
+
+const STATUS = [
+    { value: 'A', label: 'ACTIVE' },
+    { value: 'C', label: 'CLOSED' },
+    { value: 'D', label: 'DELETED' },
 ]

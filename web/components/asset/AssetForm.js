@@ -27,17 +27,14 @@ export function AssetForm(props) {
     }
 
     const handleSubmit = () => {
-        let method = 'POST'
-        if(props.mode === 'EDIT') {
-            method = 'PUT'
-        }
+        const method = (props.mode === 'EDIT')? 'POST' : 'PUT'
 
-        const result = fetch('/api/asset', header(method, formData))
+        fetch('/api/asset', header(method, formData))
             .then(handleErrors)
             .then(res => {
                 setAlert({ ...alert, show: true, error: false })
             })
-            .catch(error => {
+            .catch(err => {
                 setAlert({ ...alert, show: true, error: true })
             })
     }

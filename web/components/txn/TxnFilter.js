@@ -12,7 +12,7 @@ export default function TxnFilter(props) {
                 <SelectField label='INSTITUTION' name='institution' options={INSTITUTION} />
                 <SelectField label='STATUS' name='status' options={STATUS} />
                 <Button className='btn-add-txn' variant="primary"
-                    href='/txn/add-txn'>ADD TRANSACTION</Button>
+                    href='/txn-form'>ADD TRANSACTION</Button>
             </Form.Row>
         </Form>
     )

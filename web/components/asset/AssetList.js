@@ -16,12 +16,11 @@ export default function AssetList() {
     const { formData } = formState
 
     useEffect(() => {
-        fetch(withQuery('/api/assets', formData), header(formData))
+        fetch(withQuery('/api/assets', formData), getHeader())
             .then(handleErrors)
             .then(res => res.json())
             .then(res => setAssets(res) )
             .catch(error => console.log(error))          
-        console.log(assets)
         }, [formState]
     )
 
@@ -32,7 +31,7 @@ export default function AssetList() {
                 assets.map(asset => (
                     <tr key={asset.CODE} >
                         <td>
-                            <a href={`/txn/list-view?code=${asset.CODE}`}>
+                            <a href={`/txn-list?code=${asset.CODE}`}>
                                 {asset.CODE}
                             </a>
                         </td>
@@ -62,7 +61,7 @@ export default function AssetList() {
     )
 }
 
-function header() {
+function getHeader() {
     return {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }

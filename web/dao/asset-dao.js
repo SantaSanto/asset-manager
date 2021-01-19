@@ -36,7 +36,6 @@ export function getAsset(assetCode) {
 
 
 export function getAssets(assetFilter) {
-    console.log(assetFilter)
     let sql = ''
     sql += 'SELECT CODE, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION '
     sql += 'FROM ASSET WHERE '    

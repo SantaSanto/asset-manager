@@ -39,7 +39,6 @@ export async function getServerSideProps(context) {
         _asset['PORTFOLIO'] = _asset['PORTFOLIO'].split(',')        
     } 
 
-    console.log(_asset)
 
     return {
         props: {

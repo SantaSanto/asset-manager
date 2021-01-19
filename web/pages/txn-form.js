@@ -1,10 +1,10 @@
-import { FormProvider } from '../../components/form/FormProvider'
-import { TxnForm } from '../../components/txn/TxnForm'
+import { FormProvider } from '../components/form/FormProvider'
+import { TxnForm } from '../components/txn/TxnForm'
 
 
 export default function AddTransaction(props) {
     return (
-        <FormProvider model={props.asset}>
+        <FormProvider model={props.txn}>
             <TxnForm mode='ADD' />
         </FormProvider>
     )
@@ -17,7 +17,8 @@ export async function getServerSideProps(context) {
         { title: 'ADD ASSET', href: "#", active: true },
     ]
 
-    const _asset = {
+    const _txn = {
+        UNIT: "1", VALUE:'0', AMOUNT:'0',
         CODE: '', NAME: '', CATEGORY: '', INSTRUMENT: '', HOLDER: '', INSTITUTION: '', 
         FUND_HOUSE: '', START_DATE: '', END_DATE: '', PORTFOLIO: [], STATUS: 'A'
     }
@@ -25,7 +26,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             breadcrumbs: _breadcrumbs,
-            asset: _asset
+            txn: _txn
         },
     }
 }
