@@ -8,8 +8,7 @@ export default function TxnFilter(props) {
             <Form.Row>
                 <SelectField label='YEAR' name='year' options={YEAR} />
                 <SelectField label='MONTH' name='month' options={MONTH} />
-                <SelectField label='HOLDER' name='holder' options={HOLDER} />
-                <SelectField label='INSTITUTION' name='institution' options={INSTITUTION} />
+                <SelectField label='CATEGORY' name='category' options={CATEGORY} />                
                 <SelectField label='STATUS' name='status' options={STATUS} />
                 <Button className='btn-add-txn' variant="primary"
                     href={`/txn-form?mode=NEW&assetId=${props.assetId}`}>ADD TRANSACTION</Button>
@@ -18,7 +17,7 @@ export default function TxnFilter(props) {
     )
 }
 
-export const YEAR = [
+const YEAR = [
     { value:'ALL', label:'ALL' },
     { value:'2016', label:'FY 2016' },
     { value:'2017', label:'FY 2017' },
@@ -27,7 +26,7 @@ export const YEAR = [
     { value:'2020', label:'FY 2020' },
 ] 
 
-export const MONTH = [
+const MONTH = [
     { value:'ALL', label:'ALL' },
     { value:'01', label:'JANUARY' },
     { value:'02', label:'FEBRUARY' },
@@ -36,33 +35,15 @@ export const MONTH = [
     { value:'05', label:'MAY' },
 ] 
 
-export const INSTRUMENT = [
-    { value:'ALL', label:'ALL' },
-    { value:'BOND', label:'BOND' },
-    { value:'FUND', label:'FUND' },
-    { value:'NPS', label:'NPS' },
-    { value:'DEPOSIT', label:'DEPOSIT' },
-    { value:'EPF', label:'EPF' },
-    { value:'PPF', label:'PPF' },
-    { value:'SSA', label:'SSA' }
+const CATEGORY = [
+    { value: 'ALL', label: 'ALL' },
+    { value: 'DEPOSIT', label: 'DEPOSIT' },
+    { value: 'CREDIT', label: 'CREDIT' },
+    { value: 'WITHDRAW', label: 'WITHDRAW' },
+    { value: 'NAV', label: 'NAV' }
 ]
 
-export const HOLDER = [
-    { value:'ALL', label:'ALL' },
-    { value:'LAVANYA', label:'LAVANYA' },
-    { value:'PRANAYA', label:'PRANAYA' },
-    { value:'SANTOSH', label:'SANTOSH' }
-]
-
-export const INSTITUTION = [
-    { value:'ALL', label:'ALL' },
-    { value:'CITIBANK', label:'CITIBANK' },
-    { value:'DIGIBANK', label:'DIGIBANK' },
-    { value:'SBI', label:'SBI' },
-    { value:'HDFC', label:'HDFC' }    
-]
-
-export const STATUS = [
+const STATUS = [
     { value:'A', label:'ACTIVE' },
     { value:'C', label:'CLOSED' },
     { value:'D', label:'DELETED' },

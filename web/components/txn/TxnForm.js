@@ -47,7 +47,7 @@ export function TxnForm(props) {
         <React.Fragment>
             <FormAlert alert={alert} />
             <Form noValidate style={{ padding: '10px 25px' }}>
-                <input type='hidden' name='ASSET_ID' value={formData['ASSET_ID']} />
+                {/* <input type='hidden' name='ASSET_ID' value={formData['ASSET_ID']} /> */}
                 <Form.Row>
                     <DateField label='TRANSACTION DATE' name='DATE' xs={3} />
                     <SelectField label='CATEGORY' name='CATEGORY' options={CATEGORY} />

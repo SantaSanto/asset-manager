@@ -7,7 +7,7 @@ export default function AssetListView(props) {
         <FormProvider model={props.filter}>
             <AssetFilter />
             <br/>
-            <AssetList assets={props.assets} />
+            <AssetList />
         </FormProvider>
     )
 }

@@ -12,9 +12,7 @@ export default function AddTransaction(props) {
 
 
 export async function getServerSideProps(context) {
-
     const query = context.query
-    console.log(query)
 
     const _breadcrumbs = [
         { title: 'ASSET MANAGER', href: "/" },
@@ -26,8 +24,6 @@ export async function getServerSideProps(context) {
     if (query.mode === 'NEW') {
         _txn = createTxn(query.assetId)
     }
-
-    console.log(_txn)
 
     return {
         props: {
