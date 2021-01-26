@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
     if (query.mode === 'EDIT') {
         _breadcrumbs.push({ title: 'EDIT ASSET', href: "#", active: true })
 
-        _asset = await getAsset(query.code)
+        _asset = await getAsset(query.assetId)
         _asset = JSON.parse(JSON.stringify(_asset[0]))
         _asset['PORTFOLIO'] = _asset['PORTFOLIO'].split(',')        
     } 

@@ -18,18 +18,18 @@ export function updateAsset(asset) {
     sql += `HOLDER='${asset.HOLDER}', INSTITUTION='${asset.INSTITUTION}', `
     sql += `FUND_HOUSE='${asset.FUND_HOUSE}', PORTFOLIO='${asset.PORTFOLIO}', `
     sql += `START_DATE='${asset.START_DATE}', END_DATE='${asset.END_DATE}', `
-    sql += `STATUS='${asset.STATUS}' WHERE CODE = '${asset.CODE}'`
+    sql += `STATUS='${asset.STATUS}' WHERE ID = '${asset.ID}'`
 
     return execute(sql)
 }
 
 
-export function getAsset(assetCode) {
+export function getAsset(assetId) {
     let sql = ''
-    sql += 'SELECT CODE, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, '
+    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, '
     sql += "DATE_FORMAT(START_DATE, '%Y-%m-%d') AS START_DATE, DATE_FORMAT(END_DATE, '%Y-%m-%d') AS END_DATE "
     sql += 'FROM ASSET WHERE '
-    sql += `CODE = '${assetCode}'`
+    sql += `ID = '${assetId}'`
 
     return execute(sql)
 }
@@ -37,7 +37,7 @@ export function getAsset(assetCode) {
 
 export function getAssets(assetFilter) {
     let sql = ''
-    sql += 'SELECT CODE, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION '
+    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION '
     sql += 'FROM ASSET WHERE '    
     sql += `STATUS = '${assetFilter['status']}' `  
 

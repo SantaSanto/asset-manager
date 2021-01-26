@@ -8,7 +8,7 @@ export default function ListView(props) {
     return (
         <FormProvider model={props.filter}>
             <AssetDetails asset={props.asset} />
-            <TxnFilter />
+            <TxnFilter assetId={props.asset['ID']} />
         </FormProvider>
     )
 }
@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
     }
 
     const query = context.query
-    let _asset = await getAsset(query.code)
+    let _asset = await getAsset(query.assetId)
     _asset = JSON.parse(JSON.stringify(_asset))[0]
 
     return {

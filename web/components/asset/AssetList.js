@@ -6,8 +6,8 @@ import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
 
 const tableHeader = {
-    label: ['CODE', 'NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'INVESTED', 'CURRENT', 'PROFIT', 'ROI'],
-    align: ['left', 'left', 'left', 'left', 'left', 'left', 'right', 'right', 'right', 'right']
+    label: ['NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'INVESTED', 'CURRENT', 'PROFIT', 'ROI'],
+    align: ['left', 'left', 'left', 'left', 'left', 'right', 'right', 'right', 'right']
 }
 
 export default function AssetList() {
@@ -29,13 +29,8 @@ export default function AssetList() {
             <TableHeader header={tableHeader} />
             <tbody> {
                 assets.map(asset => (
-                    <tr key={asset.CODE} >
-                        <td>
-                            <a href={`/txn-list?code=${asset.CODE}`}>
-                                {asset.CODE}
-                            </a>
-                        </td>
-                        <td>{asset.NAME}</td>
+                    <tr key={asset.ID} >
+                        <td><a href={`/txn-list?assetId=${asset.ID}`}>{asset.NAME}</a></td>
                         <td>{asset.CATEGORY}</td>
                         <td>{asset.INSTRUMENT}</td>
                         <td>{asset.HOLDER}</td>
@@ -50,7 +45,7 @@ export default function AssetList() {
             </tbody>
             <tfoot>
                 <tr>
-                    <th colSpan='6'>2 OF 25 ASSETS</th>
+                    <th colSpan='5'>2 OF 25 ASSETS</th>
                     <th className="text-right">0</th>
                     <th className="text-right">0</th>
                     <th className="text-right">0</th>

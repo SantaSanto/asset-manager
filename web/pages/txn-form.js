@@ -12,16 +12,22 @@ export default function AddTransaction(props) {
 
 
 export async function getServerSideProps(context) {
+
+    const query = context.query
+    console.log(query)
+
     const _breadcrumbs = [
         { title: 'ASSET MANAGER', href: "/" },
         { title: 'ADD ASSET', href: "#", active: true },
     ]
 
-    const _txn = {
-        UNIT: "1", VALUE:'0', AMOUNT:'0',
-        CODE: '', NAME: '', CATEGORY: '', INSTRUMENT: '', HOLDER: '', INSTITUTION: '', 
-        FUND_HOUSE: '', START_DATE: '', END_DATE: '', PORTFOLIO: [], STATUS: 'A'
+    let _txn = {}
+
+    if (query.mode === 'NEW') {
+        _txn = createTxn(query.assetId)
     }
+
+    console.log(_txn)
 
     return {
         props: {
@@ -29,4 +35,17 @@ export async function getServerSideProps(context) {
             txn: _txn
         },
     }
+}
+
+function createTxn(assetId) {
+    return {
+        ASSET_ID: assetId,
+        DATE: '', 
+        CATEGORY: '', 
+        STATUS: 'A', 
+        UNIT: "1", 
+        VALUE:'0', 
+        AMOUNT:'0', 
+        COMMENTS: ''
+    }    
 }

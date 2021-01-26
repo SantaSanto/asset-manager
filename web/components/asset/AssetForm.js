@@ -27,7 +27,7 @@ export function AssetForm(props) {
     }
 
     const handleSubmit = () => {
-        const method = (props.mode === 'EDIT')? 'POST' : 'PUT'
+        const method = (props.mode === 'EDIT')? 'PUT' : 'POST'
 
         fetch('/api/asset', header(method, formData))
             .then(handleErrors)
@@ -43,12 +43,9 @@ export function AssetForm(props) {
         <React.Fragment>
             <FormAlert alert={alert}/>
             <Form noValidate style={{ padding: '10px 25px' }}>
-                <Form.Row>
-                    <TextField label='ASSET CODE' name='CODE' xs={4} />
-                    <TextField label='ASSET NAME' name='NAME' />
-                </Form.Row>
 
                 <Form.Row>
+                    <TextField label='ASSET NAME' name='NAME' xs={5} />
                     <SelectField label='CATEGORY' name='CATEGORY' options={ASSET_CATEGORY} />
                     <SelectField label='INSTRUMENT' name='INSTRUMENT' options={INSTRUMENT} />
                 </Form.Row>

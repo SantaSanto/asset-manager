@@ -17,11 +17,7 @@ export function TxnForm(props) {
     const { formState } = useContext(FormContext)
     const { formData } = formState
 
-    let buttonLabel = 'SAVE'
-    if (props.mode === 'EDIT') {
-        buttonLabel = 'UPDATE'
-    }
-
+    const buttonLabel = (props.mode === 'EDIT')? 'UPDATE' : 'SAVE'
     
     const updateAmount = (formData) => {
         const unit = formData['UNIT']
@@ -33,20 +29,17 @@ export function TxnForm(props) {
     }
 
     const handleSubmit = () => {
-        let method = 'POST'
-        if (props.mode === 'EDIT') {
-            method = 'PUT'
-        }        
-        console.log(formData)
-        // fetch('/api/asset', header(method, formData))
-        //     .then(handleErrors)
-        //     .then(res => {
-        //         setAlert({ ...alert, show: true, error: false })
-        //     })
-        //     .catch(err => {
-        //         setAlert({ ...alert, show: true, error: true })
-        //     }
-        // )
+        const method = (props.mode === 'EDIT')? 'PUT' : 'POST'
+        
+        fetch('/api/txn', header(method, formData))
+            .then(handleErrors)
+            .then(res => {
+                setAlert({ ...alert, show: true, error: false })
+            })
+            .catch(err => {
+                setAlert({ ...alert, show: true, error: true })
+            }
+        )
     }
 
 
@@ -54,6 +47,7 @@ export function TxnForm(props) {
         <React.Fragment>
             <FormAlert alert={alert} />
             <Form noValidate style={{ padding: '10px 25px' }}>
+                <input type='hidden' name='ASSET_ID' value={formData['ASSET_ID']} />
                 <Form.Row>
                     <DateField label='TRANSACTION DATE' name='DATE' xs={3} />
                     <SelectField label='CATEGORY' name='CATEGORY' options={CATEGORY} />
@@ -67,7 +61,7 @@ export function TxnForm(props) {
                 </Form.Row>
 
                 <Form.Row>
-                    <TextField label='DESCRIPTION' name='DESC' />
+                    <TextField label='DESCRIPTION' name='COMMENTS' />
                 </Form.Row>
 
                 <Form.Row>
@@ -86,24 +80,24 @@ function FormAlert(props) {
     if (error) {
         return (
             <Alert variant="danger">
-                Error while saving Asset.
+                Error while saving Transaction.
             </Alert>
         )
     }
     if (!error) {
         return (
             <Alert variant="success">
-                Asset has been saved successfully.
+                Transaction has been saved successfully.
             </Alert>
         )
     }
 }
 
-function header(method, asset) {
+function header(method, txn) {
     return {
         method: method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(asset)
+        body: JSON.stringify(txn)
     }
 }
 

@@ -7,28 +7,36 @@ export default function AssetDetails(props) {
         <Table bordered size='sm'>
             <tbody>
                 <tr>
-                    <AssetData label='NAME' value={asset.NAME} colSpan='2' />
-                    <AssetData label='INVESTED' value='10,00,000' />
-                    <AssetData label='START DATE' value={asset.START_DATE} />
-                    <AssetData label='CODE' value={asset.CODE} />
-                    <EditAsset value={asset.CODE} />
+                    <EditAsset  label='NAME' value={asset.NAME} assetId={asset.ID} />                                      
+                    <AssetData  label='HOLDER' value={asset.HOLDER} />
+                    <AssetData  label='INVESTED' value='10,00,000' colSpan='2' /> 
+                    <AssetData  label='START DATE' value={asset.START_DATE} />
                 </tr>
                 <tr>
-                    <AssetData2 label='INSTRUMENT' first={asset.CATEGORY} second={asset.INSTRUMENT} />
-                    <AssetData  label='CURRENT' value='10,00,000' />
+                    <AssetData  label='CATEGORY' value={asset.CATEGORY} />                                   
+                    <AssetData  label='INSTRUMENT' value={asset.INSTRUMENT} />  
+                    <AssetData  label='CURRENT' value='10,00,000' colSpan='2' />    
                     <AssetData  label='END DATE' value={asset.END_DATE} />
-                    <AssetData  label='HOLDER' value={asset.HOLDER} colSpan='2' />
                 </tr>
                 <tr>
-                    <AssetData2 label='INSTITUTION' first={asset.INSTITUTION} second={asset.FUND_HOUSE} />
-                    <AssetData label='PROFIT' value='10,00,000' />
-                    <AssetData label='ROI' value='12.56 %' />
-                    <AssetData label='STATUS' value={asset.STATUS} colSpan='2' />
+                    <AssetData  label='INSTITUTION' value={asset.INSTITUTION} />                    
+                    <AssetData  label='FUND HOUSE' value={asset.FUND_HOUSE} /> 
+                    <AssetData2 label='PROFIT' first='10,00,000' second='12.56 %' />  
+                    <AssetData  label='STATUS' value={asset.STATUS} colSpan='2' />
                 </tr>
             </tbody>
         </Table>
     )
 }
+
+const EditAsset = ({ label, value, assetId, colSpan = 1 }) => (
+    <React.Fragment>
+        <th className="text-right">{label}</th>
+        <td colSpan={colSpan} className='ad-td'>
+            <a href={`/asset-form?mode=EDIT&assetId=${assetId}`}>{value}</a>
+        </td>
+    </React.Fragment>
+)
 
 const AssetData = ({ label, value, colSpan = 1 }) => (
     <React.Fragment>
@@ -46,10 +54,10 @@ const AssetData2 = ({ label, first, second, colSpan = 1 }) => (
 )
 
 
-const EditAsset = ({ value }) => (
-    <td className='ad-td text-center'>
-        <a href={`/asset-form?mode=EDIT&code=${value}`}>
-            <i className="fa fa-pencil" />
-        </a>
-    </td>
-)
+// const EditAsset = ({ value }) => (
+//     <td className='ad-td text-right' colSpan='1'>
+//         <a href={`/asset-form?mode=EDIT&code=${value}`}>
+//             <i className="fa fa-pencil" />
+//         </a>
+//     </td>
+// )
