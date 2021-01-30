@@ -23,6 +23,15 @@ export function updateAsset(asset) {
     return execute(sql)
 }
 
+export function updateAssetDtls(assetDtld) {
+    const { ID, CURRENT } = assetDtld
+    let sql = ''
+    sql += `UPDATE ASSET SET CURRENT='${CURRENT}' `
+    sql += `WHERE ID = '${ID}'`
+
+    return execute(sql)
+}
+
 
 export function getAsset(assetId) {
     let sql = ''
@@ -37,7 +46,7 @@ export function getAsset(assetId) {
 
 export function getAssets(assetFilter) {
     let sql = ''
-    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION '
+    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, CURRENT '
     sql += 'FROM ASSET WHERE '    
     sql += `STATUS = '${assetFilter['status']}' `  
 

@@ -1,10 +1,11 @@
 import getConnection from './db'
 
 export function createTxn(asset) {
+    const { ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, AMOUNT, COMMENTS, STATUS } = asset
     let sql = ''
-    sql += 'INSERT INTO TXN (ASSET_ID, DATE, CATEGORY, UNIT, VALUE, AMOUNT, COMMENTS, STATUS) VALUES ('
-    sql += `'${asset.ASSET_ID}', '${asset.DATE}', '${asset.CATEGORY}', '${asset.UNIT}', ` 
-    sql += `'${asset.VALUE}', '${asset.AMOUNT}', '${asset.COMMENTS}', '${asset.STATUS}')`
+    sql += 'INSERT INTO TXN (ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, COMMENTS, STATUS) VALUES ('
+    sql += `'${ASSET_ID}', '${DATE}', '${CATEGORY}', '${TIMELINE}', '${UNIT}', '${VALUE}', `
+    sql += `'${COMMENTS}', '${STATUS}')`
 
     return execute(sql)
 }
@@ -34,10 +35,12 @@ export function createTxn(asset) {
 
 
 export function getTxns(txnFilter) {
+    const { ASSET_ID } = txnFilter
     let sql = ''
-    sql += "SELECT ID, ASSET_ID, DATE_FORMAT(DATE, '%Y-%m-%d') AS DATE, COMMENTS, CATEGORY, UNIT, VALUE, AMOUNT, STATUS "
-    sql += 'FROM TXN WHERE '    
-    sql += `ASSET_ID = '${txnFilter['assetId']}' `  
+    sql += 'SELECT ID, ASSET_ID, DATE_FORMAT(DATE, \'%Y-%m-%d\') AS DATE, COMMENTS, CATEGORY, TIMELINE, '
+    sql += 'UNIT, VALUE, (UNIT * VALUE) AS AMOUNT, STATUS '
+    sql += `FROM TXN WHERE ASSET_ID = '${ASSET_ID}' `  
+    sql += 'ORDER BY DATE DESC'
 
     // if(assetFilter['portfolio'] !== 'ALL')     sql += `AND PORTFOLIO LIKE '%${assetFilter['portfolio']}%' `      
     // if(assetFilter['category'] !== 'ALL')      sql += `AND CATEGORY = '${assetFilter['category']}' ` 

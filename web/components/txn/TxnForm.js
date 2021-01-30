@@ -49,9 +49,10 @@ export function TxnForm(props) {
             <Form noValidate style={{ padding: '10px 25px' }}>
                 {/* <input type='hidden' name='ASSET_ID' value={formData['ASSET_ID']} /> */}
                 <Form.Row>
-                    <DateField label='TRANSACTION DATE' name='DATE' xs={3} />
+                    <DateField label='TRANSACTION DATE' name='DATE' />
                     <SelectField label='CATEGORY' name='CATEGORY' options={CATEGORY} />
-                    <SelectField label='STATUS' name='STATUS' options={STATUS} xs={3} />
+                    <SelectField label='TIMELINE' name='TIMELINE' options={TIMELINE} />
+                    <SelectField label='STATUS' name='STATUS' options={STATUS} />
                 </Form.Row>
 
                 <Form.Row>
@@ -110,14 +111,21 @@ function handleErrors(response) {
 
 const CATEGORY = [
     { value: '', label: '' },
-    { value: 'DEPOSIT', label: 'DEPOSIT' },
-    { value: 'CREDIT', label: 'CREDIT' },
+    { value: 'DEPOSIT',  label: 'DEPOSIT' },
+    { value: 'CREDIT',   label: 'CREDIT' },
     { value: 'WITHDRAW', label: 'WITHDRAW' },
-    { value: 'NAV', label: 'NAV' }
+    { value: 'NAV',      label: 'NAV' }
+]
+
+const TIMELINE = [
+    { value: '',  label: ''          },
+    { value: 'C', label: 'COMPLETED' },
+    { value: 'E', label: 'EXPECTED'  }
+    
 ]
 
 const STATUS = [
-    { value: 'A', label: 'ACTIVE' },
-    { value: 'C', label: 'CLOSED' },
+    { value: 'C', label: 'CLEARED' },
+    { value: 'V', label: 'VOID'    },
     { value: 'D', label: 'DELETED' },
 ]

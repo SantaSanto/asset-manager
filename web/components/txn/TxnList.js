@@ -6,8 +6,8 @@ import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
 
 const tableHeader = {
-    label: ['DATE', 'DESCRIPTION', 'CATEGORY', 'UNIT', 'VALUE', 'AMOUNT'],
-    align: ['left', 'left', 'left', 'right', 'right', 'right']
+    label: ['DATE', 'DESCRIPTION', 'CATEGORY', 'TIMELINE', 'UNIT', 'VALUE', 'AMOUNT'],
+    align: ['left', 'left', 'left', 'left', 'right', 'right', 'right']
 }
 
 export default function AssetList() {
@@ -33,6 +33,7 @@ export default function AssetList() {
                         <td><a href='#'>{txn.DATE}</a></td>
                         <td>{txn.COMMENTS}</td>
                         <td>{txn.CATEGORY}</td>
+                        <td>{txn.TIMELINE}</td>
                         <td className="text-right">{txn.UNIT}</td>
                         <td className="text-right">{txn.VALUE}</td>
                         <td className="text-right">{txn.AMOUNT}</td>
@@ -42,7 +43,7 @@ export default function AssetList() {
             </tbody>
             <tfoot>
                 <tr>
-                    <th colSpan='6'>2 of 25 TRANSACTIONS</th>
+                    <th colSpan='7'>2 TRANSACTIONS</th>
                 </tr>
             </tfoot>
         </Table>

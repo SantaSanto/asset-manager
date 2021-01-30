@@ -38,6 +38,7 @@ function createTxn(assetId) {
         ASSET_ID: assetId,
         DATE: '', 
         CATEGORY: '', 
+        TIMELINE: '', 
         STATUS: 'A', 
         UNIT: "1", 
         VALUE:'0', 

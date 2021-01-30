@@ -10,7 +10,7 @@ export default (req, res) => {
 
 async function onGet(req, res) {
     const txnFilter = {}
-    txnFilter['assetId'] = req.query['assetId']
+    txnFilter['ASSET_ID'] = req.query['ASSET_ID']
     txnFilter['year'] = req.query['year']
     txnFilter['month'] = req.query['month']
     txnFilter['category'] = req.query['category']

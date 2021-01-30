@@ -6,8 +6,8 @@ import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
 
 const tableHeader = {
-    label: ['NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'INVESTED', 'CURRENT', 'PROFIT', 'ROI'],
-    align: ['left', 'left', 'left', 'left', 'left', 'right', 'right', 'right', 'right']
+    label: ['NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'CURRENT', 'ROI'],
+    align: ['left', 'left', 'left', 'left', 'left', 'right', 'right']
 }
 
 export default function AssetList() {
@@ -35,10 +35,8 @@ export default function AssetList() {
                         <td>{asset.INSTRUMENT}</td>
                         <td>{asset.HOLDER}</td>
                         <td>{asset.INSTITUTION}</td>
-                        <td className="text-right">10,00,000</td>
-                        <td className="text-right">10,00,000</td>
-                        <td className="text-right">10,00,000</td>
-                        <td className="text-right">12.56</td>
+                        <td className="text-right">{asset.CURRENT}</td>
+                        <td className="text-right">00.00</td>
                     </tr>
                 )
                 )}
@@ -47,9 +45,7 @@ export default function AssetList() {
                 <tr>
                     <th colSpan='5'>2 OF 25 ASSETS</th>
                     <th className="text-right">0</th>
-                    <th className="text-right">0</th>
-                    <th className="text-right">0</th>
-                    <th className="text-right">12.56</th>
+                    <th className="text-right">00.00</th>
                 </tr>
             </tfoot>
         </Table>

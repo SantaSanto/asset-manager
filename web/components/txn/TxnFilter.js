@@ -2,16 +2,17 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import SelectField from '../form/SelectField'
 
-export default function TxnFilter(props) {
+export default function TxnFilter({assetId}) {
     return (
         <Form style={{ padding: '0px 10px' }}>
             <Form.Row>
-                <SelectField label='YEAR' name='year' options={YEAR} />
-                <SelectField label='MONTH' name='month' options={MONTH} />
-                <SelectField label='CATEGORY' name='category' options={CATEGORY} />                
-                <SelectField label='STATUS' name='status' options={STATUS} />
+                <SelectField label='YEAR' name='YEAR' options={YEAR} />
+                <SelectField label='MONTH' name='MONTH' options={MONTH} />
+                <SelectField label='CATEGORY' name='CATEGORY' options={CATEGORY} />
+                <SelectField label='TIMELINE' name='TIMELINE' options={TIMELINE} />                
+                <SelectField label='STATUS' name='STATUS' options={STATUS} />
                 <Button className='btn-add-txn' variant="primary"
-                    href={`/txn-form?mode=NEW&assetId=${props.assetId}`}>ADD TRANSACTION</Button>
+                    href={`/txn-form?mode=NEW&assetId=${assetId}`}>ADD TRANSACTION</Button>
             </Form.Row>
         </Form>
     )
@@ -43,8 +44,15 @@ const CATEGORY = [
     { value: 'NAV', label: 'NAV' }
 ]
 
+const TIMELINE = [
+    { value: 'ALL', label: 'ALL'       },
+    { value: 'C',   label: 'COMPLETED' },
+    { value: 'E',   label: 'EXPECTED'  }
+    
+]
+
 const STATUS = [
-    { value:'A', label:'ACTIVE' },
-    { value:'C', label:'CLOSED' },
-    { value:'D', label:'DELETED' },
+    { value: 'C', label: 'CLEARED' },
+    { value: 'V', label: 'VOID'    },
+    { value: 'D', label: 'DELETED' },
 ]
