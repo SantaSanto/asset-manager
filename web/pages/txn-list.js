@@ -17,13 +17,10 @@ export default function ListView(props) {
 }
 
 export async function getServerSideProps(context) {
-
+    const url = context.resolvedUrl
     const query = context.query
 
-    const _breadcrumbs = [
-        { title: 'ASSET MANAGER', href: "/" },
-        { title: 'ASSETS', href: "#", active: true },
-    ]
+    const _breadcrumb = { key:'TXN_LIST', title: 'XS', href: url, active: true }
 
     const _filter = {
         ASSET_ID: query.assetId,
@@ -33,10 +30,12 @@ export async function getServerSideProps(context) {
    
     let _asset = await getAsset(query.assetId)
     _asset = JSON.parse(JSON.stringify(_asset))[0]
+    
+    _breadcrumb.title = _asset['NAME']
 
     return {
         props: {
-            breadcrumbs: _breadcrumbs,
+            breadcrumb: _breadcrumb,
             filter: _filter,
             asset: _asset
         }

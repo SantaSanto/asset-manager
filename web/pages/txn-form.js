@@ -14,10 +14,7 @@ export default function AddTransaction(props) {
 export async function getServerSideProps(context) {
     const query = context.query
 
-    const _breadcrumbs = [
-        { title: 'ASSET MANAGER', href: "/" },
-        { title: 'ADD ASSET', href: "#", active: true },
-    ]
+    const _breadcrumb = { key: 'TXN_FORM', title: 'ADD TRANSACTION', href: "#", active: true }
 
     let _txn = {}
 
@@ -27,7 +24,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            breadcrumbs: _breadcrumbs,
+            breadcrumb: _breadcrumb,
             txn: _txn
         },
     }

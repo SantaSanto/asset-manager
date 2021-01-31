@@ -13,17 +13,14 @@ export default function AssetFormView(props) {
 
 
 export async function getServerSideProps(context) {
-
     const query = context.query
 
-    const _breadcrumbs = [
-        { title: 'ASSET MANAGER', href: "/" }
-    ]
+    const _breadcrumb = { key: 'ASSET_FORM', title: '', href: '#', active: true }
 
     let _asset = {}
 
     if (query.mode === 'NEW') {
-        _breadcrumbs.push({ title: 'ADD ASSET', href: "#", active: true })
+        _breadcrumb.title = 'ADD ASSET'
 
         _asset = { CODE: '', NAME: '', CATEGORY: '', INSTRUMENT: '', HOLDER: '', INSTITUTION: '',
             FUND_HOUSE: '', START_DATE: '', END_DATE: '', PORTFOLIO: [], STATUS: 'A'
@@ -32,7 +29,7 @@ export async function getServerSideProps(context) {
 
     
     if (query.mode === 'EDIT') {
-        _breadcrumbs.push({ title: 'EDIT ASSET', href: "#", active: true })
+        _breadcrumb.title = 'EDIT ASSET'
 
         _asset = await getAsset(query.assetId)
         _asset = JSON.parse(JSON.stringify(_asset[0]))
@@ -42,7 +39,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            breadcrumbs: _breadcrumbs,
+            breadcrumb: _breadcrumb,
             asset: _asset,
             formMode: query.mode
         },

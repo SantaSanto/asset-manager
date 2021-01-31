@@ -13,16 +13,12 @@ export default function AssetListView(props) {
 }
 
 export async function getServerSideProps(context) {
-
+    const url = context.resolvedUrl
     const query = context.query
 
-    const _portfolio = (query['portfolio'])?query['portfolio']: 'ALL'
-    console.log(`Portfolio: ${_portfolio}`)
+    const _portfolio = (query['portfolio'])? query['portfolio']: 'ALL'
 
-    const _breadcrumbs = [
-        { title: 'ASSET MANAGER', href: "/" },
-        { title: 'ASSETS', href: "#", active: true },
-    ]
+    const _breadcrumb = { key: 'ASSET_LIST', title: 'ASSETS', href: url,  active: true }
 
     const _filter = {
         portfolio: _portfolio, 
@@ -35,7 +31,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            breadcrumbs: _breadcrumbs,
+            breadcrumb: _breadcrumb,
             filter: _filter
         }
     }
