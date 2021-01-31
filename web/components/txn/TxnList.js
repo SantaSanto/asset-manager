@@ -31,9 +31,9 @@ export default function AssetList() {
                 txns.map(txn => (
                     <tr key={txn.ID} >
                         <td><a href='#'>{txn.DATE}</a></td>
-                        <td>{txn.COMMENTS}</td>
+                        <td width='400px'>{txn.COMMENTS}</td>
                         <td>{txn.CATEGORY}</td>
-                        <td>{txn.TIMELINE}</td>
+                        <td>{timeLine(txn.TIMELINE)}</td>
                         <td className="text-right">{txn.UNIT}</td>
                         <td className="text-right">{txn.VALUE}</td>
                         <td className="text-right">{txn.AMOUNT}</td>
@@ -48,6 +48,14 @@ export default function AssetList() {
             </tfoot>
         </Table>
     )
+}
+
+function timeLine(code) {
+    switch(code) {
+        case 'C': return 'COMPLETED'
+        case 'E': return 'EXPECTED'
+        default : return code
+    }
 }
 
 function getHeader() {

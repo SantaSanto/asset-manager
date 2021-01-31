@@ -36,19 +36,18 @@ export function createTxn(asset) {
 
 export function getTxns(txnFilter) {
     console.log(txnFilter)
-    const { ASSET_ID } = txnFilter
+    const { ASSET_ID, CATEGORY, TIMELINE, STATUS } = txnFilter
     let sql = ''
     sql += 'SELECT ID, ASSET_ID, DATE_FORMAT(DATE, \'%Y-%m-%d\') AS DATE, COMMENTS, CATEGORY, TIMELINE, '
     sql += 'UNIT, VALUE, (UNIT * VALUE) AS AMOUNT, STATUS '
-    sql += `FROM TXN WHERE ASSET_ID = '${ASSET_ID}' `  
+    sql += `FROM TXN WHERE ASSET_ID = '${ASSET_ID}' `      
+
+    if(CATEGORY !== 'ALL')  sql += `AND CATEGORY = '${CATEGORY}' ` 
+    if(TIMELINE !== 'ALL')  sql += `AND TIMELINE = '${TIMELINE}' ` 
+    if(STATUS !== 'ALL')    sql += `AND STATUS = '${STATUS}' ` 
+
     sql += 'ORDER BY DATE DESC'
-
-    // if(assetFilter['portfolio'] !== 'ALL')     sql += `AND PORTFOLIO LIKE '%${assetFilter['portfolio']}%' `      
-    // if(assetFilter['category'] !== 'ALL')      sql += `AND CATEGORY = '${assetFilter['category']}' ` 
-    // if(assetFilter['instrument'] !== 'ALL')    sql += `AND INSTRUMENT = '${assetFilter['instrument']}' `
-    // if(assetFilter['holder'] !== 'ALL')        sql += `AND HOLDER = '${assetFilter['holder']}' ` 
-    // if(assetFilter['institution'] !== 'ALL')  sql += `AND INSTITUTION = '${assetFilter['institution']}' ` 
-
+    console.log(sql)
     return execute(sql)
 }
 

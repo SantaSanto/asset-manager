@@ -68,9 +68,8 @@ export default function Home() {
 
 
 
-export async function getServerSideProps(context) {
-  const url = context.resolvedUrl
-  const _breadcrumb = { key:'HOME', title: 'ASSET MANAGER', href: url, active: true }
+export async function getServerSideProps(context) {  
+  const _breadcrumb = { key:'HOME', title: 'ASSET MANAGER', href: '/', active: true }
 
   return {
     props: {

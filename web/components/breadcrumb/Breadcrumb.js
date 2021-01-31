@@ -1,39 +1,20 @@
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import { getBreadcrumb, putBreadcrumb } from './Utils'
+import { getBreadcrumb, putBreadcrumb, merge } from './Utils'
 
 export default function IBreadcrumb(props) {
     const { breadcrumb } = props
-    let breadcrumbs = [ ]
+
     const oldBreadcrumb = getBreadcrumb()
-    
-    if(oldBreadcrumb !== undefined) {
-        const newBreadcrumb = []
+    const breadcrumbs = merge(oldBreadcrumb, breadcrumb)
+    putBreadcrumb(breadcrumbs)
 
-        for(const bc of oldBreadcrumb)  {            
-            if(bc.key === breadcrumb.key) { break }
-            bc.active = false
-            newBreadcrumb.push(bc)   
-        }       
-
-        newBreadcrumb.push(breadcrumb)
-        putBreadcrumb(newBreadcrumb)
-
-        breadcrumbs = newBreadcrumb
-    }
-
-    return (        
-        <Breadcrumb> {
-            breadcrumbs.map(bi =>
-                <BreadcrumbItem key={bi.key} {...bi} />
-            )}
-        </Breadcrumb >
-    )
-}
-
-function BreadcrumbItem({ title, href, active }) {
     return (
-        <Breadcrumb.Item href={href} active={active}>
-            {title}
-        </Breadcrumb.Item>
+        <Breadcrumb> {
+            breadcrumbs.map(bi => {
+                if(bi.active) 
+                    return <Breadcrumb.Item key={bi.key} active>{bi.title}</Breadcrumb.Item>    
+                return <Breadcrumb.Item key={bi.key} href={bi.href}>{bi.title}</Breadcrumb.Item> 
+            })}
+        </Breadcrumb >
     )
 }
