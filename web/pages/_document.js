@@ -5,7 +5,6 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <title>Asset Manager</title>
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="stylesheet" href="/Rubik-Regular.ttf" />
                     <link rel="stylesheet"

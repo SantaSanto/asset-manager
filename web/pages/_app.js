@@ -6,6 +6,7 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   return (
     <Container fluid> 
+      <title>Asset Manager</title>
       <IBreadcrumb breadcrumbs={pageProps.breadcrumbs} />
       <Component {...pageProps} />
     </Container>

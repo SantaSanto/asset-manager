@@ -30,14 +30,18 @@ async function updateAssetDetails(txn) {
     try {
         let current = 0
         const txns = await getTxns(txnFilter)    
+        
         txns.forEach(txn => {
             current = current + txn['AMOUNT']
         })
-        console.log(current)
-        const assetDtls = {}
-        assetDtls['ID'] = txn['ASSET_ID']
-        assetDtls['CURRENT'] = current
+
+        const assetDtls = {
+            ID: txn['ASSET_ID'],
+            CURRENT: current
+        }
+
         await updateAssetDtls(assetDtls)
+
     } catch(error) {
         console.log(error)        
     }   

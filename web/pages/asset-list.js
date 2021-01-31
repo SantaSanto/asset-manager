@@ -13,14 +13,24 @@ export default function AssetListView(props) {
 }
 
 export async function getServerSideProps(context) {
+
+    const query = context.query
+
+    const _portfolio = (query['portfolio'])?query['portfolio']: 'ALL'
+    console.log(`Portfolio: ${_portfolio}`)
+
     const _breadcrumbs = [
         { title: 'ASSET MANAGER', href: "/" },
         { title: 'ASSETS', href: "#", active: true },
     ]
 
     const _filter = {
-        portfolio: 'ALL', category: 'ALL', instrument: 'ALL', holder: 'ALL',
-        institution: 'ALL', status: 'A'
+        portfolio: _portfolio, 
+        category: 'ALL', 
+        instrument: 'ALL', 
+        holder: 'ALL',
+        institution: 'ALL', 
+        status: 'A'
     }
 
     return {

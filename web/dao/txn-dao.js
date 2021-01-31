@@ -35,6 +35,7 @@ export function createTxn(asset) {
 
 
 export function getTxns(txnFilter) {
+    console.log(txnFilter)
     const { ASSET_ID } = txnFilter
     let sql = ''
     sql += 'SELECT ID, ASSET_ID, DATE_FORMAT(DATE, \'%Y-%m-%d\') AS DATE, COMMENTS, CATEGORY, TIMELINE, '
