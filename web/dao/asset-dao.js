@@ -1,12 +1,13 @@
 import getConnection from './db'
 
 export function createAsset(asset) {
+    const { NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO } = asset 
+    const { START_DATE, END_DATE, STATUS } = asset 
     let sql = ''
-    sql += 'INSERT INTO ASSET (CODE, NAME, CATEGORY, INSTRUMENT, '
-    sql += 'HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, START_DATE, END_DATE, STATUS) VALUES ('
-    sql += `'${asset.CODE}', '${asset.NAME}', '${asset.CATEGORY}', '${asset.INSTRUMENT}', ` 
-    sql += `'${asset.HOLDER}', '${asset.INSTITUTION}', '${asset.FUND_HOUSE}', '${asset.PORTFOLIO}', `
-    sql += `'${asset.START_DATE}', '${asset.END_DATE}', '${asset.STATUS}')`
+    sql += 'INSERT INTO ASSET (NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, '
+    sql += 'START_DATE, END_DATE, STATUS, CURRENT) VALUES ('
+    sql += `'${NAME}', '${CATEGORY}', '${INSTRUMENT}', '${HOLDER}', '${INSTITUTION}', '${FUND_HOUSE}', '${PORTFOLIO}', `
+    sql += `'${START_DATE}', '${END_DATE}', '${STATUS}', '0')`
 
     return execute(sql)
 }

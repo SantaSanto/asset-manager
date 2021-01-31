@@ -60,7 +60,8 @@ export const INSTITUTION = [
     { value:'HDFC', label:'HDFC' },   
     { value:'EPFO', label:'EPFO' },
     { value:'PO', label:'PO' },
-    { value:'BAJAJ', label:'BAJAJ' },   
+    { value:'BAJAJ', label:'BAJAJ' },  
+    { value:'TNPF', label:'TNPF' } 
 ]
 
 export const STATUS = [

@@ -30,20 +30,20 @@ nav {
 th {
   background-color: #ecf3f9;
   color: #003366;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: bold !important;
 }
 
 tbody td {
   background-color: #F8F8FF !important;
   color: #003366;
-  font-size: 11px !important;
+  font-size: 12px !important;
 }
 
 .ad-td {
   background-color: #F8F8FF !important;
   color: #003366 !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   padding-left: 10px !important;
 }
 

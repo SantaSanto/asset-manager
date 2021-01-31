@@ -1,9 +1,4 @@
 import React, { useState, useContext } from 'react'
-
-import { ASSET_CATEGORY, INSTRUMENT } from '../../config/Constant'
-import { HOLDER } from '../../config/Constant'
-import { STATUS, PORTFOLIO } from '../../config/Constant'
-
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import Col from 'react-bootstrap/Col'
@@ -107,7 +102,33 @@ function handleErrors(response) {
     return response;
 }
 
-export const INSTITUTION = [
+const ASSET_CATEGORY = [
+    { value:'', label:'' },
+    { value:'EQUITY', label:'EQUITY' },
+    { value:'DEBT', label:'DEBT' },
+    { value:'FIXED', label:'FIXED' },
+    { value:'BULLION', label:'BULLION' }
+]
+
+const INSTRUMENT = [
+    { value:'', label:'' },
+    { value:'BOND', label:'BOND' },
+    { value:'FUND', label:'FUND' },
+    { value:'NPS', label:'NPS' },
+    { value:'DEPOSIT', label:'DEPOSIT' },
+    { value:'EPF', label:'EPF' },
+    { value:'PPF', label:'PPF' },
+    { value:'SSA', label:'SSA' }
+]
+
+const HOLDER = [
+    { value:'', label:'' },
+    { value:'LAVANYA', label:'LAVANYA' },
+    { value:'PRANAYA', label:'PRANAYA' },
+    { value:'SANTOSH', label:'SANTOSH' }
+]
+
+const INSTITUTION = [
     { value:'', label:'' },
     { value:'CITIBANK', label:'CITIBANK' },
     { value:'DIGIBANK', label:'DIGIBANK' },
@@ -116,9 +137,10 @@ export const INSTITUTION = [
     { value:'EPFO', label:'EPFO' },
     { value:'PO', label:'PO' },
     { value:'BAJAJ', label:'BAJAJ' },
+    { value:'TNPF', label:'TNPF' }
 ]
 
-export const FUND_HOUSE = [
+const FUND_HOUSE = [
     { value:'', label:'' },
     { value:'NA', label:'NA' }, 
     { value:'CITIBANK', label:'CITIBANK' },
@@ -128,5 +150,21 @@ export const FUND_HOUSE = [
     { value:'PPF', label:'PPF' }, 
     { value:'SSA', label:'SSA' }, 
     { value:'EMPLOYEE', label:'EMPLOYEE' },
-    { value:'COMPANY', label:'COMPANY' }    
+    { value:'COMPANY', label:'COMPANY' },
+    { value:'TNPF', label:'TNPF' }    
+]
+
+const STATUS = [
+    { value:'A', label:'ACTIVE' },
+    { value:'C', label:'CLOSED' },
+    { value:'D', label:'DELETED' },
+]
+
+const PORTFOLIO = [
+    { value:'EXIGENCY', label:'EXIGENCY' },
+    { value:'EDUCATION', label:'EDUCATION' },
+    { value:'CHILDREN', label:'CHILDREN' },
+    { value:'WELFARE', label:'WELFARE' },
+    { value:'RETIRMENT', label:'RETIRMENT' },
+    { value:'RELIANT', label:'RELIANT' }
 ]

@@ -49,9 +49,9 @@ export default function Home() {
 
       <Card bg="dark" text='black'>
         <Card.Body>
-          <Card.Title><b>RELIENT FUND</b></Card.Title>
+          <Card.Title><b>RELIANT FUND</b></Card.Title>
           <Card.Text>Collection of financial instruments like bonds and fixed income assets inherited from parents.</Card.Text>          
-          <Card.Link href='/asset-list?portfolio=RELIENT'>VIEW</Card.Link>
+          <Card.Link href='/asset-list?portfolio=RELIANT'>VIEW</Card.Link>
         </Card.Body>
       </Card>
 
