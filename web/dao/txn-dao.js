@@ -1,7 +1,7 @@
 import getConnection from './db'
 
-export function createTxn(asset) {
-    const { ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, AMOUNT, COMMENTS, STATUS } = asset
+export function createTxn(txn) {
+    const { ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, AMOUNT, COMMENTS, STATUS } = txn
     let sql = ''
     sql += 'INSERT INTO TXN (ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, COMMENTS, STATUS) VALUES ('
     sql += `'${ASSET_ID}', '${DATE}', '${CATEGORY}', '${TIMELINE}', '${UNIT}', '${VALUE}', `
@@ -10,28 +10,24 @@ export function createTxn(asset) {
     return execute(sql)
 }
 
-// export function updateAsset(asset) {
-//     let sql = ''
-//     sql += 'UPDATE ASSET SET '
-//     sql += `NAME='${asset.NAME}', CATEGORY='${asset.CATEGORY}', INSTRUMENT='${asset.INSTRUMENT}', `
-//     sql += `HOLDER='${asset.HOLDER}', INSTITUTION='${asset.INSTITUTION}', `
-//     sql += `FUND_HOUSE='${asset.FUND_HOUSE}', PORTFOLIO='${asset.PORTFOLIO}', `
-//     sql += `START_DATE='${asset.START_DATE}', END_DATE='${asset.END_DATE}', `
-//     sql += `STATUS='${asset.STATUS}' WHERE ID = '${asset.ID}'`
+export function updateTxn(txn) {
+    const { ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, AMOUNT, COMMENTS, STATUS } = txn
+    let sql = ''
+    sql += 'UPDATE TXN SET '
+    sql += `DATE='${DATE}', CATEGORY='${CATEGORY}', TIMELINE='${TIMELINE}', UNIT='${UNIT}', VALUE='${VALUE}', `
+    sql += `COMMENTS='${COMMENTS}', STATUS='${STATUS}' WHERE ID = '${ID}'`
 
-//     return execute(sql)
-// }
+    return execute(sql)
+}
 
 
-// export function getAsset(assetId) {
-//     let sql = ''
-//     sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, '
-//     sql += "DATE_FORMAT(START_DATE, '%Y-%m-%d') AS START_DATE, DATE_FORMAT(END_DATE, '%Y-%m-%d') AS END_DATE "
-//     sql += 'FROM ASSET WHERE '
-//     sql += `ID = '${assetId}'`
+export function getTxn(txnId) {
+    let sql = ''
+    sql += "SELECT ID, ASSET_ID, DATE_FORMAT(DATE, '%Y-%m-%d') AS DATE, CATEGORY, TIMELINE, UNIT, VALUE, COMMENTS, STATUS "
+    sql += `FROM TXN WHERE ID = '${txnId}'`
 
-//     return execute(sql)
-// }
+    return execute(sql)
+}
 
 
 export function getTxns(txnFilter) {
@@ -47,7 +43,7 @@ export function getTxns(txnFilter) {
     if(STATUS !== 'ALL')    sql += `AND STATUS = '${STATUS}' ` 
 
     sql += 'ORDER BY DATE DESC'
-    console.log(sql)
+    
     return execute(sql)
 }
 

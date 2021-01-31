@@ -1,10 +1,10 @@
-import { createTxn, getTxns } from '../../dao/txn-dao'
+import { createTxn, getTxns, updateTxn } from '../../dao/txn-dao'
 import { updateAssetDtls } from '../../dao/asset-dao'
 
 export default (req, res) => {
     switch (req.method) {
         case 'POST': return onPost(req, res)
-        // case 'PUT': return onPut(req, res)
+        case 'PUT': return onPut(req, res)
     }
 
     res.status(405).end()
@@ -23,9 +23,26 @@ async function onPost(req, res) {
     }   
 }
 
+async function onPut(req, res) {
+    const txn = req.body   
+
+    try {
+        await updateTxn(txn)
+        await updateAssetDetails(txn)
+        res.status(200).end()
+    } catch(error) {
+        console.log(error)
+        res.status(500).end()
+    }   
+}
+
+
 async function updateAssetDetails(txn) {
     const txnFilter = {}
     txnFilter['ASSET_ID'] = txn['ASSET_ID']
+    txnFilter['CATEGORY'] = 'ALL'
+    txnFilter['TIMELINE'] = 'C'    
+    txnFilter['STATUS']   = 'C'
 
     try {
         let current = 0
@@ -46,15 +63,3 @@ async function updateAssetDetails(txn) {
         console.log(error)        
     }   
 }
-
-// async function onPut(req, res) {
-//     const txn = req.body
-
-//     try {
-//         await updateAsset(asset)
-//         res.status(200).end()
-//     } catch(error) {
-//         console.log(error)
-//         res.status(500).end()
-//     }   
-// }

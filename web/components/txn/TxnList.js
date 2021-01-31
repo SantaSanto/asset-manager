@@ -10,7 +10,7 @@ const tableHeader = {
     align: ['left', 'left', 'left', 'left', 'right', 'right', 'right']
 }
 
-export default function AssetList() {
+export default function TransactionList() {
     const [txns, setTxns] = useState([])
     const { formState } = useContext(FormContext)
     const { formData } = formState
@@ -30,7 +30,7 @@ export default function AssetList() {
             <tbody> {
                 txns.map(txn => (
                     <tr key={txn.ID} >
-                        <td><a href='#'>{txn.DATE}</a></td>
+                        <td><a href={`/txn-form?mode=EDIT&txnId=${txn.ID}`}>{txn.DATE}</a></td>
                         <td width='400px'>{txn.COMMENTS}</td>
                         <td>{txn.CATEGORY}</td>
                         <td>{timeLine(txn.TIMELINE)}</td>

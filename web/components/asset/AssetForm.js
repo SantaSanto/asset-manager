@@ -21,10 +21,7 @@ export function AssetForm(props) {
     const { formState } = useContext(FormContext)
     const { formData } = formState
 
-    let buttonLabel = 'SAVE'
-    if(props.mode === 'EDIT') {
-        buttonLabel = 'UPDATE'
-    }
+    const buttonLabel = (props.mode === 'EDIT')? 'UPDATE' : 'SAVE'
 
     const handleSubmit = () => {
         const method = (props.mode === 'EDIT')? 'PUT' : 'POST'

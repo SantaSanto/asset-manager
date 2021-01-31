@@ -1,3 +1,4 @@
+import { getTxn } from '../dao/txn-dao'
 import { FormProvider } from '../components/form/FormProvider'
 import { TxnForm } from '../components/txn/TxnForm'
 
@@ -5,7 +6,7 @@ import { TxnForm } from '../components/txn/TxnForm'
 export default function AddTransaction(props) {
     return (
         <FormProvider model={props.txn}>
-            <TxnForm mode='ADD' />
+            <TxnForm mode={props.formMode} />
         </FormProvider>
     )
 }
@@ -14,18 +15,27 @@ export default function AddTransaction(props) {
 export async function getServerSideProps(context) {
     const query = context.query
 
-    const _breadcrumb = { key: 'TXN_FORM', title: 'ADD TRANSACTION', href: "#", active: true }
+    const _breadcrumb = { key: 'TXN_FORM', title: '', href: "#", active: true }
 
     let _txn = {}
 
     if (query.mode === 'NEW') {
+        _breadcrumb.title = 'ADD TRANSACTION'
         _txn = createTxn(query.assetId)
     }
+
+    if (query.mode === 'EDIT') {
+        _breadcrumb.title = 'EDIT TRANSACTION'
+
+        _txn = await getTxn(query.txnId)
+        _txn = JSON.parse(JSON.stringify(_txn[0]))    
+    } 
 
     return {
         props: {
             breadcrumb: _breadcrumb,
-            txn: _txn
+            txn: _txn,
+            formMode: query.mode
         },
     }
 }
@@ -36,7 +46,7 @@ function createTxn(assetId) {
         DATE: '', 
         CATEGORY: '', 
         TIMELINE: '', 
-        STATUS: 'A', 
+        STATUS: 'C', 
         UNIT: "1", 
         VALUE:'0', 
         AMOUNT:'0', 
