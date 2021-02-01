@@ -36,8 +36,8 @@ export function updateAssetDtls(assetDtld) {
 
 export function getAsset(assetId) {
     let sql = ''
-    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, '
-    sql += "DATE_FORMAT(START_DATE, '%Y-%m-%d') AS START_DATE, DATE_FORMAT(END_DATE, '%Y-%m-%d') AS END_DATE "
+    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, CURRENT, '
+    sql += 'DATE_FORMAT(START_DATE, "%Y-%m-%d") AS START_DATE, DATE_FORMAT(END_DATE, "%Y-%m-%d") AS END_DATE '
     sql += 'FROM ASSET WHERE '
     sql += `ID = '${assetId}'`
 

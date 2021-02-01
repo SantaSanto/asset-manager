@@ -136,6 +136,7 @@ const INSTITUTION = [
     { value:'HDFC', label:'HDFC' },   
     { value:'EPFO', label:'EPFO' },
     { value:'PO', label:'PO' },
+    { value:'KUVERA', label:'KUVERA' },
     { value:'BAJAJ', label:'BAJAJ' },
     { value:'TNPF', label:'TNPF' }
 ]
@@ -151,7 +152,8 @@ const FUND_HOUSE = [
     { value:'SSA', label:'SSA' }, 
     { value:'EMPLOYEE', label:'EMPLOYEE' },
     { value:'COMPANY', label:'COMPANY' },
-    { value:'TNPF', label:'TNPF' }    
+    { value:'TNPF', label:'TNPF' },   
+    { value:'UTI', label:'UTI' }  
 ]
 
 const STATUS = [

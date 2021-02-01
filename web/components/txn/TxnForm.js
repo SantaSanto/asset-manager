@@ -19,13 +19,13 @@ export function TxnForm(props) {
 
     const buttonLabel = (props.mode === 'EDIT')? 'UPDATE' : 'SAVE'
     
-    const updateAmount = (formData) => {
-        const unit = formData['UNIT']
-        const value = formData['VALUE']
-        let result = parseInt(unit) * parseInt(value)
+    const updateTotal = (formData) => {
+        const unit = parseFloat(formData['UNIT'])
+        const value = parseFloat(formData['VALUE'])
+        let result = Number.parseFloat(unit * value).toFixed(2)
 
         result = (isNaN(result))? '0' : result 
-        formData['AMOUNT'] = String(result)
+        formData['TOTAL'] = String(result)
     }
 
     const handleSubmit = () => {
@@ -56,9 +56,10 @@ export function TxnForm(props) {
                 </Form.Row>
 
                 <Form.Row>
-                    <NumField label='UNIT' name='UNIT' onChange={updateAmount} />
-                    <NumField label='VALUE' name='VALUE' onChange={updateAmount} />
-                    <NumField label='AMOUNT' name='AMOUNT' readOnly={true} />
+                    <NumField label='UNIT' name='UNIT' onChange={updateTotal} />
+                    <NumField label='VALUE' name='VALUE' onChange={updateTotal} />
+                    <NumField label='TOTAL' name='TOTAL' readOnly={true} />
+                    <NumField label='AMOUNT' name='AMOUNT' />
                 </Form.Row>
 
                 <Form.Row>

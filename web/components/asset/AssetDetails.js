@@ -1,5 +1,6 @@
 import React from "react"
 import Table from 'react-bootstrap/Table'
+import NumberFormat from 'react-number-format';
 
 export default function AssetDetails(props) {
     const { asset } = props
@@ -15,7 +16,7 @@ export default function AssetDetails(props) {
                 <tr>
                     <AssetData  label='CATEGORY' value={asset.CATEGORY} />                                   
                     <AssetData  label='INSTRUMENT' value={asset.INSTRUMENT} />  
-                    <AssetData  label='CURRENT' value='10,00,000' colSpan='2' />    
+                    <AssetNum   label='CURRENT' value={asset.CURRENT} colSpan='2' />    
                     <AssetData  label='END DATE' value={asset.END_DATE} />
                 </tr>
                 <tr>
@@ -28,6 +29,10 @@ export default function AssetDetails(props) {
         </Table>
     )
 }
+
+const NumFormat = ({value}) => (
+    <NumberFormat value={value} displayType='text' thousandsGroupStyle='lakh' thousandSeparator={true} />
+)
 
 const EditAsset = ({ label, value, assetId, colSpan = 1 }) => (
     <React.Fragment>
@@ -42,6 +47,13 @@ const AssetData = ({ label, value, colSpan = 1 }) => (
     <React.Fragment>
         <th className="text-right">{label}</th>
         <td colSpan={colSpan} className='ad-td'>{value}</td>
+    </React.Fragment>
+)
+
+const AssetNum = ({ label, value, colSpan = 1 }) => (
+    <React.Fragment>
+        <th className="text-right">{label}</th>
+        <td colSpan={colSpan} className='ad-td'> <NumFormat value={value} /> </td>
     </React.Fragment>
 )
 

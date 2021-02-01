@@ -44,13 +44,19 @@ async function updateAssetDetails(txn) {
     txnFilter['TIMELINE'] = 'C'    
     txnFilter['STATUS']   = 'C'
 
-    try {
-        let current = 0
-        const txns = await getTxns(txnFilter)    
-        
-        txns.forEach(txn => {
+    try {        
+        const txns = await getTxns(txnFilter)            
+        let current = 0        
+
+        for(const txn of txns) {
+
+            if(txn['CATEGORY'] === 'NAV') {
+                current = txn['AMOUNT']
+                break
+            }
+
             current = current + txn['AMOUNT']
-        })
+        }
 
         const assetDtls = {
             ID: txn['ASSET_ID'],

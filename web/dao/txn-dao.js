@@ -3,8 +3,8 @@ import getConnection from './db'
 export function createTxn(txn) {
     const { ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, AMOUNT, COMMENTS, STATUS } = txn
     let sql = ''
-    sql += 'INSERT INTO TXN (ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, COMMENTS, STATUS) VALUES ('
-    sql += `'${ASSET_ID}', '${DATE}', '${CATEGORY}', '${TIMELINE}', '${UNIT}', '${VALUE}', `
+    sql += 'INSERT INTO TXN (ASSET_ID, DATE, CATEGORY, TIMELINE, UNIT, VALUE, AMOUNT, COMMENTS, STATUS) VALUES ('
+    sql += `'${ASSET_ID}', '${DATE}', '${CATEGORY}', '${TIMELINE}', '${UNIT}', '${VALUE}', '${AMOUNT}', `
     sql += `'${COMMENTS}', '${STATUS}')`
 
     return execute(sql)
@@ -15,7 +15,7 @@ export function updateTxn(txn) {
     let sql = ''
     sql += 'UPDATE TXN SET '
     sql += `DATE='${DATE}', CATEGORY='${CATEGORY}', TIMELINE='${TIMELINE}', UNIT='${UNIT}', VALUE='${VALUE}', `
-    sql += `COMMENTS='${COMMENTS}', STATUS='${STATUS}' WHERE ID = '${ID}'`
+    sql += `AMOUNT='${AMOUNT}', COMMENTS='${COMMENTS}', STATUS='${STATUS}' WHERE ID = '${ID}'`
 
     return execute(sql)
 }
@@ -23,7 +23,8 @@ export function updateTxn(txn) {
 
 export function getTxn(txnId) {
     let sql = ''
-    sql += "SELECT ID, ASSET_ID, DATE_FORMAT(DATE, '%Y-%m-%d') AS DATE, CATEGORY, TIMELINE, UNIT, VALUE, COMMENTS, STATUS "
+    sql += 'SELECT ID, ASSET_ID, DATE_FORMAT(DATE, "%Y-%m-%d") AS DATE, CATEGORY, TIMELINE, UNIT, VALUE, '
+    sql += 'ROUND(UNIT*VALUE, 2) AS TOTAL, AMOUNT, COMMENTS, STATUS '
     sql += `FROM TXN WHERE ID = '${txnId}'`
 
     return execute(sql)
@@ -35,7 +36,7 @@ export function getTxns(txnFilter) {
     const { ASSET_ID, CATEGORY, TIMELINE, STATUS } = txnFilter
     let sql = ''
     sql += 'SELECT ID, ASSET_ID, DATE_FORMAT(DATE, \'%Y-%m-%d\') AS DATE, COMMENTS, CATEGORY, TIMELINE, '
-    sql += 'UNIT, VALUE, (UNIT * VALUE) AS AMOUNT, STATUS '
+    sql += 'UNIT, VALUE, AMOUNT, STATUS '
     sql += `FROM TXN WHERE ASSET_ID = '${ASSET_ID}' `      
 
     if(CATEGORY !== 'ALL')  sql += `AND CATEGORY = '${CATEGORY}' ` 

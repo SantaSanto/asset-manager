@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from 'react'
-import withQuery from 'with-query'
-import NumberFormat from 'react-number-format';
 import Table from 'react-bootstrap/Table'
 import TableHeader from '../table/TableHeader'
+import withQuery from 'with-query'
+import NumberFormat from 'react-number-format';
 
 import { FormContext } from '../form/FormProvider'
 
