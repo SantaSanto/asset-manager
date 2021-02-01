@@ -137,6 +137,7 @@ const INSTITUTION = [
     { value:'EPFO', label:'EPFO' },
     { value:'PO', label:'PO' },
     { value:'KUVERA', label:'KUVERA' },
+    { value:'ZERODHA', label:'ZERODHA' },
     { value:'BAJAJ', label:'BAJAJ' },
     { value:'TNPF', label:'TNPF' }
 ]
@@ -148,11 +149,15 @@ const FUND_HOUSE = [
     { value:'DIGIBANK', label:'DIGIBANK' },
     { value:'SBI', label:'SBI' },
     { value:'HDFC', label:'HDFC' }, 
+    { value:'ICICI', label:'ICICI' }, 
     { value:'PPF', label:'PPF' }, 
     { value:'SSA', label:'SSA' }, 
     { value:'EMPLOYEE', label:'EMPLOYEE' },
     { value:'COMPANY', label:'COMPANY' },
     { value:'TNPF', label:'TNPF' },   
+    { value:'AXIS', label:'AXIS' },
+    { value:'BRILA', label:'BRILA' },
+    { value:'MOTILAL', label:'MOTILAL' },
     { value:'UTI', label:'UTI' }  
 ]
 
