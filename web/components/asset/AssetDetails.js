@@ -1,6 +1,6 @@
 import React from "react"
 import Table from 'react-bootstrap/Table'
-import NumberFormat from 'react-number-format';
+import Currency from '../format/Currency'
 
 export default function AssetDetails(props) {
     const { asset } = props
@@ -16,23 +16,19 @@ export default function AssetDetails(props) {
                 <tr>
                     <AssetData  label='CATEGORY' value={asset.CATEGORY} />                                   
                     <AssetData  label='INSTRUMENT' value={asset.INSTRUMENT} />  
-                    <AssetNum   label='CURRENT' value={asset.CURRENT} colSpan='2' />    
+                    <AssetCurr   label='CURRENT' value={asset.CURRENT} colSpan='2' />    
                     <AssetData  label='END DATE' value={asset.END_DATE} />
                 </tr>
                 <tr>
                     <AssetData  label='INSTITUTION' value={asset.INSTITUTION} />                    
                     <AssetData  label='FUND HOUSE' value={asset.FUND_HOUSE} /> 
-                    <AssetData2 label='PROFIT' first='10,00,000' second='12.56 %' />  
+                    <AssetData2 label='PROFIT' first='0' second='0.00 %' />  
                     <AssetData  label='STATUS' value={asset.STATUS} colSpan='2' />
                 </tr>
             </tbody>
         </Table>
     )
 }
-
-const NumFormat = ({value}) => (
-    <NumberFormat value={value} displayType='text' thousandsGroupStyle='lakh' thousandSeparator={true} />
-)
 
 const EditAsset = ({ label, value, assetId, colSpan = 1 }) => (
     <React.Fragment>
@@ -50,10 +46,10 @@ const AssetData = ({ label, value, colSpan = 1 }) => (
     </React.Fragment>
 )
 
-const AssetNum = ({ label, value, colSpan = 1 }) => (
+const AssetCurr = ({ label, value, colSpan = 1 }) => (
     <React.Fragment>
         <th className="text-right">{label}</th>
-        <td colSpan={colSpan} className='ad-td'> <NumFormat value={value} /> </td>
+        <td colSpan={colSpan} className='ad-td'> <Currency value={value} /> </td>
     </React.Fragment>
 )
 

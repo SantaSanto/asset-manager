@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
-import TableHeader from '../table/TableHeader'
 import withQuery from 'with-query'
-import NumberFormat from 'react-number-format';
+import Currency from '../format/Currency'
 
+import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
 
 const tableHeader = {
@@ -34,10 +34,6 @@ export default function AssetList() {
     )
 }
 
-const NumFormat = ({value}) => (
-    <NumberFormat value={value} displayType='text' thousandsGroupStyle='lakh' thousandSeparator={true} />
-)
-
 function TableBody({ assets }) {
     return (
         <tbody> { assets.map(asset => (
@@ -47,7 +43,9 @@ function TableBody({ assets }) {
             <td>{asset.INSTRUMENT}</td>
             <td>{asset.HOLDER}</td>
             <td>{asset.INSTITUTION}</td>
-            <td className="text-right"> <NumFormat value={asset.CURRENT} /> </td>
+            <td className="text-right">
+                <Currency value={asset.CURRENT} />
+            </td>
             <td className="text-right">00.00</td>
         </tr>
     ))}
@@ -62,11 +60,15 @@ function TableFooter({ assets }) {
         total = total + asset['CURRENT']
     })
 
+    total = Number.parseFloat(total).toFixed(0)
+
     return (
         <tfoot>
             <tr>
                 <th colSpan='5'>{`${count} ASSETS`}</th>
-                <th className="text-right"> <NumFormat value={total} /> </th>
+                <th className="text-right">
+                    <Currency value={total} />
+                </th>
                 <th className="text-right">00.00</th>
             </tr>
         </tfoot>

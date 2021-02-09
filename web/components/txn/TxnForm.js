@@ -114,6 +114,7 @@ const CATEGORY = [
     { value: '', label: '' },
     { value: 'DEPOSIT',  label: 'DEPOSIT' },
     { value: 'CREDIT',   label: 'CREDIT' },
+    { value: 'MATURITY', label: 'MATURITY' },
     { value: 'WITHDRAW', label: 'WITHDRAW' },
     { value: 'NAV',      label: 'NAV' }
 ]

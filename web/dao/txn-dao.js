@@ -33,18 +33,22 @@ export function getTxn(txnId) {
 
 export function getTxns(txnFilter) {
     console.log(txnFilter)
-    const { ASSET_ID, CATEGORY, TIMELINE, STATUS } = txnFilter
+    const { ASSET_ID, YEAR, MONTH, CATEGORY, TIMELINE, STATUS } = txnFilter
     let sql = ''
     sql += 'SELECT ID, ASSET_ID, DATE_FORMAT(DATE, \'%Y-%m-%d\') AS DATE, COMMENTS, CATEGORY, TIMELINE, '
     sql += 'UNIT, VALUE, AMOUNT, STATUS '
-    sql += `FROM TXN WHERE ASSET_ID = '${ASSET_ID}' `      
+    sql += `FROM TXN WHERE ASSET_ID = '${ASSET_ID}' `    
+    
+    if(YEAR !== 'ALL' && MONTH === 'ALL') sql += `AND DATE LIKE '%${YEAR}%' `
+    if(YEAR !== 'ALL' && MONTH !== 'ALL') sql += `AND DATE LIKE '%${YEAR}-${MONTH}%' `
+
 
     if(CATEGORY !== 'ALL')  sql += `AND CATEGORY = '${CATEGORY}' ` 
     if(TIMELINE !== 'ALL')  sql += `AND TIMELINE = '${TIMELINE}' ` 
     if(STATUS !== 'ALL')    sql += `AND STATUS = '${STATUS}' ` 
 
     sql += 'ORDER BY DATE DESC'
-    
+    console.log(sql)
     return execute(sql)
 }
 

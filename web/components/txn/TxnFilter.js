@@ -20,11 +20,12 @@ export default function TxnFilter({assetId}) {
 
 const YEAR = [
     { value:'ALL', label:'ALL' },
-    { value:'2016', label:'FY 2016' },
-    { value:'2017', label:'FY 2017' },
-    { value:'2018', label:'FY 2018' },
-    { value:'2019', label:'FY 2019' },
+    { value:'2021', label:'FY 2021' },    
     { value:'2020', label:'FY 2020' },
+    { value:'2019', label:'FY 2019' },
+    { value:'2018', label:'FY 2018' },
+    { value:'2017', label:'FY 2017' },
+    { value:'2016', label:'FY 2016' }    
 ] 
 
 const MONTH = [
@@ -34,14 +35,22 @@ const MONTH = [
     { value:'03', label:'MARCH' },
     { value:'04', label:'APRIL' },
     { value:'05', label:'MAY' },
+    { value:'06', label:'JUNE' },
+    { value:'07', label:'JULY' },
+    { value:'08', label:'AUGUST' },
+    { value:'09', label:'SEPTEMBER' },
+    { value:'10', label:'OCTOBER' },
+    { value:'11', label:'NOVEMBER' },
+    { value:'12', label:'DECEMBER' },
 ] 
 
 const CATEGORY = [
     { value: 'ALL', label: 'ALL' },
-    { value: 'DEPOSIT', label: 'DEPOSIT' },
-    { value: 'CREDIT', label: 'CREDIT' },
+    { value: 'DEPOSIT',  label: 'DEPOSIT' },
+    { value: 'CREDIT',   label: 'CREDIT' },
+    { value: 'MATURITY', label: 'MATURITY' },
     { value: 'WITHDRAW', label: 'WITHDRAW' },
-    { value: 'NAV', label: 'NAV' }
+    { value: 'NAV',      label: 'NAV' }
 ]
 
 const TIMELINE = [

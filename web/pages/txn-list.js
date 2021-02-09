@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
 
     const _filter = {
         ASSET_ID: query.assetId,
-        YEAR: '2020', MONTH: 'ALL', CATEGORY: 'ALL', TIMELINE: 'ALL', STATUS: 'C'
+        YEAR: '2021', MONTH: 'ALL', CATEGORY: 'ALL', TIMELINE: 'ALL', STATUS: 'C'
     }
 
    

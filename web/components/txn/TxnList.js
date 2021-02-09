@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect } from 'react'
 import withQuery from 'with-query'
 import Table from 'react-bootstrap/Table'
-import TableHeader from '../table/TableHeader'
+import Currency from '../format/Currency'
+import Number from '../format/Number'
 
+import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
 
 const tableHeader = {
@@ -34,27 +36,40 @@ export default function TransactionList() {
                         <td width='400px'>{txn.COMMENTS}</td>
                         <td>{txn.CATEGORY}</td>
                         <td>{timeLine(txn.TIMELINE)}</td>
-                        <td className="text-right">{txn.UNIT}</td>
-                        <td className="text-right">{txn.VALUE}</td>
-                        <td className="text-right">{txn.AMOUNT}</td>
+                        <td className="text-right">
+                            <Number value={txn.UNIT} decimal={2} />
+                        </td>
+                        <td className="text-right">
+                            <Number value={txn.VALUE} decimal={2} />
+                        </td>
+                        <td className="text-right">
+                            <Currency value={txn.AMOUNT} />
+                        </td>
                     </tr>
                 )
-            )}
+                )}
             </tbody>
-            <tfoot>
-                <tr>
-                    <th colSpan='7'>2 TRANSACTIONS</th>
-                </tr>
-            </tfoot>
+            <TableFooter txns={txns} />
         </Table>
     )
 }
 
+function TableFooter({ txns }) {
+    const count = txns.length
+    return (
+        <tfoot>
+            <tr>
+                <th colSpan='7'>{`${count} TRANSACTIONS`}</th>
+            </tr>
+        </tfoot>
+    )
+}
+
 function timeLine(code) {
-    switch(code) {
+    switch (code) {
         case 'C': return 'COMPLETED'
         case 'E': return 'EXPECTED'
-        default : return code
+        default: return code
     }
 }
 
