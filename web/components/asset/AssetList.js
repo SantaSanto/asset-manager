@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
 import withQuery from 'with-query'
 import Currency from '../format/Currency'
+import Percentage from '../format/Percentage'
 
 import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
@@ -46,7 +47,9 @@ function TableBody({ assets }) {
             <td className="text-right">
                 <Currency value={asset.CURRENT} />
             </td>
-            <td className="text-right">00.00</td>
+            <td className="text-right">
+                <Percentage value={asset.ROI} decimal={2} />
+            </td>
         </tr>
     ))}
     </tbody> 
@@ -55,12 +58,19 @@ function TableBody({ assets }) {
 
 function TableFooter({ assets }) {
     let total = 0
+    let roi = 0
     const count = assets.length
-    assets.forEach((asset) => {
+    assets.forEach(asset => {
         total = total + asset['CURRENT']
     })
 
     total = Number.parseFloat(total).toFixed(0)
+
+    assets.forEach(asset => {
+        roi = roi + (asset['CURRENT'] / total ) * (asset['ROI'] / 100)
+    })
+
+    roi = Number.parseFloat(roi * 100).toFixed(2)
 
     return (
         <tfoot>
@@ -69,7 +79,9 @@ function TableFooter({ assets }) {
                 <th className="text-right">
                     <Currency value={total} />
                 </th>
-                <th className="text-right">00.00</th>
+                <th className="text-right">
+                    <Percentage value={roi} decimal={2} />
+                </th>
             </tr>
         </tfoot>
     )

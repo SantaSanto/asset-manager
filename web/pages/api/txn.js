@@ -1,4 +1,5 @@
-import { createTxn, getTxns, updateTxn } from '../../dao/txn-dao'
+import { createTxn, updateTxn } from '../../dao/txn-dao'
+import { setDirty } from '../../dao/asset-dao'
 
 export default (req, res) => {
     switch (req.method) {
@@ -14,6 +15,8 @@ async function onPost(req, res) {
     const txn = req.body    
     try {
         await createTxn(txn)
+        const assetId = txn['ASSET_ID'] 
+        await setDirty(assetId)
         res.status(200).end()
     } catch(error) {
         console.log(error)
@@ -26,6 +29,8 @@ async function onPut(req, res) {
 
     try {
         await updateTxn(txn)
+        const assetId = txn['ASSET_ID'] 
+        await setDirty(assetId)
         res.status(200).end()
     } catch(error) {
         console.log(error)

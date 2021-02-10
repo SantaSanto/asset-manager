@@ -24,11 +24,16 @@ export function updateAsset(asset) {
     return execute(sql)
 }
 
+export function setDirty(assetId) {
+    const sql = `UPDATE ASSET SET DIRTY='T' WHERE ID = '${assetId}'`
+    return execute(sql)
+}
+
 export function getAsset(assetId) {
     let sql = ''
     sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, CURRENT, '
-    sql += 'DATE_FORMAT(START_DATE, "%Y-%m-%d") AS START_DATE, DATE_FORMAT(END_DATE, "%Y-%m-%d") AS END_DATE '
-    sql += 'FROM ASSET WHERE '
+    sql += 'DATE_FORMAT(START_DATE, "%Y-%m-%d") AS START_DATE, DATE_FORMAT(END_DATE, "%Y-%m-%d") AS END_DATE, '
+    sql += 'ROI, DATEDIFF(END_DATE, START_DATE) AS DAYS FROM ASSET WHERE '
     sql += `ID = '${assetId}'`
 
     return execute(sql)
@@ -37,7 +42,7 @@ export function getAsset(assetId) {
 
 export function getAssets(assetFilter) {
     let sql = ''
-    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, CURRENT '
+    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, CURRENT, ROI '
     sql += 'FROM ASSET WHERE '    
     sql += `STATUS = '${assetFilter['status']}' `  
 

@@ -1,6 +1,7 @@
 import React from "react"
 import Table from 'react-bootstrap/Table'
 import Currency from '../format/Currency'
+import Percentage from '../format/Percentage'
 
 export default function AssetDetails(props) {
     const { asset } = props
@@ -10,7 +11,7 @@ export default function AssetDetails(props) {
                 <tr>
                     <EditAsset  label='NAME' value={asset.NAME} assetId={asset.ID} />                                      
                     <AssetData  label='HOLDER' value={asset.HOLDER} />
-                    <AssetData  label='INVESTED' value='10,00,000' colSpan='2' /> 
+                    <AssetData  label='DAYS' value={asset.DAYS} colSpan='2' /> 
                     <AssetData  label='START DATE' value={asset.START_DATE} />
                 </tr>
                 <tr>
@@ -22,7 +23,7 @@ export default function AssetDetails(props) {
                 <tr>
                     <AssetData  label='INSTITUTION' value={asset.INSTITUTION} />                    
                     <AssetData  label='FUND HOUSE' value={asset.FUND_HOUSE} /> 
-                    <AssetData2 label='PROFIT' first='0' second='0.00 %' />  
+                    <AssetPerc  label='ROI' value={asset.ROI} colSpan='2' /> 
                     <AssetData  label='STATUS' value={asset.STATUS} colSpan='2' />
                 </tr>
             </tbody>
@@ -49,23 +50,25 @@ const AssetData = ({ label, value, colSpan = 1 }) => (
 const AssetCurr = ({ label, value, colSpan = 1 }) => (
     <React.Fragment>
         <th className="text-right">{label}</th>
-        <td colSpan={colSpan} className='ad-td'> <Currency value={value} /> </td>
+        <td colSpan={colSpan} className='ad-td'>
+            <Currency value={value} />
+         </td>
     </React.Fragment>
 )
 
-const AssetData2 = ({ label, first, second, colSpan = 1 }) => (
+const AssetPerc = ({ label, value, colSpan = 1 }) => (
     <React.Fragment>
         <th className="text-right">{label}</th>
-        <td colSpan={colSpan} className='ad-td'>{first}</td>
-        <td colSpan={colSpan} className='ad-td'>{second}</td>
+        <td colSpan={colSpan} className='ad-td'>
+            <Percentage value={value} decimal={2}/>
+         </td>
     </React.Fragment>
 )
 
-
-// const EditAsset = ({ value }) => (
-//     <td className='ad-td text-right' colSpan='1'>
-//         <a href={`/asset-form?mode=EDIT&code=${value}`}>
-//             <i className="fa fa-pencil" />
-//         </a>
-//     </td>
+// const AssetData2 = ({ label, first, second, colSpan = 1 }) => (
+//     <React.Fragment>
+//         <th className="text-right">{label}</th>
+//         <td colSpan={colSpan} className='ad-td'>{first}</td>
+//         <td colSpan={colSpan} className='ad-td'>{second}</td>
+//     </React.Fragment>
 // )
