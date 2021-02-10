@@ -24,16 +24,6 @@ export function updateAsset(asset) {
     return execute(sql)
 }
 
-export function updateAssetDtls(assetDtld) {
-    const { ID, CURRENT } = assetDtld
-    let sql = ''
-    sql += `UPDATE ASSET SET CURRENT='${CURRENT}' `
-    sql += `WHERE ID = '${ID}'`
-
-    return execute(sql)
-}
-
-
 export function getAsset(assetId) {
     let sql = ''
     sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, FUND_HOUSE, PORTFOLIO, STATUS, CURRENT, '
