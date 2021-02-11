@@ -12,7 +12,7 @@ async function initBatch() {
 }
 
 async function processAsset(asset) {
-    const assetId = asset['ID']
+    const { ID: assetId, END_DATE: assetEndDate } = asset
     console.log(`Upading Asset with ID ${assetId}`)
     
     const navTxn = await getLatestNav(assetId)
@@ -33,29 +33,38 @@ async function processAsset(asset) {
         }
     })
 
-    xirrCF.push({
-        amount: current,
-        when: new Date(asset['END_DATE']) 
+    const hasNav = cashflows.some( cf => { 
+        const cat = cf['CATEGORY']
+        return (cat === 'NAV' || cat === 'MATURITY') 
     })
-
-    let roi = 0
+   
+    if(!hasNav) {
+        xirrCF.push({
+            amount: current,
+            when: new Date(assetEndDate) 
+        })    
+    }
 
     try {
-        roi = xirr(xirrCF, {guess: 1})
+        let roi = xirr(xirrCF, {guess: 1})
         roi = Number.parseFloat(roi * 100).toFixed(2)
+
+        const newAsset = {
+            ID: assetId,
+            CURRENT: current,
+            ROI: roi,
+            DIRTY: 'F'
+        }
+    
+        updateAsset(newAsset)
+
+
     } catch (e) {
         console.log(`Error in XIRR for asset - ${assetId} `)
         console.log(e)
     }
 
-    const newAsset = {
-        ID: assetId,
-        CURRENT: current,
-        ROI: roi,
-        DIRTY: 'F'
-    }
 
-    updateAsset(newAsset)
 }
 
 function getAssets() {
@@ -65,22 +74,23 @@ function getAssets() {
 }
 
 function getLatestNav(assetId) {
-    let sql = `SELECT AMOUNT FROM TXN ` +
-              `WHERE STATUS = 'C' AND CATEGORY IN ('MATURITY', 'NAV') AND ASSET_ID = '${assetId}' `+
-              `ORDER BY DATE DESC LIMIT 1`
+    const sql = `SELECT AMOUNT FROM TXN ` +
+                `WHERE STATUS = 'C' AND CATEGORY IN ('MATURITY', 'NAV') AND TIMELINE='C' ` +
+                `AND ASSET_ID = '${assetId}' ORDER BY DATE DESC LIMIT 1`
     return execute(sql)
 }
 
 function getTotal(assetId) {
-    let sql = `SELECT COALESCE(SUM(AMOUNT), 0) AS AMOUNT FROM TXN WHERE CATEGORY IN ` +
-              `('DEPOSIT', 'CREDIT') AND ASSET_ID = '${assetId}'`
+    const sql = `SELECT COALESCE(SUM(AMOUNT), 0) AS AMOUNT FROM TXN WHERE CATEGORY IN ` +
+                `('DEPOSIT', 'CREDIT') AND STATUS = 'C' AND TIMELINE='C' AND ASSET_ID = '${assetId}'`
     return execute(sql)
 }
 
 function getCashFlows(assetId) {
-    const sql = `SELECT DATE_FORMAT(DATE, '%Y-%m-%d') AS DATE, (AMOUNT * -1) AS AMOUNT ` +
-                `FROM TXN WHERE STATUS = 'C' AND CATEGORY = 'DEPOSIT' AND ASSET_ID = '${assetId}' ` +
-                `ORDER BY DATE ASC`
+    const sql = `SELECT DATE_FORMAT(DATE, '%Y-%m-%d') AS DATE, CATEGORY, ` +
+                `CASE WHEN CATEGORY = 'DEPOSIT' THEN (AMOUNT * -1) ELSE AMOUNT END AS AMOUNT ` +
+                `FROM TXN WHERE STATUS = 'C' AND CATEGORY IN ('DEPOSIT', 'MATURITY', 'NAV') AND ` +
+                `ASSET_ID = '${assetId}' ORDER BY DATE ASC`
     return execute(sql)
 }
 

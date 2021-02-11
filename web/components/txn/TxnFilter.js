@@ -63,5 +63,6 @@ const TIMELINE = [
 const STATUS = [
     { value: 'C', label: 'CLEARED' },
     { value: 'V', label: 'VOID'    },
+    { value: 'A', label: 'ARCHIVED' },
     { value: 'D', label: 'DELETED' },
 ]
