@@ -29,7 +29,6 @@ export async function getServerSideProps(context) {
 
         _txn = await getTxn(query.txnId)
         _txn = JSON.parse(JSON.stringify(_txn[0]))    
-        console.log(_txn)
     } 
 
     return {

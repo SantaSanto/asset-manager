@@ -17,16 +17,17 @@ export async function getServerSideProps(context) {
     const query = context.query
 
     const _portfolio = (query['portfolio'])? query['portfolio']: 'ALL'
-
     const _breadcrumb = { key: 'ASSET_LIST', title: 'ASSETS', href: url,  active: true }
 
     const _filter = {
-        portfolio: _portfolio, 
-        category: 'ALL', 
-        instrument: 'ALL', 
-        holder: 'ALL',
-        institution: 'ALL', 
-        status: 'A'
+        PORTFOLIO: _portfolio, 
+        CATEGORY: 'ALL', 
+        INSTRUMENT: 'ALL', 
+        HOLDER: 'ALL',
+        INSTITUTION: 'ALL', 
+        STATUS: 'A',
+        SORT_BY: 'CURRENT',
+        SORT_ORDER: 'ASC'
     }
 
     return {

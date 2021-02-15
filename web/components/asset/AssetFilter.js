@@ -5,12 +5,12 @@ export default function AssetFilter(props) {
     return (
         <Form style={{ padding: '0px 10px' }}>
             <Form.Row>
-                <SelectField label='PORTFOLIO' name='portfolio' options={PORTFOLIO} />
-                <SelectField label='CATEGORY' name='category' options={CATEGORY} />
-                <SelectField label='INSTRUMENT' name='instrument' options={INSTRUMENT} />
-                <SelectField label='HOLDER' name='holder' options={HOLDER} />
-                <SelectField label='INSTITUTION' name='institution' options={INSTITUTION} />
-                <SelectField label='STATUS' name='status' options={STATUS} />
+                <SelectField label='PORTFOLIO' name='PORTFOLIO' options={PORTFOLIO} />
+                <SelectField label='CATEGORY' name='CATEGORY' options={CATEGORY} />
+                <SelectField label='INSTRUMENT' name='INSTRUMENT' options={INSTRUMENT} />
+                <SelectField label='HOLDER' name='HOLDER' options={HOLDER} />
+                <SelectField label='INSTITUTION' name='INSTITUTION' options={INSTITUTION} />
+                <SelectField label='STATUS' name='STATUS' options={STATUS} />
             </Form.Row>
         </Form>
     )

@@ -10,12 +10,14 @@ export default (req, res) => {
 
 async function onGet(req, res) {
     const assetFilter = {}
-    assetFilter['portfolio'] = req.query['portfolio']
-    assetFilter['category'] = req.query['category']
-    assetFilter['instrument'] = req.query['instrument']
-    assetFilter['holder'] = req.query['holder']
-    assetFilter['institution'] = req.query['institution']
-    assetFilter['status'] = req.query['status']
+    assetFilter['PORTFOLIO'] = req.query['PORTFOLIO']
+    assetFilter['CATEGORY'] = req.query['CATEGORY']
+    assetFilter['INSTRUMENT'] = req.query['INSTRUMENT']
+    assetFilter['HOLDER'] = req.query['HOLDER']
+    assetFilter['INSTITUTION'] = req.query['INSTITUTION']
+    assetFilter['STATUS'] = req.query['STATUS']
+    assetFilter['SORT_BY'] = req.query['SORT_BY']
+    assetFilter['SORT_ORDER'] = req.query['SORT_ORDER']
 
     try {
         const assets = await getAssets(assetFilter)

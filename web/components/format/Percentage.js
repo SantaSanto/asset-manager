@@ -9,7 +9,7 @@ export default function Percentage( {value, decimal=0} ) {
             decimalScale={decimal} 
             value={value} 
             suffix=' %'
-            fixedDecimalScale={decimal}
+            fixedDecimalScale={true}
         />
     )
 }

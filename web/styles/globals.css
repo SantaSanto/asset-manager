@@ -47,9 +47,9 @@ tbody td {
   padding-left: 10px !important;
 }
 
-/* .fa {
-  font-size: .80rem;
-} */
+.fa {
+  padding-left: 2px !important;
+}
 
 form {
   padding: 10px 50px;  

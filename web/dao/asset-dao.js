@@ -40,17 +40,20 @@ export function getAsset(assetId) {
 }
 
 
-export function getAssets(assetFilter) {
+export function getAssets(filter) {
     let sql = ''
-    sql += 'SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, CURRENT, ROI '
-    sql += 'FROM ASSET WHERE '    
-    sql += `STATUS = '${assetFilter['status']}' `  
+    sql += `SELECT ID, NAME, CATEGORY, INSTRUMENT, HOLDER, INSTITUTION, CURRENT, ROI, `
+    sql += `DATE_FORMAT(END_DATE, "%Y-%m-%d") AS END_DATE `
+    sql += `FROM ASSET WHERE `
+    sql += `STATUS = '${filter['STATUS']}' `  
 
-    if(assetFilter['portfolio'] !== 'ALL')     sql += `AND PORTFOLIO LIKE '%${assetFilter['portfolio']}%' `      
-    if(assetFilter['category'] !== 'ALL')      sql += `AND CATEGORY = '${assetFilter['category']}' ` 
-    if(assetFilter['instrument'] !== 'ALL')    sql += `AND INSTRUMENT = '${assetFilter['instrument']}' `
-    if(assetFilter['holder'] !== 'ALL')        sql += `AND HOLDER = '${assetFilter['holder']}' ` 
-    if(assetFilter['institution'] !== 'ALL')  sql += `AND INSTITUTION = '${assetFilter['institution']}' ` 
+    if(filter['PORTFOLIO'] !== 'ALL')     sql += `AND PORTFOLIO LIKE '%${filter['PORTFOLIO']}%' `      
+    if(filter['CATEGORY'] !== 'ALL')      sql += `AND CATEGORY = '${filter['CATEGORY']}' ` 
+    if(filter['INSTRUMENT'] !== 'ALL')    sql += `AND INSTRUMENT = '${filter['INSTRUMENT']}' `
+    if(filter['HOLDER'] !== 'ALL')        sql += `AND HOLDER = '${filter['HOLDER']}' ` 
+    if(filter['INSTITUTION'] !== 'ALL')   sql += `AND INSTITUTION = '${filter['INSTITUTION']}' ` 
+
+    sql += `ORDER BY ${filter['SORT_BY']} ${filter['SORT_ORDER']}`
 
     return execute(sql)
 }
