@@ -19,13 +19,13 @@ export default function TxnFilter({assetId}) {
 }
 
 const YEAR = [
-    { value:'ALL', label:'ALL' },
-    { value:'2021', label:'FY 2021' },    
-    { value:'2020', label:'FY 2020' },
-    { value:'2019', label:'FY 2019' },
-    { value:'2018', label:'FY 2018' },
-    { value:'2017', label:'FY 2017' },
-    { value:'2016', label:'FY 2016' }    
+    { value:'ALL',  label:'ALL'  },
+    { value:'2021', label:'2021' },    
+    { value:'2020', label:'2020' },
+    { value:'2019', label:'2019' },
+    { value:'2018', label:'2018' },
+    { value:'2017', label:'2017' },
+    { value:'2016', label:'2016' }    
 ] 
 
 const MONTH = [

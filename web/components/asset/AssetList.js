@@ -8,8 +8,8 @@ import TableHeader from '../table/TableHeader'
 import { FormContext } from '../form/FormProvider'
 
 const tableHeader = {
-    label: ['NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'END_DATE', 'CURRENT', 'ROI'],
-    align: ['left', 'left', 'left', 'left', 'left', 'left', 'right', 'right']
+    label: ['NAME', 'CATEGORY', 'INSTRUMENT', 'HOLDER', 'INSTITUTION', 'CURRENT', 'ROI'],
+    align: ['left', 'left', 'left', 'left', 'left', 'right', 'right']
 }
 
 export default function AssetList() {
@@ -44,7 +44,6 @@ function TableBody({ assets }) {
             <td>{asset.INSTRUMENT}</td>
             <td>{asset.HOLDER}</td>
             <td>{asset.INSTITUTION}</td>
-            <td>{asset.END_DATE}</td>
             <td className="text-right">
                 <Currency value={asset.CURRENT} />
             </td>
@@ -76,7 +75,7 @@ function TableFooter({ assets }) {
     return (
         <tfoot>
             <tr>
-                <th colSpan='6'>{`${count} ASSETS`}</th>
+                <th colSpan='5'>{`${count} ASSETS`}</th>
                 <th className="text-right">
                     <Currency value={total} />
                 </th>

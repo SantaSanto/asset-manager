@@ -62,6 +62,14 @@ export default function Home() {
           <Card.Link href='/asset-list?portfolio=CHILDREN'>VIEW</Card.Link>
         </Card.Body>
       </Card>
+
+      <Card bg="dark" text='black'>
+        <Card.Body>
+          <Card.Title><b>CASHFLOW</b></Card.Title>
+          <Card.Text>List of excpected cashflows from assets.</Card.Text>          
+          <Card.Link href='/reports/cashflow'>VIEW</Card.Link>
+        </Card.Body>
+      </Card>
     </CardColumns>
   )
 }
