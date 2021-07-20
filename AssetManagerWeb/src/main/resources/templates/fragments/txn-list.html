@@ -1,0 +1,154 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<section class="container" th:fragment="FIXED">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">CATEGORY</th>
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='FIXED')}" />
+					</td>
+					<td th:text="${txn.category.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+
+<section class="container" th:fragment="SCHEME">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">CATEGORY</th>
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='SCHEME')}" />
+					</td>
+					<td th:text="${txn.category.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+
+<section class="container" th:fragment="EPF">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">TYPE</th>
+					<th class="has-text-white has-text-right">EMPLOYEE</th>
+					<th class="has-text-white has-text-right">COMPANY</th>
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/transaction/update?txnId={txnId}(txnId=${txn.id})}" />
+					</td>
+					<td th:text="${txn.type.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+	
+<section class="container" th:fragment="UNIT">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">TYPE</th>
+					<th class="has-text-white has-text-right">UNIT</th>						
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='UNIT')}" />
+					</td>
+					<td th:text="${txn.category.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.unit},   1, 3)} " />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+
+<section class="container" th:fragment="NPS">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">TYPE</th>
+					<th class="has-text-white has-text-right">EQUITY</th>
+					<th class="has-text-white has-text-right">DEBT</th>
+					<th class="has-text-white has-text-right">GLIT</th>
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='NPS')}" />
+					</td>
+					<td th:text="${txn.category.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.equity}, 1, 'COMMA', 0, 'POINT')}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.debt}, 1, 'COMMA', 0, 'POINT')}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.glit}, 1, 'COMMA', 0, 'POINT')}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.equity + txn.debt + txn.glit}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+
+<section class="container" th:fragment="BULLION">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">TYPE</th>
+					<th class="has-text-white has-text-right">UNIT</th>						
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='BULLION')}" />
+					</td>
+					<td th:text="${txn.category.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.unit},   1, 0) + ' grms'} " />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+
+</html>

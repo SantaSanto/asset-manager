@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:fragment="bluma">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+	<link rel="stylesheet" href="/fontawesome/css/all.css">
+
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+	<title>Asset Manager</title>
+
+	<style>
+		body {
+			font-family: 'Roboto Mono', monospace;
+		}
+	</style>
+
+</head>
+
+<body>
+
+
+	<!-- #####  HEADER -iCON  ##### -->
+	<div class="control" th:fragment="menu(icon, url)">
+		<a class="button is-medium is-info is-light" th:href=${url}>
+			<span class="icon">
+				<i th:class="${icon}"></i>
+			</span>
+		</a>
+	</div>
+
+	<section class="container is-fluid has-background-link-dark py-4" th:fragment="header(title, menuItems)">
+		<nav class="level">
+
+			<!-- #####  PAGE TITLE  ##### -->
+			<div class="level-left level-item">
+				<h3 class="title is-3 has-text-white" th:text=${title}>ASSET</h3>
+			</div>
+
+			<!-- #####  PAGE ACTION  ##### -->
+			<div class="level-right level-item">
+				<div class="field is-grouped is-grouped-right">
+					<div th:replace="${menuItems}" />
+				</div>
+			</div>
+		</nav>
+	</section>
+</body>
+
+</html>

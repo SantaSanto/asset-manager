@@ -1,0 +1,19 @@
+[Txn]>[Fixed]
+[Txn]>[EPF]
+[Txn]>[Unit]
+[Txn]>[NPS]
+
+[Txn| Id; AssetId; Date; Category; Amount]
+[Fixed]
+[EPF| Employee; Company]
+[Unit| Unit]
+[NPS| Equity; Debt; Glit]
+
+[AbstractTxn]>[BaseTxn]
+[BaseTxn]>[TxnDetail]
+[BaseTxn]>[TxnForm]
+
+[AbstractTxn| Id; AssetId; Date; Amount]
+[BaseTxn| Employee; Company; Unit; Equity; Debt; Glit]
+[TxnForm| CategoryId; AssetType]
+[TxnDetail| Category]

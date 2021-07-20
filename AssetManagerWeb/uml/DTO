@@ -1,0 +1,22 @@
+// Class Inheritance
+[AbstractAsset]>[BaseAsset]
+[AbstractAsset]>[AssetForm]
+[BaseAsset]>[AssetDetail]
+
+// Class Details
+[AbstractAsset| ID; Name;]
+[AssetForm| InstrumentId; AccountId; GroupId; Status ]
+[BaseAsset| Instrument; Account; Group; Current; Projected; ROI;]
+[AssetDetail| Employee; Company; Equity; Debt; Glit;]
+
+[BaseTxn]>[EPFTxn]
+[BaseTxn]>[TxnForm]
+[BaseTxn]>[NAVTxn]
+[BaseTxn]>[NPSTxn]
+
+[BaseTxn| Id; AssetId; Date; Category; Amount]
+[TxnForm| Type]
+[EPFTxn| Employee; Company]
+[NPSTxn| Equity; Debt; Glit]
+[NAVTxn| Unit]
+

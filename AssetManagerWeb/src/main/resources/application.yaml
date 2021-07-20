@@ -1,0 +1,121 @@
+com.santo.portfolio.config.txn.categories:
+- id: DEPOSIT
+  label: Deposit
+
+- id: CREDIT
+  label: Credit  
+  
+- id: REDEEM
+  label: Redeem
+
+- id: NAV
+  label: Net Value
+
+      
+com.santo.portfolio.config.asset.instruments:
+- id: FD
+  label: Fixed Deposit
+  type: Fixed
+      
+- id: FSS
+  label: Saving Scheme
+  type: Fixed
+  
+- id: EPF
+  label: Provident Fund
+  type: Fixed        
+        
+- id: MFE
+  label: Equity Mutual Fund
+  type: Equity
+            
+- id: MFD
+  label: Debt Mutual Fund
+  type: Equity
+      
+- id: NPS
+  label: Pension Scheme
+  type: Equity
+      
+- id: SGB
+  label: Sov Gold Bond
+  type: Bullion
+      
+
+      
+com.santo.portfolio.config.asset.accounts:
+- id: BXX523P
+  holder: Santosh
+  institution: Bajaj Finserv
+
+- id: DXX1232
+  holder: Santosh
+  institution: Digi Bank
+  
+- id: SXX5634
+  holder: Lavanya
+  institution: State Bank  
+  
+- id: SXX8671
+  holder: Santosh
+  institution: State Bank  
+  
+- id: HXX2045
+  holder: Lavanya
+  institution: HDFC  
+  
+- id: TXX523P
+  holder: Santosh
+  institution: Power Finance
+  
+- id: TXX488B
+  holder: Lavanya
+  institution: Power Finance
+  
+- id: PXX488B
+  holder: Lavanya
+  institution: Post Office
+ 
+- id: KXX523P
+  holder: Santosh
+  institution: Kuvera
+  
+- id: ZXX6018
+  holder: Santosh
+  institution: Zerodha Coin
+  
+- id: UXX7208
+  holder: Santosh
+  institution: UAN
+      
+- id: NXX5819
+  holder: Santosh
+  institution: NPS
+
+
+com.santo.portfolio.config.asset.portfolio:
+- id: CHILD
+  label: Children
+ 
+- id: EDU
+  label: Education
+            
+- id: EXG
+  label: Exigency
+        
+- id: REL
+  label: Relient 
+  
+- id: WLF
+  label: Welfare 
+  
+  
+com.santo.portfolio.config.asset.status:
+- id: A
+  label: Active
+ 
+- id: H
+  label: Archive
+            
+- id: D
+  label: Delete

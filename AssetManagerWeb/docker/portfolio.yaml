@@ -1,0 +1,15 @@
+version: '2'
+networks:
+  mysql_bridge:
+    external:
+      name: mysql_bridge
+      
+
+services:
+  ASSET-MANAGER-WEB:
+    container_name: asset-manager-web
+    image: asset-manager-web:latest
+    ports:
+    - 9001:8080
+    networks:
+    - mysql_bridge

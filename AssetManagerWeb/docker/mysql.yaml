@@ -1,0 +1,21 @@
+version: '2'
+
+networks:
+  mysql_bridge:
+    external:
+      name: mysql_bridge
+
+services:
+
+  DB_MYSQL:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+    - 3306:3306
+    volumes:
+    - /home/santosh/Workspace/mysql/data:/var/lib/mysql
+    networks:
+    - mysql_bridge
+    hostname: mysql.docker.com
+    environment:
+      MYSQL_ROOT_PASSWORD: root

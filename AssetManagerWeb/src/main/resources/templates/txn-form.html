@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/page :: bluma" />
+
+<body>
+	<section th:replace="fragments/page :: header(title='TRANSACTION FORM', menuItems=~{})" />
+
+
+	<section class="container">
+		<div class="box my-5">
+			<form method="POST" th:action="@{/txn/save}" th:object=${txnForm}>
+				
+				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{assetId}" />
+				<input type="hidden" th:field="*{assetType}" />
+								
+				<div class="field py-3">
+					<label class="label has-text-link">DATE</label>
+					<div class="control">
+						<input class="input is-medium" type="date" th:field="*{date}" />
+					</div>
+				</div>
+
+
+				<div class="field py-3">
+					<label class="label has-text-link">TRANSACTION TYPE</label>
+					<div class="control">
+						<div class="select is-medium is-fullwidth">
+							<select th:field="*{categoryId}">
+								<option th:each="config : ${@txnConfig.categories}" th:value="${config.id}"
+									th:text="${config.label}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<section th:replace="fragments/txn-field::*{assetType}" />
+
+				<div class="field is-grouped is-grouped-right py-5">
+					<div class="control">
+						<a class="button is-medium is-link is-light">CANCEL</a>
+					</div>
+					<div class="control">
+						<button class="button is-medium is-link" type="submit">CREATE</button>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</section>
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/page :: bluma" />
+
+<body>
+	<section th:replace="fragments/page :: header(title='ASSETS', menuItems=~{this::.am-menu})">		
+		<div class="am-menu" th:replace="fragments/page :: menu('far fa-calendar-alt', '/')" />
+		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-chart-pie', '/')" />
+		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-plus', @{'/asset/new'})" />
+		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-filter', '/')" />
+	</section>
+
+	<section class="container py-5 mt-4">
+		<nav class="level">
+			<div class="level-item has-text-centered">
+				<div>
+					<p class="heading is-size-6 has-text-link">CURRENT</p>
+					<p class="title is-4"
+						th:text="${'&#x20B9; ' + #numbers.formatDecimal({current}, 1, 'COMMA', 0, 'POINT')}" />
+				</div>
+			</div>
+			<div class="level-item has-text-centered">
+				<div>
+					<p class="heading is-size-6  has-text-link">XIRR</p>
+					<p class="title is-4" th:text="${#numbers.formatDecimal({xirr}, 1, 2)}" />
+				</div>
+			</div>
+			<div class="level-item has-text-centered">
+				<div>
+					<p class="heading is-size-6 has-text-link">PROJECTED</p>
+					<p class="title is-4"
+						th:text="${'&#x20B9; ' + #numbers.formatDecimal({projected}, 1, 'COMMA', 0, 'POINT')}" />
+				</div>
+			</div>
+		</nav>
+	</section>
+
+	<section class="container">
+		<div class="box my-5">
+			<table class="table is-fullwidth is-striped">
+				<thead class="has-background-link-dark">
+					<tr>
+						<th class="has-text-white">NAME</th>
+						<th class="has-text-white">INSTRUMENT</th>
+						<th class="has-text-white">INSTITUTION</th>
+						<th class="has-text-white">HOLDER</th>
+						<th class="has-text-white">PORTFOLIO</th>
+						<th class="has-text-white has-text-right">CURRENT</th>
+						<th class="has-text-white has-text-right">ROI</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="baseAsset: ${baseAssets}">
+						<td>
+							<a th:text="${baseAsset.name}"
+								th:href="@{/asset/view?assetId={assetId}(assetId=${baseAsset.id})}" />
+						</td>
+						<td th:text="${baseAsset.instrument.label}" />
+						<td th:text="${baseAsset.account.institution}" />
+						<td th:text="${baseAsset.account.holder}" />
+						<td th:text="${baseAsset.portfolio.label}" />
+						<td class="has-text-right" th:text="${#numbers.formatDecimal({baseAsset.current}, 1, 'COMMA', 0, 'POINT')}" />
+						<td class="has-text-right" th:text="${#numbers.formatDecimal({baseAsset.xirr}, 1, 2)}" />
+					</tr>	
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+
+</html>

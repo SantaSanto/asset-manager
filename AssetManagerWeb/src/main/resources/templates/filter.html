@@ -1,0 +1,162 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/page :: bluma" />
+
+<body>
+	<section th:replace="fragments/page :: header(title='ASSET FORM')" />
+
+	<section class="container">
+		<div class="box my-5">
+			<form method="POST" th:action="@{/asset/create}" th:object=${assetForm}>
+				<div class="field py-3">
+					<label class="label has-text-link">ASSET NAME</label>
+					<div class="control">
+						<input class="input is-medium" type="text" th:field="*{name}" placeholder="FD SXX3765">
+					</div>
+				</div>
+
+				<div class="field py-3">
+					<label class="label has-text-link">INSTRUMENT</label>
+					<div class="control">
+						<div class="select is-medium is-fullwidth">
+							<select th:field="*{instrument}">
+								<option th:each="config : ${@instrumentsConfig.instruments}" th:value="${config.id}"
+									th:text="${config.label}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="field py-3">
+					<label class="label has-text-link">ACCOUNT</label>
+					<div class="control">
+						<div class="select is-medium is-fullwidth">
+							<select name="account">
+								<option></option>
+								<option>SBI - SANTOSH</option>
+								<option>HDFC - SANTOSH</option>
+								<option>ZERODHA - SANTOSH</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="field py-3">
+					<label class="label has-text-link mr-3">GROUP</label>
+					<div class="field is-grouped is-grouped-multiline px-5 py-3" style="border: 1px solid #dbdbdb;">
+						<div class="control my-1">
+							<label class="checkbox" title="World Health Organization">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control label my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EDUCATION</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+						<div class="control my-1">
+							<label class="checkbox">
+								<input type="checkbox" />
+								<span>EXIGENCY</span>
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="field is-grouped is-grouped-right py-5">
+					<div class="control">
+						<a class="button is-medium is-link is-light">CANCEL</a>
+					</div>
+					<div class="control">
+						<button class="button is-medium is-link" type="submit">CREATE</button>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>

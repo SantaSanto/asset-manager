@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div class="field py-3" th:fragment="AMOUNT">
+	<label class="label has-text-link">AMOUNT</label>
+	<div class="control">
+		<input class="input is-medium" type="number" th:field="*{amount}" />
+	</div>
+</div>
+
+<section th:fragment="FIXED">
+	<div th:replace="this::AMOUNT" />
+</section>
+
+<section th:fragment="SCHEME">
+	<div th:replace="this::AMOUNT" />
+</section>
+
+<section th:fragment="UNIT">
+	<div class="field py-3">
+		<label class="label has-text-link">UNIT</label>
+		<div class="control">
+			<input class="input is-medium" type="number" step='0.001' th:field="*{unit}" />
+		</div>
+	</div>
+
+	<div th:replace="this::AMOUNT" />
+</section>
+
+<section th:fragment="NPS">
+	<div class="field py-3">
+		<label class="label has-text-link">EQUITY</label>
+		<div class="control">
+			<input class="input is-medium" type="number" step='0.001' th:field="*{equity}" />
+		</div>
+	</div>
+	<div class="field py-3">
+		<label class="label has-text-link">DEBT</label>
+		<div class="control">
+			<input class="input is-medium" type="number" step='0.001' th:field="*{debt}" />
+		</div>
+	</div>
+	<div class="field py-3">
+		<label class="label has-text-link">GLIT</label>
+		<div class="control">
+			<input class="input is-medium" type="number" step='0.001' th:field="*{glit}" />
+		</div>
+	</div>
+</section>
+
+<section th:fragment="BULLION">
+	<div class="field py-3">
+		<label class="label has-text-link">UNIT</label>
+		<div class="control">
+			<input class="input is-medium" type="number" th:field="*{unit}" />
+		</div>
+	</div>
+
+	<div th:replace="this::AMOUNT" />
+</section>
+
+</html>
