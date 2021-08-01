@@ -19,7 +19,9 @@ public class Asset {
 	
 	private String instrument;
 	
-	private String account;
+	private String institution;
+	
+	private String holder;
 	
 	private String portfolio;
 	
@@ -27,7 +29,7 @@ public class Asset {
 
 	private Integer current;
 	
-	private Double unit;
+	private Double unit;	
 	
 	private Double xirr;
 
@@ -35,7 +37,7 @@ public class Asset {
 	
 	private Integer employee;
 	
-	private Integer company;
+	private Integer employer;
 	
 	private Integer equity;
 	

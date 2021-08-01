@@ -54,18 +54,22 @@
 				<tr>
 					<th class="has-text-white">DATE</th>
 					<th class="has-text-white">TYPE</th>
+					<th class="has-text-white">COMPANY</th>
 					<th class="has-text-white has-text-right">EMPLOYEE</th>
-					<th class="has-text-white has-text-right">COMPANY</th>
+					<th class="has-text-white has-text-right">EMPLOYER</th>
 					<th class="has-text-white has-text-right">AMOUNT</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="txn: ${txns}">
 					<td>
-						<a th:text="${txn.date}" th:href="@{/transaction/update?txnId={txnId}(txnId=${txn.id})}" />
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='EPF')}" />
 					</td>
-					<td th:text="${txn.type.label}" />
-					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+					<td th:text="${txn.category.label}" />
+					<td th:text="${txn.company}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.employee}, 1, 'COMMA', 0, 'POINT')}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.employer}, 1, 'COMMA', 0, 'POINT')}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.employee + txn.employer}, 1, 'COMMA', 0, 'POINT')}" />
 				</tr>	
 			</tbody>			
 		</table>

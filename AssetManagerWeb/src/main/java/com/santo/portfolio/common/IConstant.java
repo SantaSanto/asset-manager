@@ -21,6 +21,7 @@ public interface IConstant {
 	String BASE_ASSETS = "baseAssets";
 	String ASSET_DETAIL = "assetDetail";
 	String ASSET_FORM = "assetForm";
+	String ASSET_FILTER = "assetFilter";
 	String ASSET_ID = "assetId";
 	String ASSET_TYPE = "assetType";
 	String TXN_FORM = "txnForm";
@@ -42,5 +43,10 @@ public interface IConstant {
 	String EQUITY = "EQUITY";
 	String NPS = "NPS";
 	String BULLION = "BULLION";
+	
+	/** Asset Criteria */
+	String STATUS = "status";
+	String PORTFOLIO = "portfolio";
+	
 
 }

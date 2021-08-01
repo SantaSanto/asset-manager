@@ -9,11 +9,9 @@ public class AssetForm extends AbstractAsset {
 
 	private static final String ACTIVE = "A";
 
-	private String instrumentId;
-
-	private String accountId;
-
-	private String portfolioId;
+	private String instrumentId;	
+	
+	private String institutionId;	
 
 	private String status = ACTIVE;
 }

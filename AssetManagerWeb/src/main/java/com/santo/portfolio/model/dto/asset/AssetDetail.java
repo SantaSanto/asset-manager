@@ -11,7 +11,7 @@ public class AssetDetail extends BaseAsset {
 	
 	private Integer employee;
 	
-	private Integer company;
+	private Integer employer;
 	
 	private Integer equity;
 	

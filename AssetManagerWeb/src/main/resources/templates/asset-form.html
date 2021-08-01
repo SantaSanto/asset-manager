@@ -32,13 +32,22 @@
 					</div>
 				</div>
 
-				<div class="field py-3">
-					<label class="label has-text-link">ACCOUNT</label>
-					<div class="control">
+				<div class="field is-grouped py-3">
+					<div class="control is-expanded">
+						<label class="label has-text-link">INSTITUTION</label>
 						<div class="select is-medium is-fullwidth">
-							<select th:field="*{accountId}">
-								<option th:each="config : ${@assetConfig.accounts}" th:value="${config.id}"
-									th:text="${config.institution} + ' - ' + ${config.holder}" />
+							<select th:field="*{institutionId}">
+								<option th:each="config : ${@assetConfig.institutions}" th:value="${config.id}"
+									th:text="${config.label}" />
+							</select>
+						</div>
+					</div>
+					<div class="control is-expanded">
+						<label class="label has-text-link">HOLDER</label>
+						<div class="select is-medium is-fullwidth">
+							<select th:field="*{holder}">
+								<option th:each="config : ${@assetConfig.holders}" th:value="${config}"
+									th:text="${config}" />
 							</select>
 						</div>
 					</div>
@@ -48,9 +57,9 @@
 					<label class="label has-text-link">PORTFOLIO</label>
 					<div class="control">
 						<div class="select is-medium is-fullwidth">
-							<select th:field="*{portfolioId}">
-								<option th:each="config : ${@assetConfig.portfolio}" th:value="${config.id}"
-									th:text="${config.label}">
+							<select th:field="*{portfolio}">
+								<option th:each="config : ${@assetConfig.portfolios}" th:value="${config}"
+									th:text="${config}">
 								</option>
 							</select>
 						</div>

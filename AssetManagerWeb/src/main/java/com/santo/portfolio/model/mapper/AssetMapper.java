@@ -14,7 +14,7 @@ import com.santo.portfolio.model.dto.asset.BaseAsset;
 
 @Component
 public class AssetMapper {
-	
+
 	@Autowired
 	private AssetConfig assetConfig;
 
@@ -24,10 +24,11 @@ public class AssetMapper {
 
 	public BaseAsset toDTO(final Asset asset, final BaseAsset baseAsset) {
 		baseAsset.setId(asset.getId());
-		baseAsset.setName(asset.getName());
-		baseAsset.setInstrument(assetConfig.getInstrument(asset.getInstrument()));
-		baseAsset.setAccount(assetConfig.getAccount(asset.getAccount()));
-		baseAsset.setPortfolio(assetConfig.getPortfolio(asset.getPortfolio()));
+		baseAsset.setName(asset.getName());		
+		baseAsset.setInstrument(assetConfig.getInstrument(asset.getInstrument()));		
+		baseAsset.setInstitution(assetConfig.getInstitution(asset.getInstitution()));
+		baseAsset.setHolder(asset.getHolder());		
+		baseAsset.setPortfolio(asset.getPortfolio());
 
 		baseAsset.setCurrent(withDefault(asset::getCurrent, 0));
 		baseAsset.setProjected(withDefault(asset::getProjected, baseAsset.getCurrent()));
@@ -36,11 +37,11 @@ public class AssetMapper {
 	}
 
 	public AssetDetail toDTO(final Asset asset) {
-		final AssetDetail assetDetail = (AssetDetail) toDTO(asset, new AssetDetail());
-		assetDetail.setUnit(asset.getUnit());
+		final AssetDetail assetDetail = (AssetDetail) toBaseAsset(asset);		
 		assetDetail.setEmployee(asset.getEmployee());
-		assetDetail.setCompany(asset.getCurrent());
-		assetDetail.setEquity(asset.getEquity());
+		assetDetail.setEmployer(asset.getEmployer());		
+		assetDetail.setUnit(asset.getUnit());		
+		assetDetail.setEquity(asset.getEquity());		
 		assetDetail.setDebt(asset.getDebt());
 		assetDetail.setGlit(asset.getGlit());
 		return assetDetail;
@@ -49,10 +50,11 @@ public class AssetMapper {
 	public AssetForm toForm(final Asset asset) {
 		final AssetForm assetForm = new AssetForm();
 		assetForm.setId(asset.getId());
-		assetForm.setName(asset.getName());
+		assetForm.setName(asset.getName());		
 		assetForm.setInstrumentId(asset.getInstrument());
-		assetForm.setAccountId(asset.getAccount());
-		assetForm.setPortfolioId(asset.getPortfolio());
+		assetForm.setInstitutionId(asset.getInstitution());
+		assetForm.setHolder(asset.getHolder());
+		assetForm.setPortfolio(asset.getPortfolio());
 		assetForm.setStatus(asset.getStatus());
 		return assetForm;
 	}
@@ -60,10 +62,11 @@ public class AssetMapper {
 	public Asset toDomain(final AssetForm assetForm) {
 		final Asset asset = new Asset();
 		asset.setId(assetForm.getId());
-		asset.setName(assetForm.getName());
+		asset.setName(assetForm.getName());		
 		asset.setInstrument(assetForm.getInstrumentId());
-		asset.setAccount(assetForm.getAccountId());
-		asset.setPortfolio(assetForm.getPortfolioId());
+		asset.setInstitution(assetForm.getInstitutionId());
+		asset.setHolder(assetForm.getHolder());
+		asset.setPortfolio(assetForm.getPortfolio());
 		asset.setStatus(assetForm.getStatus());
 		return asset;
 	}

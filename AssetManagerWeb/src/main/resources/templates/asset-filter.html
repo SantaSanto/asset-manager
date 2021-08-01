@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/page :: bluma" />
+
+<body>
+
+	<section th:replace="fragments/page :: header(title='ASSET FILTER', menuItems=~{})" />
+
+	<section class="container">
+		<div class="box my-5">
+			<form method="POST" th:action="@{/asset/create}">
+
+				<!--
+				<label class="label has-text-link pl-2">ASSET CLASS</label>
+				<div class="field is-grouped is-grouped-multiline py-3">
+					<div class="box control pr-5" th:each="config : ${@assetConfig.assetClass}">
+						<label class="checkbox">
+							<input type="checkbox" name="assetClass" th:value="${config}" />
+							<span class="is-uppercase" th:text="${config}" />
+						</label>
+					</div>
+				</div>
+				-->
+
+				<label class="label has-text-link pl-2 mt-3">INSTRUMENTS</label>
+				<div class="field is-grouped is-grouped-multiline py-3">
+					<div class="box control is-expanded" th:each="config : ${@assetConfig.instruments}">
+						<label class="checkbox">
+							<input type="checkbox" />
+							<span class="is-uppercase" th:text="${config.label}" />
+						</label>
+					</div>
+				</div>
+
+				<label class="label has-text-link pl-2 mt-3">INSTITUTION</label>
+				<div class="field is-grouped is-grouped-multiline py-3">
+					<div class="box control is-expanded" th:each="config : ${@assetConfig.institution}">
+						<label class="checkbox">
+							<input type="checkbox" />
+							<span class="is-uppercase" th:text="${config}" />
+						</label>
+					</div>
+				</div>
+
+				<label class="label has-text-link pl-2 mt-3">ACCOUNT HOLDER</label>
+				<div class="field is-grouped is-grouped-multiline py-3">
+					<div class="box control is-expanded" th:each="config : ${@assetConfig.holders}">
+						<label class="checkbox">
+							<input type="checkbox" />
+							<span class="is-uppercase" th:text="${config}" />
+						</label>
+					</div>
+				</div>
+
+				<label class="label has-text-link pl-2 mt-3">PORTFOLIO</label>
+				<div class="field is-grouped is-grouped-multiline py-3">
+					<div class="box control is-expanded" th:each="config : ${@assetConfig.portfolio}">
+						<label class="checkbox">
+							<input type="checkbox" />
+							<span class="is-uppercase" th:text="${config.label}" />
+						</label>
+					</div>
+				</div>
+
+
+				<div class="field is-grouped is-grouped-right py-5">
+					<div class="control">
+						<a class="button is-medium is-link is-light">BACK</a>
+					</div>
+					<div class="control">
+						<button class="button is-medium is-link" type="submit">FILTER</button>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>

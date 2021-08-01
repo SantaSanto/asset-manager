@@ -1,6 +1,5 @@
 package com.santo.portfolio.model.dto.asset;
 
-import com.santo.portfolio.model.dto.config.Account;
 import com.santo.portfolio.model.dto.config.Instrument;
 import com.santo.portfolio.model.dto.config.NameValue;
 
@@ -13,9 +12,7 @@ public class BaseAsset extends AbstractAsset {
 
 	private Instrument instrument;
 
-	private Account account;
-
-	private NameValue portfolio;
+	private NameValue institution;	
 
 	private Integer current;
 	

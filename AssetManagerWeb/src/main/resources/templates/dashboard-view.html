@@ -3,12 +3,43 @@
 
 <head th:replace="fragments/page :: bluma" />
 
+<script>
+
+	function showFilter() {
+		$('#assetFilterModal').addClass('is-active');
+
+		$('.filterTab').on('click', function () {
+
+			$('.filterTab').each(function () {
+				$(this).removeClass('is-active');
+			});
+
+			$(this).addClass('is-active');
+
+			$('.panel-block').each(function () {
+				$(this).addClass('is-hidden');
+			});
+
+			let tabName = $(this).attr('data-tabName');
+			$('.' + tabName).each(function () {
+				$(this).removeClass('is-hidden');
+			});
+
+		});
+	}
+	
+	function closeFilter() {
+		$('#assetFilterModal').removeClass('is-active');
+	}
+
+</script>
+
 <body>
-	<section th:replace="fragments/page :: header(title='ASSETS', menuItems=~{this::.am-menu})">		
+	<section th:replace="fragments/page :: header(title='ASSETS', menuItems=~{this::.am-menu})">
 		<div class="am-menu" th:replace="fragments/page :: menu('far fa-calendar-alt', '/')" />
 		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-chart-pie', '/')" />
 		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-plus', @{'/asset/new'})" />
-		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-filter', '/')" />
+		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-filter', 'javascript:showFilter()')" />
 	</section>
 
 	<section class="container py-5 mt-4">
@@ -57,9 +88,9 @@
 								th:href="@{/asset/view?assetId={assetId}(assetId=${baseAsset.id})}" />
 						</td>
 						<td th:text="${baseAsset.instrument.label}" />
-						<td th:text="${baseAsset.account.institution}" />
-						<td th:text="${baseAsset.account.holder}" />
-						<td th:text="${baseAsset.portfolio.label}" />
+						<td th:text="${baseAsset.institution.label}" />
+						<td th:text="${baseAsset.holder}" />						
+						<td th:text="${baseAsset.portfolio}" />
 						<td class="has-text-right" th:text="${#numbers.formatDecimal({baseAsset.current}, 1, 'COMMA', 0, 'POINT')}" />
 						<td class="has-text-right" th:text="${#numbers.formatDecimal({baseAsset.xirr}, 1, 2)}" />
 					</tr>	
@@ -67,6 +98,60 @@
 			</table>
 		</div>
 	</section>
+	
+	<div id="assetFilterModal" class="modal">
+		<div class="modal-background"></div>
+		<form method="POST" th:action="@{/dashboard/filter}" th:object=${assetFilter}>
+		<div class="modal-card" style="width: 700px; height: 700px;">
+			<header class="modal-card-head has-background-link">
+      			<p class="modal-card-title has-text-white">ASSET FILTER</p>
+      			<div class="buttons are-small">
+  					<button class="button is-info is-light">APPLY</button>
+  					<a class="button is-info is-light" onclick="closeFilter()">CLOSE</a>  					
+				</div>
+    		</header>
+			<section class="modal-card-body">
+			
+				<div class="tabs is-toggle is-fullwidth">
+					<ul>
+						<li class="filterTab is-active" data-tabName="tab_instrument"><a>Instrument</a></li>
+						<li class="filterTab" data-tabName="tab_institution"><a>Institution</a></li>
+						<li class="filterTab" data-tabName="tab_holder"><a>Holder</a></li>
+						<li class="filterTab" data-tabName="tab_portfolio"><a>Portfolio</a></li>
+						<li class="filterTab" data-tabName="tab_status"><a>Status</a></li>
+					</ul>
+				</div>
+			
+				<label class="panel-block py-3 tab_instrument" th:each="config : ${@assetConfig.instruments}">
+					<input type="checkbox" />
+					<span th:text="${config.label}" />
+				</label>			
+			
+				<label class="panel-block py-3 tab_institution is-hidden" th:each="config : ${@assetConfig.institutions}">
+					<input type="checkbox" />
+					<span th:text="${config.label}" />
+				</label>
+			
+				<label class="panel-block py-3 tab_holder is-hidden" th:each="config : ${@assetConfig.holders}">
+					<input type="checkbox" />
+					<span th:text="${config}" />
+				</label>
+			
+				<label class="panel-block py-3 tab_portfolio is-hidden" th:each="config : ${@assetConfig.portfolios}">
+					<input type="checkbox" name="portfolio" th:value="${config}" th:field="*{portfolio}" />
+					<span th:text="${config}" />
+				</label>
+				
+				<label class="panel-block py-3 tab_status is-hidden" th:each="config : ${@assetConfig.status}">
+					<input type="checkbox" name="status" th:value="${config.id}" th:field="*{status}" />
+					<span th:text="${config.label}" />
+				</label>
+			
+			</section>
+		</div>
+		</form>
+	</div>
+	
 </body>
 
 </html>

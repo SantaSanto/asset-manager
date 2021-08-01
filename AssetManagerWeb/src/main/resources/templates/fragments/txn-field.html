@@ -16,6 +16,27 @@
 	<div th:replace="this::AMOUNT" />
 </section>
 
+<section th:fragment="EPF">
+	<div class="field py-3">
+		<label class="label has-text-link">COMPANY NAMY</label>
+		<div class="control">
+			<input class="input is-medium" type="text" th:field="*{company}" />
+		</div>
+	</div>
+	<div class="field py-3">
+		<label class="label has-text-link">EMPLOYEE CONTRIBUTION</label>
+		<div class="control">
+			<input class="input is-medium" type="number" step='1' th:field="*{employee}" />
+		</div>
+	</div>
+	<div class="field py-3">
+		<label class="label has-text-link">EMPLOYER CONTRIBUTION</label>
+		<div class="control">
+			<input class="input is-medium" type="number" step='1' th:field="*{employer}" />
+		</div>
+	</div>
+</section>
+
 <section th:fragment="UNIT">
 	<div class="field py-3">
 		<label class="label has-text-link">UNIT</label>

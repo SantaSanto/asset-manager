@@ -35,6 +35,16 @@
 </section>
 
 
+<section class="container py-5 mt-4" th:fragment="EPF">
+	<nav class="level">
+		<div th:replace="this::AMOUNT('CURRENT', 	${assetDetail.current})" />	
+		<div th:replace="this::AMOUNT('EMPLOYEE', 	${assetDetail.employee})" />
+		<div th:replace="this::AMOUNT('EMPLOYER', 	${assetDetail.employer})" />
+		<div th:replace="this::XIRR" />
+	</nav>
+</section>
+
+
 <section class="container py-5 mt-4" th:fragment="UNIT">
 	<nav class="level">
 		<div th:replace="this::AMOUNT('CURRENT', ${assetDetail.current})" />
@@ -44,16 +54,6 @@
 				<p class="title is-5" th:text="${#numbers.formatDecimal({assetDetail.unit}, 1, 3)}" />
 			</div>
 		</div>
-		<div th:replace="this::XIRR" />
-	</nav>
-</section>
-
-<section class="container py-5 mt-4" th:fragment="NPS">
-	<nav class="level">
-		<div th:replace="this::AMOUNT('CURRENT', ${assetDetail.current})" />	
-		<div th:replace="this::AMOUNT('EQUITY', ${assetDetail.equity})" />
-		<div th:replace="this::AMOUNT('DEBT', 	${assetDetail.debt})" />
-		<div th:replace="this::AMOUNT('GLIT', 	${assetDetail.glit})" />
 		<div th:replace="this::XIRR" />
 	</nav>
 </section>
@@ -71,35 +71,14 @@
 	</nav>
 </section>
 
-
-<section class="container py-5 mt-4" th:fragment="EPF">
+<section class="container py-5 mt-4" th:fragment="NPS">
 	<nav class="level">
-		<div class="level-item has-text-centered">
-			<div>
-				<p class="heading is-size-6 has-text-link">EMPLOYEE</p>
-				<p class="title is-5">1,30,00,000</p>
-			</div>
-		</div>
-		<div class="level-item has-text-centered">
-			<div>
-				<p class="heading is-size-6 has-text-link">COMPANY</p>
-				<p class="title is-5">1,35,00,000</p>
-			</div>
-		</div>
-		<div class="level-item has-text-centered">
-			<div>
-				<p class="heading is-size-6 has-text-link">CURRENT</p>
-				<p class="title is-5">1,35,00,000</p>
-			</div>
-		</div>
-		<div class="level-item has-text-centered">
-			<div>
-				<p class="heading is-size-6  has-text-link">ROI</p>
-				<p class="title is-5">12.00</p>
-			</div>
-		</div>
+		<div th:replace="this::AMOUNT('CURRENT', ${assetDetail.current})" />	
+		<div th:replace="this::AMOUNT('EQUITY', ${assetDetail.equity})" />
+		<div th:replace="this::AMOUNT('DEBT', 	${assetDetail.debt})" />
+		<div th:replace="this::AMOUNT('GLIT', 	${assetDetail.glit})" />
+		<div th:replace="this::XIRR" />
 	</nav>
 </section>
-
 
 </html>

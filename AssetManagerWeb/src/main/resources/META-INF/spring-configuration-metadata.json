@@ -1,0 +1,34 @@
+{
+	"properties": [
+		{
+			"name": "com.santo.portfolio.config.txn.categories",
+			"type": "java.util.List",
+			"description": "List of Transaction Category"
+		},
+		{
+			"name": "com.santo.portfolio.config.asset.instruments",
+			"type": "java.util.List",
+			"description": "List of Instrument"
+		},
+		{
+			"name": "com.santo.portfolio.config.asset.institutions",
+			"type": "java.util.List",
+			"description": "List of Account Holders"
+		},
+		{
+			"name": "com.santo.portfolio.config.asset.holders",
+			"type": "java.util.List",
+			"description": "List of Account Holders"
+		},
+		{
+			"name": "com.santo.portfolio.config.asset.portfolios",
+			"type": "java.util.List",
+			"description": "List of Asset Portfolio'"
+		},
+		{
+			"name": "com.santo.portfolio.config.asset.status",
+			"type": "java.util.List",
+			"description": "List of Asset Status'"
+		}
+	]
+}

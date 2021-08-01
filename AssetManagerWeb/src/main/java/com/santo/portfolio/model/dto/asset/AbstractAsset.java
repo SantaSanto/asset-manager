@@ -7,6 +7,10 @@ public abstract class AbstractAsset {
 	
 	private Long id;
 
-	private String name;
+	private String name;	
+	
+	private String holder;
+	
+	private String portfolio;
 
 }

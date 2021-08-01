@@ -29,28 +29,25 @@
 					<p class="title is-6 is-uppercase" th:text="${assetDetail.instrument.label}" />
 				</div>
 			</div>
-			<div class="level-item has-text-centered">
-				<div class="box">
-					<p class="heading is-size-6 has-text-link">HOLDER</p>
-					<p class="title is-6 is-uppercase" th:text="${assetDetail.account.holder}" />
-				</div>
-			</div>
+
 			<div class="level-item has-text-centered">
 				<div class="box">
 					<p class="heading is-size-6 has-text-link">INSTITUTION</p>
-					<p class="title is-6 is-uppercase" th:text="${assetDetail.account.institution}" />
+					<p class="title is-6 is-uppercase" th:text="${assetDetail.institution.label}" />
 				</div>
 			</div>
+
 			<div class="level-item has-text-centered">
 				<div class="box">
-					<p class="heading is-size-6 has-text-link">ACCOUNT</p>
-					<p class="title is-6 is-uppercase" th:text="${assetDetail.account.id}" />
+					<p class="heading is-size-6 has-text-link">HOLDER</p>
+					<p class="title is-6 is-uppercase" th:text="${assetDetail.holder}" />
 				</div>
 			</div>
+
 			<div class="level-item has-text-centered">
 				<div class="box">
 					<p class="heading is-size-6 has-text-link">PORTFOLIO</p>
-					<p class="title is-6 is-uppercase" th:text="${assetDetail.portfolio.label}" />
+					<p class="title is-6 is-uppercase" th:text="${assetDetail.portfolio}" />
 				</div>
 			</div>
 		</nav>
@@ -58,6 +55,7 @@
 
 	<section th:replace="fragments/asset-stat::${assetType}" />
 	<section th:replace="fragments/txn-list::${assetType}" />
+
 
 </body>
 

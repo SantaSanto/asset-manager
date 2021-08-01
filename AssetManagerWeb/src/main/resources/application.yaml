@@ -11,7 +11,6 @@ com.santo.portfolio.config.txn.categories:
 - id: NAV
   label: Net Value
 
-      
 com.santo.portfolio.config.asset.instruments:
 - id: FD
   label: Fixed Deposit
@@ -26,11 +25,11 @@ com.santo.portfolio.config.asset.instruments:
   type: Fixed        
         
 - id: MFE
-  label: Equity Mutual Fund
+  label: Equity Fund
   type: Equity
             
 - id: MFD
-  label: Debt Mutual Fund
+  label: Debt Fund
   type: Equity
       
 - id: NPS
@@ -40,74 +39,52 @@ com.santo.portfolio.config.asset.instruments:
 - id: SGB
   label: Sov Gold Bond
   type: Bullion
-      
+    
 
-      
-com.santo.portfolio.config.asset.accounts:
-- id: BXX523P
-  holder: Santosh
-  institution: Bajaj Finserv
-
-- id: DXX1232
-  holder: Santosh
-  institution: Digi Bank
   
-- id: SXX5634
-  holder: Lavanya
-  institution: State Bank  
+com.santo.portfolio.config.asset.institutions:
+- id: DBS  
+  label: Digi Bank
   
-- id: SXX8671
-  holder: Santosh
-  institution: State Bank  
+- id: SBI  
+  label: State Bank
   
-- id: HXX2045
-  holder: Lavanya
-  institution: HDFC  
+- id: HDFC  
+  label: HDFC
   
-- id: TXX523P
-  holder: Santosh
-  institution: Power Finance
+- id: BFS  
+  label: Bajaj Finserv
   
-- id: TXX488B
-  holder: Lavanya
-  institution: Power Finance
+- id: TNPF  
+  label: Power Finance 
   
-- id: PXX488B
-  holder: Lavanya
-  institution: Post Office
+- id: KUV  
+  label: Kuvera
  
-- id: KXX523P
-  holder: Santosh
-  institution: Kuvera
+- id: COIN  
+  label: Zerodha Coin  
   
-- id: ZXX6018
-  holder: Santosh
-  institution: Zerodha Coin
+- id: IPO  
+  label: Post Office
   
-- id: UXX7208
-  holder: Santosh
-  institution: UAN
-      
-- id: NXX5819
-  holder: Santosh
-  institution: NPS
-
-
-com.santo.portfolio.config.asset.portfolio:
-- id: CHILD
-  label: Children
- 
-- id: EDU
-  label: Education
-            
-- id: EXG
-  label: Exigency
+- id: UAN
+  label: UAN  
+  
+- id: NPS  
+  label: NPS
         
-- id: REL
-  label: Relient 
-  
-- id: WLF
-  label: Welfare 
+
+com.santo.portfolio.config.asset.holders:
+- Lavanya    
+- Pranaya
+- Santosh
+
+
+com.santo.portfolio.config.asset.portfolios:
+- Education     
+- Exigency   
+- Relient 
+- Welfare 
   
   
 com.santo.portfolio.config.asset.status:

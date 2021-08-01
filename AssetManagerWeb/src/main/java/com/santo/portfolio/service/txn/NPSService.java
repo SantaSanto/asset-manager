@@ -35,7 +35,7 @@ public class NPSService extends AbstractTxnService<NPS> {
 	@Override
 	protected void updateStat(final Asset asset) {
 		getLatestNav(asset.getId()).ifPresent((latestNav) -> {
-			asset.setCurrent(latestNav.getEquity() + latestNav.getDebt() + latestNav.getGlit());
+			asset.setCurrent(sumAmount(latestNav.getEquity(), latestNav.getDebt(), latestNav.getGlit()));
 			asset.setProjected(asset.getCurrent());
 			asset.setEquity(latestNav.getEquity());
 			asset.setDebt(latestNav.getDebt());
@@ -49,7 +49,7 @@ public class NPSService extends AbstractTxnService<NPS> {
 
 	protected final Transaction createXirrTxn(final NPS nps) {
 		final Integer amount = signAmount(nps.getCategory(), nps.getEquity() + nps.getDebt() + nps.getGlit());
-		return new Transaction(amount, new Date(nps.getDate().getTime()));		
-	} 
+		return new Transaction(amount, new Date(nps.getDate().getTime()));
+	}
 
 }

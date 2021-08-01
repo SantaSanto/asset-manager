@@ -58,12 +58,6 @@ public abstract class AbstractTxnService<Domain extends Txn> implements ITxnServ
 		return getDao().findByAssetIdAndCategoryIn(assetId, categorys, by(Direction.ASC, DATE));
 	}
 
-//	protected final Transaction createXirrTxn(final Txn txn) {
-//		final Integer amount = txn.getAmount();
-//		final Integer txnAmount = isNegate(txn.getCategory()) ? Math.negateExact(amount) : amount;
-//		return new Transaction(txnAmount, new Date(txn.getDate().getTime()));
-//	}
-
 	protected final Double calculateXirr(final List<Transaction> xirrTxns) {
 		try {
 			final Double xirr = new Xirr(xirrTxns).xirr();
@@ -75,8 +69,12 @@ public abstract class AbstractTxnService<Domain extends Txn> implements ITxnServ
 	}
 
 	protected final Integer signAmount(final String category, final int... amounts) {
-		final Integer total = Arrays.stream(amounts).sum();
+		final Integer total = sumAmount(amounts);
 		return DEPOSIT.equalsIgnoreCase(category) ? Math.negateExact(total) : total;
+	}
+
+	protected Integer sumAmount(final int... amounts) {
+		return Arrays.stream(amounts).sum();
 	}
 
 }

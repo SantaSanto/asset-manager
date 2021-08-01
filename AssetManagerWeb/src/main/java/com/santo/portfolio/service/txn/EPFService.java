@@ -29,7 +29,9 @@ public class EPFService extends AbstractTxnService<EPF> {
 	@Override
 	protected void updateStat(final Asset asset) {
 		final List<EPF> cashFlows = getCashflows(asset.getId(), Arrays.asList(DEPOSIT, CREDIT));
-		asset.setCurrent(cashFlows.stream().mapToInt(this::getAmount).sum());
+		asset.setEmployee(cashFlows.stream().mapToInt(EPF::getEmployee).sum());
+		asset.setEmployer(cashFlows.stream().mapToInt(EPF::getEmployer).sum());
+		asset.setCurrent(sumAmount(asset.getEmployee(), asset.getEmployer()));
 		asset.setProjected(asset.getCurrent());
 
 		final List<Transaction> xirrTxns = cashFlows.stream().filter(this::isDeposit).map(this::createXirrTxn)
@@ -37,17 +39,14 @@ public class EPFService extends AbstractTxnService<EPF> {
 		xirrTxns.add(new Transaction(asset.getCurrent(), LocalDate.now()));
 		asset.setXirr(calculateXirr(xirrTxns));
 	}
-	
+
 	protected final Transaction createXirrTxn(final EPF epf) {
-		final Integer amount = signAmount(epf.getCategory(), getAmount(epf));
+		final Integer amount = signAmount(epf.getCategory(), sumAmount(epf.getEmployee(), epf.getEmployer()));
 		return new Transaction(amount, new Date(epf.getDate().getTime()));
-	}
-	
-	private Integer getAmount(final EPF epf) {
-		return epf.getEmployee() + epf.getEmployer();
 	}
 
 	private boolean isDeposit(final Txn txn) {
 		return DEPOSIT.equalsIgnoreCase(txn.getCategory());
 	}
+
 }
