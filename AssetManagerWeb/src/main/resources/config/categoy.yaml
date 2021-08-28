@@ -1,0 +1,12 @@
+com.santo.portfolio.config.txn.categories:
+- id: DEPOSIT
+  label: Deposit
+
+- id: CREDIT
+  label: Credit  
+  
+- id: REDEEM
+  label: Redeem
+
+- id: NAV
+  label: Net Value

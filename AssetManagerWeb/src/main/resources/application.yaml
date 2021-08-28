@@ -1,78 +1,9 @@
-com.santo.portfolio.config.txn.categories:
-- id: DEPOSIT
-  label: Deposit
-
-- id: CREDIT
-  label: Credit  
-  
-- id: REDEEM
-  label: Redeem
-
-- id: NAV
-  label: Net Value
-
-com.santo.portfolio.config.asset.instruments:
-- id: FD
-  label: Fixed Deposit
-  type: Fixed
-      
-- id: FSS
-  label: Saving Scheme
-  type: Fixed
-  
-- id: EPF
-  label: Provident Fund
-  type: Fixed        
-        
-- id: MFE
-  label: Equity Fund
-  type: Equity
-            
-- id: MFD
-  label: Debt Fund
-  type: Equity
-      
-- id: NPS
-  label: Pension Scheme
-  type: Equity
-      
-- id: SGB
-  label: Sov Gold Bond
-  type: Bullion
-    
-
-  
-com.santo.portfolio.config.asset.institutions:
-- id: DBS  
-  label: Digi Bank
-  
-- id: SBI  
-  label: State Bank
-  
-- id: HDFC  
-  label: HDFC
-  
-- id: BFS  
-  label: Bajaj Finserv
-  
-- id: TNPF  
-  label: Power Finance 
-  
-- id: KUV  
-  label: Kuvera
- 
-- id: COIN  
-  label: Zerodha Coin  
-  
-- id: IPO  
-  label: Post Office
-  
-- id: UAN
-  label: UAN  
-  
-- id: NPS  
-  label: NPS
-        
+spring:
+  config:      
+    import:
+      - config/categoy.yaml
+      - config/instrument.yaml
+      - config/institution.yaml       
 
 com.santo.portfolio.config.asset.holders:
 - Lavanya    
@@ -96,3 +27,19 @@ com.santo.portfolio.config.asset.status:
             
 - id: D
   label: Delete
+
+
+com.santo.portfolio.config.asset.sortBy:
+- id: name
+  label: Name
+ 
+- id: current
+  label: Current
+            
+- id: xirr
+  label: XIRR
+  
+com.santo.portfolio.config.asset.sortDirection:
+- Ascending
+- Descending     
+ 

@@ -53,27 +53,28 @@
 					</div>
 				</div>
 
-				<div class="field py-3">
-					<label class="label has-text-link">PORTFOLIO</label>
-					<div class="control">
-						<div class="select is-medium is-fullwidth">
-							<select th:field="*{portfolio}">
-								<option th:each="config : ${@assetConfig.portfolios}" th:value="${config}"
-									th:text="${config}">
-								</option>
-							</select>
+				<div class="field is-grouped py-3">
+					<div class="control is-expanded">
+						<label class="label has-text-link">PORTFOLIO</label>
+						<div class="control">
+							<div class="select is-medium is-fullwidth">
+								<select th:field="*{portfolio}">
+									<option th:each="config : ${@assetConfig.portfolios}" th:value="${config}"
+										th:text="${config}">
+									</option>
+								</select>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="field py-3">
-					<label class="label has-text-link">STATUS</label>
-					<div class="control">
-						<div class="select is-medium is-fullwidth">
-							<select th:field="*{status}">
-								<option th:each="config : ${@assetConfig.status}" th:value="${config.id}"
-									th:text="${config.label}" />
-							</select>
+					<div class="control is-expanded">
+						<label class="label has-text-link">STATUS</label>
+						<div class="control">
+							<div class="select is-medium is-fullwidth">
+								<select th:field="*{status}">
+									<option th:each="config : ${@assetConfig.status}" th:value="${config.id}"
+										th:text="${config.label}" />
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>

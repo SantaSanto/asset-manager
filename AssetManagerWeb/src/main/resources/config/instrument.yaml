@@ -1,0 +1,48 @@
+com.santo.portfolio.config.asset.instruments:
+- id: FD
+  label: Deposit
+  type: Fixed
+      
+- id: PPF
+  label: PPF
+  type: Fixed
+  
+- id: SSA
+  label: SSA
+  type: Fixed  
+  
+- id: EPF
+  label: EPF
+  type: Fixed
+  
+- id: ELSS
+  label: ELSS
+  type: Equity
+    
+- id: EIF
+  label: Index
+  type: Equity
+  
+- id: ESC
+  label: SCap
+  type: Equity
+  
+- id: DLF
+  label: Liquid
+  type: Debt
+  
+- id: DUS
+  label: USD
+  type: Debt
+  
+- id: DCB
+  label: CBond
+  type: Debt            
+      
+- id: NPS
+  label: NPS
+  type: Equity
+      
+- id: SGB
+  label: SGB
+  type: Bullion

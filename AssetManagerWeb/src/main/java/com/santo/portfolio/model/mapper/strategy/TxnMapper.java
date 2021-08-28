@@ -29,7 +29,8 @@ public class TxnMapper {
 	public ITxnMapper<? extends Txn> by(final AssetType assetType) {
 		switch (assetType) {
 		case FIXED:
-		case SCHEME:
+		case PPF:
+		case SSA:
 			return fixedMapper;
 
 		case EPF:

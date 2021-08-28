@@ -1,0 +1,30 @@
+com.santo.portfolio.config.asset.institutions:
+- id: DBS  
+  label: Digibank
+  
+- id: SBI  
+  label: SBI
+  
+- id: HDFC  
+  label: HDFC
+  
+- id: BFS  
+  label: Bajaj
+  
+- id: TNPF  
+  label: TNPF 
+  
+- id: KUV  
+  label: Kuvera
+ 
+- id: COIN  
+  label: Zerodha  
+  
+- id: IPO  
+  label: IPO
+  
+- id: UAN
+  label: UAN  
+  
+- id: NPS  
+  label: NPS

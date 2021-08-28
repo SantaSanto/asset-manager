@@ -27,7 +27,14 @@
 </section>
 
 
-<section class="container py-5 mt-4" th:fragment="SCHEME">
+<section class="container py-5 mt-4" th:fragment="PPF">
+	<nav class="level">
+		<div th:replace="this::AMOUNT('CURRENT', ${assetDetail.current})" />	
+		<div th:replace="this::XIRR" />
+	</nav>
+</section>
+
+<section class="container py-5 mt-4" th:fragment="SSA">
 	<nav class="level">
 		<div th:replace="this::AMOUNT('CURRENT', ${assetDetail.current})" />	
 		<div th:replace="this::XIRR" />

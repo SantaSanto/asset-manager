@@ -29,6 +29,11 @@
 			"name": "com.santo.portfolio.config.asset.status",
 			"type": "java.util.List",
 			"description": "List of Asset Status'"
+		},
+		{
+			"name": "com.santo.portfolio.config.asset.sortBy",
+			"type": "java.util.List",
+			"description": "List of Asset Filter Sort options'"
 		}
 	]
 }

@@ -1,0 +1,237 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/page :: bluma" />
+
+<script th:inline="javascript">
+	const instrumentList = JSON.parse(/*[[${instruments}]]*/ '[]');
+	const institutionList = JSON.parse(/*[[${institutions}]]*/ '[]');
+	const holderList = JSON.parse(/*[[${holders}]]*/ '[]');
+	const portfolios = JSON.parse(/*[[${portfolios}]]*/ '[]');
+	const xirrs = JSON.parse(/*[[${xirrs}]]*/ '[]');
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+	google.charts.load('current', {
+		packages: ['corechart', 'bar']
+	});
+	google.charts.setOnLoadCallback(drawCharts);
+
+	function drawCharts() {
+		drawInstrument();
+		drawInstitution();
+		drawHolder();
+		drawPortfolio();
+		drawXirr();
+	}
+
+	function drawInstrument() {
+
+		const dataArray = [];
+		dataArray.push(['Instrument', 'Current', {role: 'annotation'}]);
+		for (const data of instrumentList) {
+			const name = data[0];
+			const value = parseInt(data[1]);
+			const annotation = data[2];
+			dataArray.push([name, value, annotation]);
+		}
+
+		var data = google.visualization.arrayToDataTable(dataArray);
+
+		var options = {
+			title: 'Instruments',
+			height: 750,
+			vAxis: {
+				title: 'Current'
+			},
+			legend: {position: 'none'},
+		};
+
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('instrumentChart'));
+
+		chart.draw(data, options);
+	}
+
+	function drawInstitution() {
+
+		const dataArray = [];
+		dataArray.push(['Institution', 'Current', {role: 'annotation'}]);
+		for (const data of institutionList) {
+			const name = data[0];
+			const value = parseInt(data[1]);
+			const annotation = data[2];
+			dataArray.push([name, value, annotation]);
+		}
+
+		console.log(dataArray);
+
+		var data = google.visualization.arrayToDataTable(dataArray);
+
+		var options = {
+			title: 'Institution',
+			height: 750,
+			vAxis: {
+				title: 'Current'
+			},
+			legend: {position: 'none'},
+		};
+
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('institutionChart'));
+
+		chart.draw(data, options);
+	}
+
+	function drawHolder() {
+
+		const dataArray = [];
+		dataArray.push(['Holder', 'Current', {role: 'annotation'}]);
+		for (const data of holderList) {
+			const name = data[0];
+			const value = parseInt(data[1]);
+			const annotation = data[2];
+			dataArray.push([name, value, annotation]);
+		}
+
+		var data = google.visualization.arrayToDataTable(dataArray);
+
+		var options = {
+			title: 'Holder',
+			height: 750,
+			vAxis: {
+				title: 'Current'
+			},
+			legend: {position: 'none'},
+		};
+
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('holderChart'));
+
+		chart.draw(data, options);
+	}
+
+	function drawPortfolio() {
+
+		const dataArray = [];
+		dataArray.push(['Portfolio', 'Current', {role: 'annotation'}]);
+		for (const data of portfolios) {
+			const name = data[0];
+			const value = parseInt(data[1]);
+			const annotation = data[2];
+			dataArray.push([name, value, annotation]);
+		}
+
+		var data = google.visualization.arrayToDataTable(dataArray);
+
+		var options = {
+			title: 'Portfolio',
+			height: 750,
+			vAxis: {
+				title: 'Current'
+			},
+			legend: {position: 'none'},
+		};
+
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('portfolioChart'));
+
+		chart.draw(data, options);
+	}
+
+	function drawXirr() {
+
+		const dataArray = [];
+		dataArray.push(['X', 'Y', {role: 'tooltip'}]);
+		for (const data of xirrs) {
+			const current = parseInt(data[1]);
+			const xirr = parseFloat(data[2]);
+			const tooltip = `${data[0]} \n Current: ${current} \n XIRR: ${xirr}`;
+			dataArray.push([xirr, current, tooltip]);
+		}
+		var data = google.visualization.arrayToDataTable(dataArray)
+
+		var options = {
+			title: 'XIRR vs Current',
+			height: 750,
+			hAxis: {title: 'XIRR'},
+			vAxis: {title: 'Current'},
+			legend: 'none',
+			trendlines: {
+				0: {
+					type: 'linear',
+					color: 'green',
+				},
+			}
+		};
+
+		var chart = new google.visualization.ScatterChart(document.getElementById('xirrChart'));
+
+		chart.draw(data, options);
+	}
+</script>
+
+<body>
+	<section th:replace="fragments/page :: header(title='ASSET CHART', menuItems=~{this::.am-menu})">
+		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-home', @{/dashboard})" />
+		<div class="am-menu" th:replace="fragments/page :: menu('fas fa-filter', 'javascript:showFilter()')" />
+	</section>
+
+	<section class="container">
+		<div class="columns">
+			<div class="column">
+				<div class="box my-5">
+					<div id="instrumentChart" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container">
+		<div class="columns">
+			<div class="column">
+				<div class="box my-5">
+					<div id="institutionChart" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container">
+		<div class="columns">
+			<div class="column">
+				<div class="box my-5">
+					<div id="holderChart" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container">
+		<div class="columns">
+			<div class="column">
+				<div class="box my-5">
+					<div id="portfolioChart" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="container">
+		<div class="columns">
+			<div class="column">
+				<div class="box my-5">
+					<div id="xirrChart" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="fragments/asset-filter :: assetFilterModal" />
+
+</body>
+
+</html>

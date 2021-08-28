@@ -35,7 +35,8 @@ public class TxnStrategy {
 		case FIXED:
 			return fixedService;
 
-		case SCHEME:
+		case PPF:
+		case SSA:
 			return schemeService;
 
 		case EPF:

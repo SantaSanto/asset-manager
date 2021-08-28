@@ -19,5 +19,13 @@ public class BaseAsset extends AbstractAsset {
 	private Integer projected;
 
 	private Double xirr;
+	
+	public String getInstrumentLabel() {
+		return this.getInstrument().getLabel();
+	}
+	
+	public String getInstitutionLabel() {
+		return this.getInstitution().getLabel();
+	}
 
 }

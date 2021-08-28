@@ -24,7 +24,7 @@
 	</div>
 </section>
 
-<section class="container" th:fragment="SCHEME">
+<section class="container" th:fragment="PPF">
 	<div class=" box my-5">
 		<table class="table is-fullwidth is-striped">
 			<thead class="has-background-link-dark">
@@ -37,7 +37,30 @@
 			<tbody>
 				<tr th:each="txn: ${txns}">
 					<td>
-						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='SCHEME')}" />
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='PPF')}" />
+					</td>
+					<td th:text="${txn.category.label}" />
+					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />
+				</tr>	
+			</tbody>			
+		</table>
+	</div>
+</section>
+
+<section class="container" th:fragment="SSA">
+	<div class=" box my-5">
+		<table class="table is-fullwidth is-striped">
+			<thead class="has-background-link-dark">
+				<tr>
+					<th class="has-text-white">DATE</th>
+					<th class="has-text-white">CATEGORY</th>
+					<th class="has-text-white has-text-right">AMOUNT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="txn: ${txns}">
+					<td>
+						<a th:text="${txn.date}" th:href="@{/txn/update(txnId=${txn.id}, assetType='SSA')}" />
 					</td>
 					<td th:text="${txn.category.label}" />
 					<td class="has-text-right" th:text="${#numbers.formatDecimal({txn.amount}, 1, 'COMMA', 0, 'POINT')}" />

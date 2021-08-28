@@ -7,6 +7,9 @@ public interface IConstant {
 	String UPDATE = "/update";
 	String SAVE = "/save";
 	String VIEW = "/view";
+	String FILTER = "/filter";
+	String CHART = "/chart";
+	String CALENDER = "/calender";
 	
 	/** URL Path */
 	String DASHBOARD = "/dashboard";
@@ -38,15 +41,27 @@ public interface IConstant {
 
 	/** Asset Type **/
 	String FIXED = "FIXED";
-	String SAVING_SCHEME = "FSS";
+	String PPF = "PPF";
+	String SSA = "SSA";	
 	String EPF = "EPF";
 	String EQUITY = "EQUITY";
+	String DEBT = "DEBT";
 	String NPS = "NPS";
 	String BULLION = "BULLION";
 	
+	/** Asset Filter */
+	String DEFAULT_STATUS = "A";
+	String DEFAULT_SORT_BY = "name";
+	String DEFAULT_SORT_DIRECTION = "Ascending";
+	
 	/** Asset Criteria */
 	String STATUS = "status";
+	String HOLDER = "holder";
 	String PORTFOLIO = "portfolio";
+	String INSTRUMENT = "instrument";
+	String INSTITUTION = "institution";
+
+	
 	
 
 }

@@ -1,0 +1,121 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+
+<body>
+	<div id="assetFilterModal" class="modal" th:fragment="assetFilterModal">
+		<div class="modal-background"></div>
+		<form method="POST" th:action="@{/dashboard/filter}" th:object=${assetFilter}>
+			<div class="modal-card" style="width: 700px; height: 700px;">
+				<header class="modal-card-head has-background-link">
+					<p class="modal-card-title has-text-white">ASSET FILTER</p>
+					<div class="buttons are-small">
+						<button class="button is-info is-light">APPLY</button>
+						<a class="button is-info is-light" onclick="closeFilter()">CLOSE</a>
+					</div>
+				</header>
+				<section class="modal-card-body">
+
+					<div class="tabs is-toggle is-fullwidth">
+						<ul>
+							<li class="filterTab is-active" data-tabName="tab_instrument"><a>Instrument</a></li>
+							<li class="filterTab" data-tabName="tab_institution"><a>Institution</a></li>
+							<li class="filterTab" data-tabName="tab_holder"><a>Holder</a></li>
+							<li class="filterTab" data-tabName="tab_portfolio"><a>Portfolio</a></li>
+							<li class="filterTab" data-tabName="tab_sort"><a>Sort</a></li>
+						</ul>
+					</div>
+
+					<label class="panel-block py-3 tab_instrument" th:each="config : ${@assetConfig.instruments}">
+						<input type="checkbox" name="instrument" th:value="${config.id}" th:field="*{instrument}" />
+						<span th:text="${config.label}" />
+					</label>
+
+					<label class="panel-block py-3 tab_institution is-hidden"
+						th:each="config : ${@assetConfig.institutions}">
+						<input type="checkbox" name="institution" th:value="${config.id}" th:field="*{institution}" />
+						<span th:text="${config.label}" />
+					</label>
+
+					<label class="panel-block py-3 tab_holder is-hidden" th:each="config : ${@assetConfig.holders}">
+						<input type="checkbox" name="holder" th:value="${config}" th:field="*{holder}" />
+						<span th:text="${config}" />
+					</label>
+
+					<label class="panel-block py-3 tab_portfolio is-hidden"
+						th:each="config : ${@assetConfig.portfolios}">
+						<input type="checkbox" name="portfolio" th:value="${config}" th:field="*{portfolio}" />
+						<span th:text="${config}" />
+					</label>
+
+					<label class="panel-block py-3 tab_status is-hidden" th:each="config : ${@assetConfig.status}">
+						<input type="radio" name="status" th:value="${config.id}" th:field="*{status}" />
+						<span class="px-3" th:text="${config.label}" />
+					</label>
+
+					<div class="panel-block py-3 tab_sort is-hidden has-background-info-light">
+						<span class="has-text-info-dark px-3">STATUS</span>
+					</div>
+
+					<label class="panel-block py-3 tab_sort is-hidden" th:each="config : ${@assetConfig.status}">
+						<input type="radio" name="status" th:value="${config.id}" th:field="*{status}" />
+						<span class="px-3" th:text="${config.label}" />
+					</label>
+
+					<div class="panel-block py-3 tab_sort is-hidden has-background-info-light">
+						<span class="has-text-info-dark px-3">SORT</span>
+					</div>
+
+					<label class="panel-block py-3 tab_sort is-hidden" th:each="config : ${@assetConfig.sortBy}">
+						<input type="radio" name="sortBy" th:value="${config.id}" th:field="*{sortBy}" />
+						<span class="px-3" th:text="${config.label}" />
+					</label>
+
+					<div class="panel-block py-3 tab_sort is-hidden has-background-info-light">
+						<span class="has-text-info-dark px-3">SORT DIRECTION</span>
+					</div>
+
+					<div class="panel-block py-3 tab_sort is-hidden">
+						<label class="radio" th:each="config : ${@assetConfig.sortDirection}">
+							<input type="radio" name="sortDirection" th:value="${config}" th:field="*{sortDirection}" />
+							<span class="px-1" th:text="${config}" />
+						</label>
+					</div>
+
+				</section>
+			</div>
+		</form>
+		<script>
+
+			function showFilter() {
+				$('#assetFilterModal').addClass('is-active');
+
+				$('.filterTab').on('click', function () {
+
+					$('.filterTab').each(function () {
+						$(this).removeClass('is-active');
+					});
+
+					$(this).addClass('is-active');
+
+					$('.panel-block').each(function () {
+						$(this).addClass('is-hidden');
+					});
+
+					let tabName = $(this).attr('data-tabName');
+					$('.' + tabName).each(function () {
+						$(this).removeClass('is-hidden');
+					});
+
+				});
+			}
+
+			function closeFilter() {
+				$('#assetFilterModal').removeClass('is-active');
+			}
+
+		</script>
+	</div>
+</body>
+
+</html>

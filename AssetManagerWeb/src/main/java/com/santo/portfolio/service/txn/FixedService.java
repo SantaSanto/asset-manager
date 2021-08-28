@@ -24,6 +24,10 @@ public class FixedService extends AbstractTxnService<Fixed> {
 	protected FixedDao getDao() {
 		return txnDao;
 	}
+	
+	public List<Fixed> getAllRedeem(final Long assetId) {	
+		return getCashflows(assetId, Arrays.asList(REDEEM));
+	}
 
 	@Override
 	protected void updateStat(final Asset asset) {
@@ -49,5 +53,7 @@ public class FixedService extends AbstractTxnService<Fixed> {
 	private boolean isProjected(final Txn txn) {
 		return REDEEM.equalsIgnoreCase(txn.getCategory());
 	}
+
+
 
 }
